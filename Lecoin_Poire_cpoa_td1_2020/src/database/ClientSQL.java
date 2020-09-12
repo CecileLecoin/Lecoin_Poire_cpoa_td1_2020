@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import metier.Client;
 
 public class ClientSQL {
 	
@@ -34,15 +35,15 @@ public class ClientSQL {
 	
 	}
 	
-	public void ajoutClient(String nom, String prenom) {
+	public void ajoutClient(Client cli) {
 		
 		Connexion connexion = new Connexion();
 		try {
 			Connection laConnexion = connexion.creeConnexion();
 			PreparedStatement requete = laConnexion.prepareStatement("insert into client (nom, prenom) values (?, ?)", Statement.RETURN_GENERATED_KEYS);
 			
-			requete.setString(1, nom);
-			requete.setString(2, prenom);
+			requete.setString(1, cli.getNom());
+			requete.setString(2, cli.getPrenom());
 			ResultSet res = requete.executeQuery();
 			if (res != null)
 				res.close();
@@ -57,15 +58,15 @@ public class ClientSQL {
 		
 	}
 	
-public void supprClient(String nom, String prenom) {
+public void supprClient(Client cli) {
 		
 		Connexion connexion = new Connexion();
 		try {
 			Connection laConnexion = connexion.creeConnexion();
 			PreparedStatement requete = laConnexion.prepareStatement("delete from client where nom=? and prenom=?)", Statement.RETURN_GENERATED_KEYS);
 			
-			requete.setString(1, nom);
-			requete.setString(2, prenom);
+			requete.setString(1, cli.getNom());
+			requete.setString(2, cli.getPrenom());
 			ResultSet res = requete.executeQuery();
 			if (res != null)
 				res.close();

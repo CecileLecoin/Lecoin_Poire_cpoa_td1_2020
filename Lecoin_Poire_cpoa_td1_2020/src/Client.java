@@ -1,4 +1,10 @@
-package database;
+
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Client {
 	
@@ -25,11 +31,6 @@ public class Client {
 	@Override
 	public String toString() {
 		return "Client [nom=" + nom + ", prenom=" + prenom + "]";
-	}
-	
-	ResultSet res = requete.executeQuery("select nom, prenom from client");
-	while (res.next()) {
-		intno = res.getInt(1);String nom = res.getString("nom_etudiant");
 	}
 	
 	

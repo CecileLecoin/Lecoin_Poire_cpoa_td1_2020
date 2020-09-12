@@ -27,7 +27,10 @@ public class Client {
 		return "Client [nom=" + nom + ", prenom=" + prenom + "]";
 	}
 	
-	ResultSet res = requete.executeQuery("select nom, prenom from client");while (res.next()) {intno = res.getInt(1);String nom = res.getString("nom_etudiant");}
+	ResultSet res = requete.executeQuery("select nom, prenom from client");
+	while (res.next()) {
+		intno = res.getInt(1);String nom = res.getString("nom_etudiant");
+	}
 	
 	
 }

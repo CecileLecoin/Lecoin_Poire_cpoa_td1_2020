@@ -6,12 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import metier.Client;
 
 public class ClientSQL {
 	
-	public void affichClient() {
+	public ArrayList<Client> listClient() {
 		
+		ArrayList<Client> listeclient = new ArrayList<>();
 		Connexion connexion = new Connexion();
 		try {
 			Connection laConnexion = connexion.creeConnexion();
@@ -19,8 +22,7 @@ public class ClientSQL {
 			ResultSet res = requete.executeQuery("select nom, prenom from client");
 			
 			while (res.next()) {
-				String nom = res.getString("nom");
-				String prenom = res.getString("prenom");
+				listeclient.add(new Client(res.getString("nom"), res.getString("prenom"));
 			}
 			if (res != null)
 				res.close();

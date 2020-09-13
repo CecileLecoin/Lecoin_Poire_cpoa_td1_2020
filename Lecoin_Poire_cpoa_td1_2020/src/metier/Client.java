@@ -1,21 +1,15 @@
 package metier;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class Client {
-	
-	private int id_client;
+
+	private int idClient;
 	private String nom, prenom, identifiant, mdp, num, voie, ville, pays;
 
-	public Client(int id_client, String nom, String prenom, String identifiant,String mdp, String num, String voie,
+	public Client(int idClient, String nom, String prenom, String identifiant,String mdp, String num, String voie,
 			String ville, String pays) {
 		super();
-		this.id_client = id_client;
+		this.idClient = idClient;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.identifiant = identifiant;
@@ -25,21 +19,21 @@ public class Client {
 		this.ville = ville;
 		this.pays = pays;
 	}
-	
+
 	public Client() {
 		super();
-		
+
 	}
-	
-	
+
+
 
 	//getters et setters
-	public int getId_client() {
-		return id_client;
+	public int getIdClient() {
+		return idClient;
 	}
 
-	public void setId_client(int id_client) {
-		this.id_client = id_client;
+	public void setIdClient(int idClient) {
+		this.idClient = idClient;
 	}
 
 	public String getNom() {
@@ -105,17 +99,17 @@ public class Client {
 	public void setPays(String pays) {
 		this.pays = pays;
 	}
-	
-	
-	
+
+
+
 
 	//toStrings
 	@Override
 	public String toString() {
-		return "Client [id_client=" + id_client + ", nom=" + nom + ", prenom=" + prenom + ", identifiant=" + identifiant
+		return "Client [id_client=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", identifiant=" + identifiant
 				+ ", mdp=" + mdp + ", num=" + num + ", voie=" + voie + ", ville=" + ville + ", pays=" + pays + "]";
 	}
-	
-	
+
+
 
 }

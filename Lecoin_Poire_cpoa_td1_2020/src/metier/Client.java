@@ -4,10 +4,10 @@ package metier;
 public class Client {
 
 	private int idClient;
-	private String nom, prenom, identifiant, mdp, num, voie, ville, pays;
+	private String nom, prenom, identifiant, mdp, num, voie, cp, ville, pays;
 
 	public Client(int idClient, String nom, String prenom, String identifiant,String mdp, String num, String voie,
-			String ville, String pays) {
+			String cp, String ville, String pays) {
 		super();
 		this.idClient = idClient;
 		this.nom = nom;
@@ -16,6 +16,7 @@ public class Client {
 		this.mdp = mdp;
 		this.num = num;
 		this.voie = voie;
+		this.cp = cp;
 		this.ville = ville;
 		this.pays = pays;
 	}
@@ -83,6 +84,14 @@ public class Client {
 	public void setVoie(String voie) {
 		this.voie = voie;
 	}
+	
+	public String getCp() {
+		return cp;
+	}
+
+	public void setCp(String cp) {
+		this.cp = cp;
+	}
 
 	public String getVille() {
 		return ville;
@@ -107,7 +116,7 @@ public class Client {
 	@Override
 	public String toString() {
 		return "Client [id_client=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", identifiant=" + identifiant
-				+ ", mdp=" + mdp + ", num=" + num + ", voie=" + voie + ", ville=" + ville + ", pays=" + pays + "]";
+				+ ", mdp=" + mdp + ", num=" + num + ", voie=" + voie + ", cp=" + cp + ", ville=" + ville + ", pays=" + pays + "]";
 	}
 
 

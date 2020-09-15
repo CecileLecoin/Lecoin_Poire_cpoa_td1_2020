@@ -39,7 +39,7 @@ public class ClientSQL {
 
 	}
 	
-	public Client getById(int id) {
+	public static Client getById(int id) {
 		
 		Client client = new Client();
 		Connexion connexion = new Connexion();
@@ -59,7 +59,7 @@ public class ClientSQL {
 
 	}
 
-	public void ajoutClient(Client cli) {
+	public static void ajoutClient(Client cli) {
 
 		Connexion connexion = new Connexion();
 		try {
@@ -101,13 +101,6 @@ public class ClientSQL {
 			requete.setInt(1, cli.getIdClient());
 			requete.setString(2, cli.getNom());
 			requete.setString(3, cli.getPrenom());
-			/*requete.setString(4, cli.getIdentifiant());
-			requete.setString(5, cli.getMdp());
-			requete.setString(6, cli.getNum());
-			requete.setString(7, cli.getVoie());
-			requete.setString(8, cli.getCp());
-			requete.setString(9, cli.getVille());
-			requete.setString(10, cli.getPays());*/
 			requete.executeUpdate();
 			ResultSet res = requete.executeQuery();
 			if (res != null)
@@ -123,7 +116,7 @@ public class ClientSQL {
 
 	}
 	
-	public void modifClient(Client cli) {
+	public static void modifClient(Client cli, String nouvNom, String nouvPnom) {
 		
 		Connexion connexion = new Connexion();
 		try {
@@ -131,8 +124,8 @@ public class ClientSQL {
 			PreparedStatement requete = laConnexion.prepareStatement(
 					"UPDATE Client SET nom = ?, prenom = ? WHERE id_client = ?");
 			requete.setInt(1, cli.getIdClient());
-			requete.setString(2, cli.getNom());
-			requete.setString(3, cli.getPrenom());
+			requete.setString(2, nouvNom);
+			requete.setString(3, nouvPnom);
 			/*requete.setString(4, cli.getIdentifiant());
 			requete.setString(5, cli.getMdp());
 			requete.setString(6, cli.getNum());

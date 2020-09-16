@@ -12,7 +12,12 @@ public class Categorie {
     }
 
 
-    //Getters & Setters
+    public Categorie() {
+        super();
+	}
+
+
+	//Getters & Setters
     public int getIdCategorie() {
         return idCategorie;
     }

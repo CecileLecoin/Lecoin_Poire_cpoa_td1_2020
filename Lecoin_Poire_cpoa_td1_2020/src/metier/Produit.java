@@ -15,6 +15,10 @@ public class Produit {
         this.tarif = tarif;
     }
 
+    public Produit() {
+        super();
+    }
+
     // getters et setters
     public int getIdProduit() {
         return idProduit;

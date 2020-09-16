@@ -18,7 +18,7 @@ public class ProduitSQL {
         try {
             Connection connection = connexion.creeConnexion();
             Statement requete = connection.createStatement();
-            ResultSet res = requete.executeQuery("select * from client");
+            ResultSet res = requete.executeQuery("select * from Produit");
 
             while (res.next()) {listProduit.add(new Produit(res.getInt("id_produit"), res.getString("nom"),
                 res.getString("description"), res.getString("visuel"), res.getFloat("tarif")));
@@ -31,7 +31,7 @@ public class ProduitSQL {
                 connection.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Problème de selection des données" + sqle.getMessage());
+            System.out.println("Probleme de selection des donnees" + sqle.getMessage());
         }
 
         return listProduit;
@@ -44,7 +44,7 @@ public class ProduitSQL {
             Connection connection = connexion.creeConnexion();
 
             PreparedStatement requete = connection.prepareStatement(
-                    "INSERT INTO categorie (nom, description, tarif, visuel) Values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                    "INSERT INTO Produit (nom, description, tarif, visuel) Values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
             requete.setString(1, produit.getNom());
             requete.setString(2, produit.getDescription());
@@ -58,7 +58,7 @@ public class ProduitSQL {
                 connection.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
+            System.out.println("Probleme lors de la connexion ou execution de la requete" + sqle.getMessage());
         }
 
     }
@@ -70,7 +70,7 @@ public class ProduitSQL {
             Connection connection = connexion.creeConnexion();
 
             PreparedStatement requete = connection.prepareStatement(
-                    "DELETE FROM categorie WHERE nom = ? AND description = ? AND visuel = ? AND tarif = ?", Statement.RETURN_GENERATED_KEYS);
+                    "DELETE FROM Produit WHERE nom = ? AND description = ? AND visuel = ? AND tarif = ?", Statement.RETURN_GENERATED_KEYS);
 
             requete.setString(1, produit.getNom());
             requete.setString(2, produit.getDescription());
@@ -95,7 +95,7 @@ public class ProduitSQL {
             Connection connection = connexion.creeConnexion();
 
             PreparedStatement requete = connection.prepareStatement(
-                    "UPDATE categorie SET nom = ?, description = ?, tarif = ?, visuel = ? WHERE id_categorie = ?",
+                    "UPDATE Produit SET nom = ?, description = ?, tarif = ?, visuel = ? WHERE id_categorie = ?",
                     Statement.RETURN_GENERATED_KEYS);
 
             requete.setString(1, produit.getNom());
@@ -111,7 +111,7 @@ public class ProduitSQL {
                 connection.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
+            System.out.println("Probleme lors de la connexion ou execution de la requete" + sqle.getMessage());
         }
     }
 }

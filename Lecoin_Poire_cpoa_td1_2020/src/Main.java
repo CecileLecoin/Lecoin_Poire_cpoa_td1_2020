@@ -13,7 +13,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		String choice;
 		choice = sc.nextLine();
-		sc.close();
+		//sc.close();
 		choice.toLowerCase();
 
 		System.out.println(choice);
@@ -28,7 +28,7 @@ public class Main {
 						+ " -Ajouter un client : 'ajout'\n - Supprimer un client : 'suppr'\n -Modifier les informations d'un client : 'modif'\n");
 				choice="";
 				choice = sc.nextLine();
-				sc.close();
+				//sc.close();
 				choice.toLowerCase();
 				switch(choice) {
 					case "afficher la liste" : case "liste" : case "la liste":
@@ -120,7 +120,7 @@ public class Main {
 				sc.close();
 				Client clientMod = ClientSQL.getById(idC);
 				ClientSQL.modifClient(clientMod, a, b);
-				System.out.println("Fiche recap du nouveau client : \n" + a + " " + b);
+				System.out.println("Fiche recap du client : \n" + a + " " + b);
 			break;
 				
 			case "categorie": case "categories": case "les categories":
@@ -129,6 +129,7 @@ public class Main {
 				
 			default:
 				System.out.println("Selection non reconnue");
+				
 		}
 	}
 

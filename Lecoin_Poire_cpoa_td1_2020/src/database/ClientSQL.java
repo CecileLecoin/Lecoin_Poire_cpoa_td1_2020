@@ -19,7 +19,7 @@ public class ClientSQL {
 		try {
 			Connection laConnexion = connexion.creeConnexion();
 			Statement requete = laConnexion.createStatement();
-			ResultSet res = requete.executeQuery("select nom, prenom from client");
+			ResultSet res = requete.executeQuery("select * from Client");
 
 			while (res.next()) {
 				listeClient.add(new Client(res.getInt("id_client"), res.getString("nom"), res.getString("prenom"), null, null, null, null, null, null, null)); //null car pour le td1 on n'a pas besoin de gérer les autres élements à  part nom et prenom
@@ -64,7 +64,7 @@ public class ClientSQL {
 		Connexion connexion = new Connexion();
 		try {
 			Connection laConnexion = connexion.creeConnexion();
-			PreparedStatement requete = laConnexion.prepareStatement("insert into client (nom, prenom) values (?, ?)", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement requete = laConnexion.prepareStatement("insert into Client (nom, prenom) values (?, ?)", Statement.RETURN_GENERATED_KEYS);
 
 			requete.setInt(1, cli.getIdClient());
 			requete.setString(2, cli.getNom());
@@ -96,7 +96,7 @@ public class ClientSQL {
 		Connexion connexion = new Connexion();
 		try {
 			Connection laConnexion = connexion.creeConnexion();
-			PreparedStatement requete = laConnexion.prepareStatement("delete from client where nom=? and prenom=?)", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement requete = laConnexion.prepareStatement("delete from Client where nom=? and prenom=?)", Statement.RETURN_GENERATED_KEYS);
 
 			requete.setInt(1, cli.getIdClient());
 			requete.setString(2, cli.getNom());

@@ -9,6 +9,18 @@ import metier.Client;
 import metier.Produit;
 
 public class Main {
+	
+	public static int calcId(int tab[]) {
+		boolean trouve = false;
+		int iterateur=1;
+		while (iterateur <= tab.length+1 && trouve==false) {
+			if (Integer.compareUnsigned(tab[iterateur], iterateur)==0) {
+				trouve = true;
+				return iterateur;
+			}
+			iterateur++;
+		} return tab.length+1;
+	}
 
 	public static void main(String[] args) {
 
@@ -19,6 +31,8 @@ public class Main {
 
 		ArrayList<Produit> produits = ProduitSQL.listProduit();
 		ArrayList<Categorie> categories = CategorieSQL.listCategorie();
+		
+		int tabId[];
 
 		switch (choice) {
 			case "produit": case "produits" : case "prod":
@@ -54,7 +68,14 @@ public class Main {
 						System.out.println("visuel : \n");
 						String visuelProduit = sc.nextLine();
 
-						int idProd = produits.size()+1;
+
+						int iterateur = 0;
+						tabId = new int[produits.size()];
+						for(Produit produit : produits) {
+							tabId[iterateur] = produit.getIdProduit();
+						}
+						int idProd = calcId(tabId);
+						
 						Produit produit = new Produit(idProd, nomProduit, descriptionProduit, visuelProduit, tarifProduit);
 
 						ProduitSQL.ajoutProduit(produit);
@@ -151,7 +172,14 @@ public class Main {
 						String i = sc.nextLine();*/
 
 						ArrayList<Client> newC= ClientSQL.listClient();
-						int idNewC = newC.size()+1;
+						int iterateur = 0;
+						tabId = new int[newC.size()];
+						for(Client client : newC) {
+							tabId[iterateur] = client.getIdClient();
+						}
+						int idNewC = calcId(tabId);
+
+						
 						Client clientAjoute = new Client(idNewC, nomClient, prenomClient, " ", " ", " ", " ",
 								" ", " ", " ");
 						ClientSQL.ajoutClient(clientAjoute);
@@ -235,7 +263,13 @@ public class Main {
 						System.out.println("visuel : \n");
 						String visuelCategorie = sc.nextLine();
 
-						int idCategorie = categories.size()+1;
+						int iterateur = 0;
+						tabId = new int[categories.size()];
+						for(Categorie categorie : categories) {
+							tabId[iterateur] = categorie.getIdCategorie();
+						}
+						int idCategorie = calcId(tabId);
+						
 						Categorie categorie = new Categorie(idCategorie, titreCategorie, visuelCategorie);
 
 						CategorieSQL.ajoutCategorie(categorie);

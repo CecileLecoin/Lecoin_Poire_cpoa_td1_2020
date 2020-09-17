@@ -10,11 +10,12 @@ import metier.Produit;
 
 public class Main {
 	
-	public static int calcId(int tab[]) {
+	public static int calcId(int tab[]) { //fct pour gérer les clé (id) mais en fait c'est AUTO INCREMENT donc ça sert à rien
 		boolean trouve = false;
 		int iterateur=1;
 		while (iterateur <= tab.length+1 && trouve==false) {
-			if (Integer.compareUnsigned(tab[iterateur], iterateur)==0) {
+			System.out.println("les id en sélection : "+ tab[iterateur] + " = " + iterateur);
+			if(Integer.compareUnsigned(tab[iterateur], iterateur)!=0) {
 				trouve = true;
 				return iterateur;
 			}
@@ -73,6 +74,7 @@ public class Main {
 						tabId = new int[produits.size()];
 						for(Produit produit : produits) {
 							tabId[iterateur] = produit.getIdProduit();
+							iterateur++;
 						}
 						int idProd = calcId(tabId);
 						
@@ -176,6 +178,7 @@ public class Main {
 						tabId = new int[newC.size()];
 						for(Client client : newC) {
 							tabId[iterateur] = client.getIdClient();
+							iterateur++;
 						}
 						int idNewC = calcId(tabId);
 
@@ -267,6 +270,7 @@ public class Main {
 						tabId = new int[categories.size()];
 						for(Categorie categorie : categories) {
 							tabId[iterateur] = categorie.getIdCategorie();
+							iterateur++;
 						}
 						int idCategorie = calcId(tabId);
 						

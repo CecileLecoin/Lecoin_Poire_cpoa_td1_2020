@@ -196,17 +196,17 @@ public class Main {
 
 						if(sc.nextLine().equals("o")) {
 						ClientSQL.supprClient(clientSuppr);
+						System.out.println("Client supprimé");
 						}
 						break;
 
 					case "modifier un client": case "modifier" : case "modif":
 						System.out.println("Numero du client a modifier : \n");
-						sc.nextLine();
 
 						Client clientMod = ClientSQL.getById(sc.nextInt());
 						System.out.println(String.format("Modifier le client : %s %s ? (o/n) %n", clientMod.getNom(),
 								clientMod.getPrenom()));
-
+						sc.nextLine();//Pr vider le buffer apres le scanner d'int
 
 						if(sc.nextLine().equals("o"))
 						{

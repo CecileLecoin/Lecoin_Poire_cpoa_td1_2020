@@ -49,10 +49,11 @@ public class ClientSQL {
 			PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM Client WHERE id_client=?");
 			requete.setInt(1, id);
 			ResultSet res = requete.executeQuery();
+
 			while (res.next()) {
 				client = new Client(res.getInt("id_client"), res.getString("nom"), res.getString("prenom"), res.getString("identifiant"), res.getString("mot_de_passe"), res.getString("adr_numero"),
 						res.getString("adr_voie"), res.getString("adr_code_postal"), res.getString("adr_ville"), res.getString("adr_pays")); //null car pour le td1 on n'a pas besoin de g�rer les autres �lements �  part nom et prenom
-			}
+				}
 			if (res != null)
 				res.close();
 			if (requete != null)
@@ -139,9 +140,7 @@ public class ClientSQL {
 			requete.setString(9, cli.getVille());
 			requete.setString(10, cli.getPays());*/
 			requete.executeUpdate();
-			ResultSet res = requete.executeQuery();
-			if (res != null)
-				res.close();
+
 			if (requete != null)
 				requete.close();
 			if (laConnexion != null)

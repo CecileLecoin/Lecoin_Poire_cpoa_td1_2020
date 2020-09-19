@@ -2,17 +2,18 @@ package metier;
 
 public class Produit {
 
-    private int idProduit;
+    private int idProduit, idCategorie;
     private float tarif;
     private String nom, description, visuel;
 
-    public Produit(int idProduit, String nom, String description, String visuel, float tarif) {
+    public Produit(int idProduit, String nom, String description, String visuel, float tarif, int idCategorie) {
 
         this.idProduit = idProduit;
         this.description = description;
         this.nom = nom;
         this.visuel = visuel;
         this.tarif = tarif;
+        this.idCategorie = idCategorie;
     }
 
     public Produit() {
@@ -54,6 +55,14 @@ public class Produit {
 
     public void setVisuel(String visuel) {
         this.visuel = visuel;
+    }
+
+    public int getIdCategorie() {
+        return idCategorie;
+    }
+
+    public void setIdCategorie(int idCategorie) {
+        this.idCategorie = idCategorie;
     }
 
     //toString

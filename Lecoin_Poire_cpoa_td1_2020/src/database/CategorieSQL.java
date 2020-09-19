@@ -65,7 +65,7 @@ public class CategorieSQL {
 		return categorie;
 	}
 
-	public static void ajoutCategorie(Categorie categorie) {
+	public static int ajoutCategorie(Categorie categorie) {
 
 		Connexion connexion = new Connexion();
 		try {
@@ -76,20 +76,24 @@ public class CategorieSQL {
 
 			requete.setString(1, categorie.getTitre());
 			requete.setString(2, categorie.getVisuel());
-			requete.executeUpdate();
+			int reqBool = requete.executeUpdate();
 
 			if (requete != null)
 				requete.close();
 			if (connection != null)
 				connection.close();
 
+			return reqBool;
+
 		} catch (SQLException sqle) {
 			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
+
+			return -1;
 		}
 
 	}
 
-	public static void supprCategorie(Categorie categorie) {
+	public static int supprCategorie(Categorie categorie) {
 
 		Connexion connexion = new Connexion();
 		try {
@@ -100,19 +104,22 @@ public class CategorieSQL {
 
 			requete.setString(1, categorie.getTitre());
 			requete.setString(2, categorie.getVisuel());
-			requete.executeUpdate();
+			int reqBool = requete.executeUpdate();
 
 			if (requete != null)
 				requete.close();
 			if (connection != null)
 				connection.close();
 
+			return reqBool;
+
 		} catch (SQLException sqle) {
 			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
+			return -1;
 		}
 	}
 
-	public static void modifCategorie(Categorie categorie) {
+	public static int modifCategorie(Categorie categorie) {
 
 		Connexion connexion = new Connexion();
 		try {
@@ -124,15 +131,18 @@ public class CategorieSQL {
 			requete.setString(1, categorie.getTitre());
 			requete.setString(2, categorie.getVisuel());
 			requete.setInt(3, categorie.getIdCategorie());
-			requete.executeUpdate();
+			int reqBool = requete.executeUpdate();
 
 			if (requete != null)
 				requete.close();
 			if (connection != null)
 				connection.close();
 
+			return reqBool;
+
 		} catch (SQLException sqle) {
 			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
+			return -1;
 		}
 	}
 

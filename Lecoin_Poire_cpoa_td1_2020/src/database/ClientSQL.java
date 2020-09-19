@@ -23,7 +23,7 @@ public class ClientSQL {
 			ResultSet res = requete.executeQuery("select * from Client");
 
 			while (res.next()) {
-				listeClient.add(new Client(res.getInt("id_client"), res.getString("nom"), res.getString("prenom"), null, null, null, null, null, null, null)); //null car pour le td1 on n'a pas besoin de g�rer les autres �lements �  part nom et prenom
+				listeClient.add(new Client(res.getInt("id_client"), res.getString("nom"), res.getString("prenom"), res.getString("identifiant"), res.getString("mot_de_passe"), res.getString("adr_numero"), res.getString("adr_voie"), res.getString("adr_code_postal"), res.getString("adr_ville"), res.getString("adr_pays"))); //null car pour le td1 on n'a pas besoin de g�rer les autres �lements �  part nom et prenom
 			}
 			if (res != null)
 				res.close();
@@ -52,7 +52,7 @@ public class ClientSQL {
 
 			while (res.next()) {
 				client = new Client(res.getInt("id_client"), res.getString("nom"), res.getString("prenom"), res.getString("identifiant"), res.getString("mot_de_passe"), res.getString("adr_numero"),
-						res.getString("adr_voie"), res.getString("adr_code_postal"), res.getString("adr_ville"), res.getString("adr_pays")); //null car pour le td1 on n'a pas besoin de g�rer les autres �lements �  part nom et prenom
+						res.getString("adr_voie"), res.getString("adr_code_postal"), res.getString("adr_ville"), res.getString("adr_pays")); 
 				}
 			if (res != null)
 				res.close();
@@ -68,7 +68,7 @@ public class ClientSQL {
 
 	}
 
-	public static void ajoutClient(Client cli) {
+	public static int ajoutClient(Client cli) {
 
 		Connexion connexion = new Connexion();
 		try {
@@ -85,22 +85,25 @@ public class ClientSQL {
 			requete.setString(8, cli.getCp());
 			requete.setString(9, cli.getVille());
 			requete.setString(10, cli.getPays());
-			requete.executeUpdate();
-			ResultSet res = requete.getGeneratedKeys();
+			int reqBool = requete.executeUpdate();
+			ResultSet res = requete.getGeneratedKeys(); //Clé générée automatiquement (autoincrement) donc on voudra savoir ce que c'est dans les tests
+
 			if (res != null)
 				res.close();
 			if (requete != null)
 				requete.close();
 			if (laConnexion != null)
 				laConnexion.close();
+			return reqBool;
 
 		} catch (SQLException sqle) {
 			System.out.println("Pb select" + sqle.getMessage());
+			return -1;
 		}
 
 	}
 
-	public static void supprClient(Client cli) {
+	public static int supprClient(Client cli) {
 
 		Connexion connexion = new Connexion();
 		try {
@@ -108,19 +111,22 @@ public class ClientSQL {
 			PreparedStatement requete = laConnexion.prepareStatement("delete from Client where id_client=?", Statement.RETURN_GENERATED_KEYS);
 
 			requete.setInt(1, cli.getIdClient());
-			requete.executeUpdate();
+			int reqBool = requete.executeUpdate();
+
 			if (requete != null)
 				requete.close();
 			if (laConnexion != null)
 				laConnexion.close();
+			return reqBool;
 
 		} catch (SQLException sqle) {
 			System.out.println("Pb select" + sqle.getMessage());
+			return -1;
 		}
 
 	}
 
-	public static void modifClient(Client cli, String nouvNom, String nouvPrenom) {
+	public static int modifClient(Client cli, String nouvNom, String nouvPrenom) {
 
 		Connexion connexion = new Connexion();
 		try {
@@ -130,24 +136,25 @@ public class ClientSQL {
 			requete.setString(1, nouvNom);
 			requete.setString(2, nouvPrenom);
 			requete.setInt(3, cli.getIdClient());
-
-			/*requete.setString(4, cli.getIdentifiant());
+			requete.setString(4, cli.getIdentifiant());
 			requete.setString(5, cli.getMdp());
 			requete.setString(6, cli.getNum());
 			requete.setString(7, cli.getVoie());
 			requete.setString(7, cli.getVoie());
 			requete.setString(8, cli.getCp());
 			requete.setString(9, cli.getVille());
-			requete.setString(10, cli.getPays());*/
-			requete.executeUpdate();
+			requete.setString(10, cli.getPays());
+			int reqBool = requete.executeUpdate();
 
 			if (requete != null)
 				requete.close();
 			if (laConnexion != null)
 				laConnexion.close();
+			return reqBool;
 
 		} catch (SQLException sqle) {
 			System.out.println("Pb select" + sqle.getMessage());
+			return -1;
 		}
 	}
 

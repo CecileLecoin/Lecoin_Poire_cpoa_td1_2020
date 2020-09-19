@@ -22,7 +22,7 @@ public class ProduitSQL {
 
             while (res.next()) {
                 listProduit.add(new Produit(res.getInt("id_produit"), res.getString("nom"),
-                res.getString("description"), res.getString("visuel"), res.getFloat("tarif")));
+                res.getString("description"), res.getString("visuel"), res.getFloat("tarif"), res.getInt("id_categorie")));
             }
 
             if (res != null)
@@ -52,7 +52,7 @@ public class ProduitSQL {
             ResultSet res = requete.executeQuery();
 
             while (res.next()) {
-                produit = new Produit(res.getInt("id_produit"), res.getString("nom"), res.getString("description"), res.getString("visuel"), res.getFloat("tarif"));
+                produit = new Produit(res.getInt("id_produit"), res.getString("nom"), res.getString("description"), res.getString("visuel"), res.getFloat("tarif"), res.getInt("id_categorie"));
             }
 
             if (res != null)
@@ -76,13 +76,14 @@ public class ProduitSQL {
             Connection connection = connexion.creeConnexion();
 
             PreparedStatement requete = connection.prepareStatement(
-                "INSERT INTO Produit (id_categorie, nom, description, tarif, visuel) Values (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                "INSERT INTO Produit (id_categorie, nom, description, tarif, visuel, id_categorie) Values (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
             requete.setInt(1, produit.getIdProduit());
             requete.setString(2, produit.getNom());
             requete.setString(3, produit.getDescription());
             requete.setFloat(4, produit.getTarif());
             requete.setString(5, produit.getVisuel());
+            requete.setInt(6, produit.getIdCategorie());
             requete.executeUpdate();
 
         if (requete != null)
@@ -103,12 +104,9 @@ public class ProduitSQL {
             Connection connection = connexion.creeConnexion();
 
             PreparedStatement requete = connection.prepareStatement(
-                    "DELETE FROM Produit WHERE nom = ? AND description = ? AND visuel = ? AND tarif = ?", Statement.RETURN_GENERATED_KEYS);
+                    "DELETE FROM Produit WHERE id_produit = ?", Statement.RETURN_GENERATED_KEYS);
 
-            requete.setString(1, produit.getNom());
-            requete.setString(2, produit.getDescription());
-            requete.setString(3, produit.getVisuel());
-            requete.setFloat(4, produit.getTarif());
+            requete.setInt(1, produit.getIdProduit());
             requete.executeUpdate();
 
             if (requete != null)
@@ -129,14 +127,15 @@ public class ProduitSQL {
 
             System.out.println("fgrezngfjrelkzsbtgjrenbzsdf");
             PreparedStatement requete = connection.prepareStatement(
-                    "UPDATE Produit SET nom = ?, description = ?, tarif = ?, visuel = ? WHERE id_produit = ?",
+                    "UPDATE Produit SET nom = ?, description = ?, tarif = ?, visuel = ?, id_categorie = ? WHERE id_produit = ?",
                     Statement.RETURN_GENERATED_KEYS);
 
             requete.setString(1, produit.getNom());
             requete.setString(2, produit.getDescription());
             requete.setFloat(3, produit.getTarif());
             requete.setString(4, produit.getVisuel());
-            requete.setInt(5, produit.getIdProduit());
+            requete.setInt(5, produit.getIdCategorie());
+            requete.setInt(6, produit.getIdProduit());
             requete.executeUpdate();
 
             if (requete != null)

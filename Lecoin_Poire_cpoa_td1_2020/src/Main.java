@@ -10,11 +10,11 @@ import metier.Produit;
 
 public class Main {
 	
-	public static int calcId(int tab[]) { //fct pour gérer les clé (id) mais en fait c'est AUTO INCREMENT donc ça sert à rien
+	public static int calcId(int tab[]) { //fct pour gï¿½rer les clï¿½ (id) mais en fait c'est AUTO INCREMENT donc ï¿½a sert ï¿½ rien
 		boolean trouve = false;
 		int iterateur=1;
 		while (iterateur <= tab.length+1 && trouve==false) {
-			System.out.println("les id en sélection : "+ tab[iterateur] + " = " + iterateur);
+			System.out.println("les id en selection : "+ tab[iterateur] + " = " + iterateur);
 			if(Integer.compareUnsigned(tab[iterateur], iterateur)!=0) {
 				trouve = true;
 				return iterateur;
@@ -199,7 +199,7 @@ public class Main {
 
 						if(sc.nextLine().equals("o")) {
 						ClientSQL.supprClient(clientSuppr);
-						System.out.println("Client supprimé");
+						System.out.println("Client supprimï¿½");
 						}
 						break;
 

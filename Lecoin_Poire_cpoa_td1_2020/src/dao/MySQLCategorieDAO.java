@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class MySQLCategorieDAO implements InterfaceDAO<Categorie> {
+public class MySQLCategorieDAO implements CategorieDAO<Categorie> {
 
 
     @Override
@@ -36,6 +36,7 @@ public class MySQLCategorieDAO implements InterfaceDAO<Categorie> {
     }
 
 
+	@Override
     public ArrayList<Categorie> getByTitre(String titre){
 
         ArrayList<Categorie> listCategorie = new ArrayList<>();
@@ -65,6 +66,7 @@ public class MySQLCategorieDAO implements InterfaceDAO<Categorie> {
     }
 
 
+	@Override
     public ArrayList<Categorie> getByVisuel(String visuel){
 
         ArrayList<Categorie> listCategorie = new ArrayList<>();
@@ -93,7 +95,7 @@ public class MySQLCategorieDAO implements InterfaceDAO<Categorie> {
 		return listCategorie;
     }
 
-
+	@Override
     public static ArrayList<Categorie> listCategorie() {
         return CategorieSQL.listCategorie();
     }

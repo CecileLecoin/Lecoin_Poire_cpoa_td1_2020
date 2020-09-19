@@ -68,6 +68,9 @@ public class Main {
 						sc.nextLine();
 						System.out.println("visuel : \n");
 						String visuelProduit = sc.nextLine();
+						System.out.println("id caté : \n");
+						int idCategorie = sc.nextInt(); 
+						sc.nextLine();
 
 
 						int iterateur = 0;
@@ -78,7 +81,7 @@ public class Main {
 						}
 						int idProd = calcId(tabId);
 						
-						Produit produit = new Produit(idProd, nomProduit, descriptionProduit, visuelProduit, tarifProduit);
+						Produit produit = new Produit(idProd, nomProduit, descriptionProduit, visuelProduit, tarifProduit, idCategorie);
 
 						ProduitSQL.ajoutProduit(produit);
 						produits.add(produit);

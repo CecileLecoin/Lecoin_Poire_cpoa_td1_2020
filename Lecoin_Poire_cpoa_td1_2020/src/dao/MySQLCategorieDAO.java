@@ -96,7 +96,7 @@ public class MySQLCategorieDAO implements CategorieDAO<Categorie> {
     }
 
 	@Override
-    public static ArrayList<Categorie> listCategorie() {
+    public ArrayList<Categorie> listCategorie() {
         return CategorieSQL.listCategorie();
     }
 

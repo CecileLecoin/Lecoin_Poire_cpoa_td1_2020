@@ -3,7 +3,7 @@ import metier.Categorie;
 
 import java.util.ArrayList;
 
-public interface CategorieDAO<Categorie> extends InterfaceDAO<Categorie> {
+public interface CategorieDAO extends InterfaceDAO<Categorie> {
 
     @Override
     public abstract Categorie getById(int id);

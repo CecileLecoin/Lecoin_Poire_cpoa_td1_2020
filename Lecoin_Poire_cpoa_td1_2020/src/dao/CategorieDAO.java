@@ -10,7 +10,7 @@ public interface CategorieDAO extends InterfaceDAO<Categorie> {
     @Override
     public abstract boolean create(Categorie categorie);
     @Override
-    public abstract boolean update(Categorie categoriet);
+    public abstract boolean update(Categorie categorie);
     @Override
     public abstract boolean delete(Categorie categorie);
 

@@ -5,13 +5,9 @@ import java.util.ArrayList;
 
 public interface ClientDAO extends InterfaceDAO<Client>{
 
-    @Override
     public abstract Client getById(int id);
-    @Override
     public abstract boolean create(Client client);
-    @Override
     public abstract boolean update(Client client);
-    @Override
     public abstract boolean delete(Client client);
 
     public abstract ArrayList<Client> getByNom(String nom);

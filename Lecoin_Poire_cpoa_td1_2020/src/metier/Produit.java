@@ -25,6 +25,10 @@ public class Produit {
         return idProduit;
     }
 
+    public void setIdProduit(int id) {
+        this.idProduit = id;
+    }
+
     public float getTarif() {
         return tarif;
     }

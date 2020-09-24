@@ -1,4 +1,6 @@
-package dao;
+package dao.mysql;
+
+import dao.CategorieDAO;
 import metier.Categorie;
 import database.*;
 
@@ -60,7 +62,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 		} catch (SQLException sqle) {
 			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
 		}
-        
+
 		return listCategorie;
     }
 
@@ -90,12 +92,12 @@ public class MySQLCategorieDAO implements CategorieDAO {
 		} catch (SQLException sqle) {
 			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
 		}
-        
+
 		return listCategorie;
     }
 
 	@Override
-    public ArrayList<Categorie> listCategorie() {
+    public ArrayList<Categorie> findAll() {
         return CategorieSQL.listCategorie();
     }
 

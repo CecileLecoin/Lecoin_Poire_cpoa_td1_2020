@@ -69,7 +69,7 @@ public class ProduitSQL {
         return produit;
     }
 
-    public static void ajoutProduit(Produit produit) {
+    public static int ajoutProduit(Produit produit) {
 
         Connexion connexion = new Connexion();
         try {
@@ -84,20 +84,22 @@ public class ProduitSQL {
             requete.setFloat(4, produit.getTarif());
             requete.setString(5, produit.getVisuel());
             requete.setInt(6, produit.getIdCategorie());
-            requete.executeUpdate();
+            int reqBool = requete.executeUpdate();
 
         if (requete != null)
             requete.close();
         if (connection != null)
             connection.close();
+        return reqBool;
 
         } catch (SQLException sqle) {
             System.out.println("Probleme lors de la connexion ou execution de la requete" + sqle.getMessage());
         }
 
+        return -1;
     }
 
-    public static void supprProduit(Produit produit) {
+    public static int supprProduit(Produit produit) {
 
         Connexion connexion = new Connexion();
         try {
@@ -107,25 +109,26 @@ public class ProduitSQL {
                     "DELETE FROM Produit WHERE id_produit = ?", Statement.RETURN_GENERATED_KEYS);
 
             requete.setInt(1, produit.getIdProduit());
-            requete.executeUpdate();
+            int reqBool = requete.executeUpdate();
 
             if (requete != null)
                 requete.close();
             if (connection != null)
                 connection.close();
+            return reqBool;
 
         } catch (SQLException sqle) {
             System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
         }
+        return -1;
     }
 
-    public static void modifProduit(Produit produit) {
+    public static int modifProduit(Produit produit) {
 
         Connexion connexion = new Connexion();
         try {
             Connection connection = connexion.creeConnexion();
 
-            System.out.println("fgrezngfjrelkzsbtgjrenbzsdf");
             PreparedStatement requete = connection.prepareStatement(
                     "UPDATE Produit SET nom = ?, description = ?, tarif = ?, visuel = ?, id_categorie = ? WHERE id_produit = ?",
                     Statement.RETURN_GENERATED_KEYS);
@@ -136,16 +139,18 @@ public class ProduitSQL {
             requete.setString(4, produit.getVisuel());
             requete.setInt(5, produit.getIdCategorie());
             requete.setInt(6, produit.getIdProduit());
-            requete.executeUpdate();
+            int reqBool = requete.executeUpdate();
 
             if (requete != null)
                 requete.close();
             if (connection != null)
                 connection.close();
+            return reqBool;
 
         } catch (SQLException sqle) {
             System.out.println("Probleme lors de la connexion ou execution de la requete" + sqle.getMessage());
         }
+        return -1;
     }
 
     private ProduitSQL() {

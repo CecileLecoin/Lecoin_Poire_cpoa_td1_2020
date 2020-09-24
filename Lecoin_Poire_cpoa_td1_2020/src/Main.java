@@ -9,7 +9,7 @@ import metier.Client;
 import metier.Produit;
 
 public class Main {
-	
+
 	public static int calcId(int tab[]) { //fct pour g�rer les cl� (id) mais en fait c'est AUTO INCREMENT donc �a sert � rien
 		boolean trouve = false;
 		int iterateur=1;
@@ -32,7 +32,7 @@ public class Main {
 
 		ArrayList<Produit> produits = ProduitSQL.listProduit();
 		ArrayList<Categorie> categories = CategorieSQL.listCategorie();
-		
+
 		int tabId[];
 
 		switch (choice) {
@@ -69,7 +69,7 @@ public class Main {
 						System.out.println("visuel : \n");
 						String visuelProduit = sc.nextLine();
 						System.out.println("id caté : \n");
-						int idCategorie = sc.nextInt(); 
+						int idCategorie = sc.nextInt();
 						sc.nextLine();
 
 
@@ -80,7 +80,7 @@ public class Main {
 							iterateur++;
 						}
 						int idProd = calcId(tabId);
-						
+
 						Produit produit = new Produit(idProd, nomProduit, descriptionProduit, visuelProduit, tarifProduit, idCategorie);
 
 						ProduitSQL.ajoutProduit(produit);
@@ -185,7 +185,7 @@ public class Main {
 						}
 						int idNewC = calcId(tabId);
 
-						
+
 						Client clientAjoute = new Client(idNewC, nomClient, prenomClient, " ", " ", " ", " ",
 								" ", " ", " ");
 						ClientSQL.ajoutClient(clientAjoute);
@@ -217,9 +217,9 @@ public class Main {
 						if(sc.nextLine().equals("o"))
 						{
 							System.out.println("Nouveau nom : \n");
-							String aM = sc.nextLine();
+							clientMod.setNom(sc.nextLine());
 							System.out.println("Nouveau prenom : \n");
-							String bM = sc.nextLine();
+							clientMod.setPrenom(sc.nextLine());
 							/*System.out.println("identifiant : \n");
 							String c = sc.nextLine();
 							System.out.println("Mot de passe : \n");
@@ -234,8 +234,8 @@ public class Main {
 							String h = sc.nextLine();
 							System.out.println("Pays : \n");
 							String i = sc.nextLine();*/
-						ClientSQL.modifClient(clientMod, aM, bM);
-						System.out.println("Fiche recap du client : \n" + aM + " " + bM);
+						ClientSQL.modifClient(clientMod);
+						System.out.println("Fiche recap du client : \n" + clientMod.getNom() + " " + clientMod.getPrenom());
 						}
 						break;
 				}
@@ -276,7 +276,7 @@ public class Main {
 							iterateur++;
 						}
 						int idCategorie = calcId(tabId);
-						
+
 						Categorie categorie = new Categorie(idCategorie, titreCategorie, visuelCategorie);
 
 						CategorieSQL.ajoutCategorie(categorie);

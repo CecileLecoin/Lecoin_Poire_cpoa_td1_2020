@@ -9,6 +9,7 @@ public interface ClientDAO extends InterfaceDAO<Client>{
     public abstract boolean create(Client client);
     public abstract boolean update(Client client);
     public abstract boolean delete(Client client);
+    public abstract ArrayList<Client> findAll();
 
     public abstract ArrayList<Client> getByNom(String nom);
     public abstract ArrayList<Client> getByPrenom(String nom);
@@ -19,6 +20,5 @@ public interface ClientDAO extends InterfaceDAO<Client>{
     public abstract ArrayList<Client> getByCode(String cp);
     public abstract ArrayList<Client> getByVille(String ville);
     public abstract ArrayList<Client> getByPays(String pays);
-    public abstract ArrayList<Client> listClient();
-    
+
 }

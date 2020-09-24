@@ -1,6 +1,5 @@
 package database;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +14,7 @@ public class ClientSQL {
 	public static ArrayList<Client> listClient() {
 
 		ArrayList<Client> listeClient = new ArrayList<>();
-		
+
 		Connexion connexion = new Connexion();
 		try {
 			Connection laConnexion = connexion.creeConnexion();
@@ -23,7 +22,9 @@ public class ClientSQL {
 			ResultSet res = requete.executeQuery("select * from Client");
 
 			while (res.next()) {
-				listeClient.add(new Client(res.getInt("id_client"), res.getString("nom"), res.getString("prenom"), res.getString("identifiant"), res.getString("mot_de_passe"), res.getString("adr_numero"), res.getString("adr_voie"), res.getString("adr_code_postal"), res.getString("adr_ville"), res.getString("adr_pays"))); //null car pour le td1 on n'a pas besoin de g�rer les autres �lements �  part nom et prenom
+				listeClient.add(new Client(res.getInt("id_client"), res.getString("nom"), res.getString("prenom"),
+						res.getString("identifiant"), res.getString("mot_de_passe"), res.getString("adr_numero"),
+						res.getString("adr_voie"), res.getString("adr_code_postal"), res.getString("adr_ville"), res.getString("adr_pays")));
 			}
 			if (res != null)
 				res.close();
@@ -37,7 +38,6 @@ public class ClientSQL {
 		}
 
 		return listeClient;
-
 	}
 
 	public static Client getById(int id) {
@@ -52,7 +52,7 @@ public class ClientSQL {
 
 			while (res.next()) {
 				client = new Client(res.getInt("id_client"), res.getString("nom"), res.getString("prenom"), res.getString("identifiant"), res.getString("mot_de_passe"), res.getString("adr_numero"),
-						res.getString("adr_voie"), res.getString("adr_code_postal"), res.getString("adr_ville"), res.getString("adr_pays")); 
+						res.getString("adr_voie"), res.getString("adr_code_postal"), res.getString("adr_ville"), res.getString("adr_pays"));
 				}
 			if (res != null)
 				res.close();
@@ -126,15 +126,15 @@ public class ClientSQL {
 
 	}
 
-	public static int modifClient(Client cli, String nouvNom, String nouvPrenom) {
+	public static int modifClient(Client cli) {
 
 		Connexion connexion = new Connexion();
 		try {
 			Connection laConnexion = connexion.creeConnexion();
 			PreparedStatement requete = laConnexion.prepareStatement(
 					"UPDATE Client SET nom = ?, prenom = ? WHERE id_client = ?");
-			requete.setString(1, nouvNom);
-			requete.setString(2, nouvPrenom);
+			requete.setString(1, cli.getNom());
+			requete.setString(2, cli.getPrenom());
 			requete.setInt(3, cli.getIdClient());
 			requete.setString(4, cli.getIdentifiant());
 			requete.setString(5, cli.getMdp());

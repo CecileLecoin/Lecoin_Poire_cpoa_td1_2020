@@ -22,6 +22,10 @@ public class Categorie {
         return idCategorie;
     }
 
+    public void setIdCategorie(int id) {
+        this.idCategorie = id;
+    }
+
     public String getTitre() {
         return titre;
     }

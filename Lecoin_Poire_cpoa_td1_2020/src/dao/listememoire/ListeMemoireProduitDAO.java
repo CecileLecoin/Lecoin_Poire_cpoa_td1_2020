@@ -98,26 +98,50 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 
 	@Override
 	public ArrayList<Produit> getByNom(String nom) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Produit> lesNoms=new ArrayList<Produit>();
+		for(Produit produit : produits)
+		{
+			if(produit.getNom().equals(nom)) {
+				lesNoms.add(produit);
+			}
+		}
+		return lesNoms;
 	}
 
 	@Override
 	public ArrayList<Produit> getByDescription(String description) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Produit> lesDescriptions=new ArrayList<Produit>();
+		for(Produit produit : produits)
+		{
+			if(produit.getDescription().equals(description)) {
+				lesDescriptions.add(produit);
+			}
+		}
+		return lesDescriptions;
 	}
 
 	@Override
 	public ArrayList<Produit> getByTarif(float tarif) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Produit> lesTarifs=new ArrayList<Produit>();
+		for(Produit produit : produits)
+		{
+			if(produit.getTarif()==tarif) {
+				lesTarifs.add(produit);
+			}
+		}
+		return lesTarifs;
 	}
 
 	@Override
 	public ArrayList<Produit> getByVisuel(String visuel) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Produit> lesVisuels=new ArrayList<Produit>();
+		for(Produit produit : produits)
+		{
+			if(produit.getVisuel().equals(visuel)) {
+				lesVisuels.add(produit);
+			}
+		}
+		return lesVisuels;
 	}
 }
 

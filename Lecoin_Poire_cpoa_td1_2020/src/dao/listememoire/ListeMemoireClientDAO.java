@@ -98,56 +98,110 @@ public class ListeMemoireClientDAO implements ClientDAO {
 
 	@Override
 	public ArrayList<Client> getByNom(String nom) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Client> lesNoms=new ArrayList<Client>();
+		for(Client client : clients)
+		{
+			if(client.getNom().equals(nom)) {
+				lesNoms.add(client);
+			}
+		}
+		return lesNoms;
 	}
 
 	@Override
-	public ArrayList<Client> getByPrenom(String nom) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Client> getByPrenom(String prenom) {
+		ArrayList<Client> lesPrenoms=new ArrayList<Client>();
+		for(Client client : clients)
+		{
+			if(client.getPrenom().equals(prenom)) {
+				lesPrenoms.add(client);
+			}
+		}
+		return lesPrenoms;
 	}
 
 	@Override
 	public ArrayList<Client> getByIdentifiant(String identifiant) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Client> lesIds=new ArrayList<Client>();
+		for(Client client : clients)
+		{
+			if(client.getIdentifiant().equals(identifiant)) {
+				lesIds.add(client);
+			}
+		}
+		return lesIds;
 	}
 
 	@Override
 	public ArrayList<Client> getByMpd(String mdp) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Client> lesMdp=new ArrayList<Client>();
+		for(Client client : clients)
+		{
+			if(client.getMdp().equals(mdp)) {
+				lesMdp.add(client);
+			}
+		}
+		return lesMdp;
 	}
 
 	@Override
 	public ArrayList<Client> getByNum(String num) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Client> lesNums=new ArrayList<Client>();
+		for(Client client : clients)
+		{
+			if(client.getNum().equals(num)) {
+				lesNums.add(client);
+			}
+		}
+		return lesNums;
 	}
 
 	@Override
 	public ArrayList<Client> getByVoie(String voie) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Client> lesVoies=new ArrayList<Client>();
+		for(Client client : clients)
+		{
+			if(client.getVoie().equals(voie)) {
+				lesVoies.add(client);
+			}
+		}
+		return lesVoies;
 	}
 
 	@Override
 	public ArrayList<Client> getByCode(String cp) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Client> lesCodes=new ArrayList<Client>();
+		for(Client client : clients)
+		{
+			if(client.getCp().equals(cp)) {
+				lesCodes.add(client);
+			}
+		}
+		return lesCodes;
 	}
 
 	@Override
 	public ArrayList<Client> getByVille(String ville) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Client> lesVilles=new ArrayList<Client>();
+		for(Client client : clients)
+		{
+			if(client.getVille().equals(ville)) {
+				lesVilles.add(client);
+			}
+		}
+		return lesVilles;
 	}
 
 	@Override
 	public ArrayList<Client> getByPays(String pays) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Client> lesPays=new ArrayList<Client>();
+		for(Client client : clients)
+		{
+			if(client.getPays().equals(pays)) {
+				lesPays.add(client);
+			}
+		}
+		return lesPays;
 	}
 }
 

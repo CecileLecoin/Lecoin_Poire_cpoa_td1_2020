@@ -98,14 +98,26 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 
 	@Override
 	public ArrayList<Categorie> getByTitre(String titre) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Categorie> lesTitres=new ArrayList<Categorie>();
+		for(Categorie categorie : categories)
+		{
+			if(categorie.getTitre().equals(titre)) {
+				lesTitres.add(categorie);
+			}
+		}
+		return lesTitres;
 	}
 
 	@Override
 	public ArrayList<Categorie> getByVisuel(String visuel) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Categorie> lesTitres=new ArrayList<Categorie>();
+		for(Categorie categorie : categories)
+		{
+			if(categorie.getVisuel().equals(visuel)) {
+				lesTitres.add(categorie);
+			}
+		}
+		return lesTitres;
 	}
 }
 

@@ -1,16 +1,13 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import database.CategorieSQL;
-import database.ClientSQL;
-import database.ProduitSQL;
-import metier.Categorie;
-import metier.Client;
-import metier.Produit;
+import dao.*;
+import dao.listememoire.ListeMemoireProduitDAO;
+import metier.*;
 
 public class Main {
 
-	public static int calcId(int tab[]) { //fct pour g�rer les cl� (id) mais en fait c'est AUTO INCREMENT donc �a sert � rien
+	/*public static int calcId(int tab[]) { //fct pour g�rer les cl� (id) mais en fait c'est AUTO INCREMENT donc �a sert � rien
 		boolean trouve = false;
 		int iterateur=1;
 		while (iterateur <= tab.length+1 && trouve==false) {
@@ -21,11 +18,28 @@ public class Main {
 			}
 			iterateur++;
 		} return tab.length+1;
-	}
+	}*/
 
 	public static void main(String[] args) {
+		
+		System.out.println("test des dao so far : liste memoire, on va en ajouter 2.");
+		// listememoire :
+		Produit p1 = new Produit(1,"pouet", "ca fait pouet", "pouet.png", (float) 10.5, 2);
+		Produit p2 = new Produit(2,"h", "hh", "hhh.png", (float) 7.0, 1);
+		ListeMemoireProduitDAO LM= ListeMemoireProduitDAO.getInstance();
+		boolean yay = LM.create(p1);
+		boolean yay2 = LM.create(p2);
+		ArrayList<Produit> allez=new ArrayList<Produit>();
+		allez=LM.getByNom("h");
+		for(Produit p : allez)
+		{
+			System.out.println(p.toString());
+		}
+		
+		
+		
 
-		System.out.println("Bienvenue dans la gestion de votre boutique \n Voulez vous gerer les produit, clients ou encore les categories ?");
+		/*System.out.println("Bienvenue dans la gestion de votre boutique \n Voulez vous gerer les produit, clients ou encore les categories ?");
 		Scanner sc = new Scanner(System.in);
 		String choice = sc.nextLine();
 		choice = choice.toLowerCase();
@@ -176,7 +190,7 @@ public class Main {
 						System.out.println("Pays : \n");
 						String i = sc.nextLine();*/
 
-						ArrayList<Client> newC= ClientSQL.listClient();
+						/*ArrayList<Client> newC= ClientSQL.listClient();
 						int iterateur = 0;
 						tabId = new int[newC.size()];
 						for(Client client : newC) {
@@ -234,7 +248,7 @@ public class Main {
 							String h = sc.nextLine();
 							System.out.println("Pays : \n");
 							String i = sc.nextLine();*/
-						ClientSQL.modifClient(clientMod);
+						/*ClientSQL.modifClient(clientMod);
 						System.out.println("Fiche recap du client : \n" + clientMod.getNom() + " " + clientMod.getPrenom());
 						}
 						break;
@@ -324,7 +338,7 @@ public class Main {
 			default:
 				System.out.println("Selection non reconnue");
 		}
-		sc.close();
+		sc.close();*/
 	}
 
 }

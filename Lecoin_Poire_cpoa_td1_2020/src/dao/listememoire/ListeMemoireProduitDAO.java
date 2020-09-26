@@ -30,7 +30,6 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 		this.produits.add(new Produit(2, "nom2", "description2", "visuel2", 5, 2));
 	}
 
-
 	@Override
 	public boolean create(Produit produit) {
 

@@ -90,12 +90,6 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 		return (ArrayList<Categorie>) this.categories;
 	}
 
-
-
-
-
-	
-
 	@Override
 	public ArrayList<Categorie> getByTitre(String titre) {
 		ArrayList<Categorie> lesTitres=new ArrayList<Categorie>();

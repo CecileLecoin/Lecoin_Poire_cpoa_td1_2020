@@ -6,6 +6,8 @@ public class Client {
 	private int idClient;
 	private String nom, prenom, identifiant, mdp, num, voie, cp, ville, pays;
 
+	// private List<Commande> 
+
 	public Client(int idClient, String nom, String prenom, String identifiant,String mdp, String num, String voie,
 			String cp, String ville, String pays) {
 		super();
@@ -84,7 +86,7 @@ public class Client {
 	public void setVoie(String voie) {
 		this.voie = voie;
 	}
-	
+
 	public String getCp() {
 		return cp;
 	}

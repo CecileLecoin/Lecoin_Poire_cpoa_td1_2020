@@ -7,11 +7,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import connection.Connexion;
+import dao.CategorieDAO;
 import dao.ProduitDAO;
-import database.Connexion;
 import metier.Produit;
 
 public class MySQLProduitDAO implements ProduitDAO {
+
+    private static ProduitDAO instance;
+
+    public static ProduitDAO getInstance() {
+        if (instance == null) {
+            instance = new MySQLProduitDAO();
+        }
+        return instance;
+    }
+
+    private MySQLProduitDAO() {}
 
     @Override
     public Produit getById(int id) {
@@ -26,7 +38,9 @@ public class MySQLProduitDAO implements ProduitDAO {
             ResultSet res = requete.executeQuery();
 
             while (res.next()) {
-                produit = new Produit(res.getInt("id_produit"), res.getString("nom"), res.getString("description"), res.getString("visuel"), res.getFloat("tarif"), res.getInt("id_categorie"));
+                CategorieDAO categoriedao = MySQLCategorieDAO.getInstance();
+                produit = new Produit(res.getInt("id_produit"), res.getString("nom"), res.getString("description"),
+                        res.getString("visuel"), res.getFloat("tarif"), categoriedao.getById(res.getInt("id_categorie")));
             }
 
             if (res != null)
@@ -57,7 +71,7 @@ public class MySQLProduitDAO implements ProduitDAO {
             requete.setString(3, produit.getDescription());
             requete.setFloat(4, produit.getTarif());
             requete.setString(5, produit.getVisuel());
-            requete.setInt(6, produit.getIdCategorie());
+            requete.setInt(6, produit.getCategorie().getIdCategorie());
             requete.executeUpdate();
 
         if (requete != null)
@@ -87,7 +101,7 @@ public class MySQLProduitDAO implements ProduitDAO {
             requete.setString(2, produit.getDescription());
             requete.setFloat(3, produit.getTarif());
             requete.setString(4, produit.getVisuel());
-            requete.setInt(5, produit.getIdCategorie());
+            requete.setInt(5, produit.getCategorie().getIdCategorie());
             requete.setInt(6, produit.getIdProduit());
             requete.executeUpdate();
 
@@ -140,9 +154,9 @@ public class MySQLProduitDAO implements ProduitDAO {
             ResultSet res = requete.executeQuery();
 
             while (res.next()) {
-                listProduit
-                        .add(new Produit(res.getInt("id_produit"), res.getString("nom"), res.getString("description"),
-                        res.getString("visuel"), res.getFloat("tarif"), res.getInt("id_categorie")));
+                CategorieDAO categoriedao = MySQLCategorieDAO.getInstance();
+                listProduit.add(new Produit(res.getInt("id_produit"), res.getString("nom"), res.getString("description"),
+                        res.getString("visuel"), res.getFloat("tarif"), categoriedao.getById(res.getInt("id_categorie"))));
             }
 
             if (res != null)
@@ -172,9 +186,9 @@ public class MySQLProduitDAO implements ProduitDAO {
             ResultSet res = requete.executeQuery();
 
             while (res.next()) {
-                listProduit
-                        .add(new Produit(res.getInt("id_produit"), res.getString("nom"), res.getString("description"),
-                                res.getString("visuel"), res.getFloat("tarif"), res.getInt("id_categorie")));
+                CategorieDAO categoriedao = MySQLCategorieDAO.getInstance();
+                listProduit.add(new Produit(res.getInt("id_produit"), res.getString("nom"), res.getString("description"),
+                        res.getString("visuel"), res.getFloat("tarif"), categoriedao.getById(res.getInt("id_categorie"))));
             }
 
             if (res != null)
@@ -204,9 +218,10 @@ public class MySQLProduitDAO implements ProduitDAO {
             ResultSet res = requete.executeQuery();
 
             while (res.next()) {
-                listProduit
-                        .add(new Produit(res.getInt("id_produit"), res.getString("nom"), res.getString("description"),
-                        res.getString("visuel"), res.getFloat("tarif"), res.getInt("id_categorie")));
+                CategorieDAO categoriedao = MySQLCategorieDAO.getInstance();
+                listProduit.add(new Produit(res.getInt("id_produit"), res.getString("nom"),
+                        res.getString("description"), res.getString("visuel"), res.getFloat("tarif"),
+                        categoriedao.getById(res.getInt("id_categorie"))));
             }
 
             if (res != null)
@@ -236,9 +251,10 @@ public class MySQLProduitDAO implements ProduitDAO {
             ResultSet res = requete.executeQuery();
 
             while (res.next()) {
-                listProduit
-                        .add(new Produit(res.getInt("id_produit"), res.getString("nom"), res.getString("description"),
-                        res.getString("visuel"), res.getFloat("tarif"), res.getInt("id_categorie")));
+                CategorieDAO categoriedao = MySQLCategorieDAO.getInstance();
+                listProduit.add(new Produit(res.getInt("id_produit"), res.getString("nom"),
+                        res.getString("description"), res.getString("visuel"), res.getFloat("tarif"),
+                        categoriedao.getById(res.getInt("id_categorie"))));
             }
 
             if (res != null)
@@ -265,8 +281,10 @@ public class MySQLProduitDAO implements ProduitDAO {
             ResultSet res = requete.executeQuery("select * from Produit");
 
             while (res.next()) {
+                CategorieDAO categoriedao = MySQLCategorieDAO.getInstance();
                 listProduit.add(new Produit(res.getInt("id_produit"), res.getString("nom"),
-                res.getString("description"), res.getString("visuel"), res.getFloat("tarif"), res.getInt("id_categorie")));
+                        res.getString("description"), res.getString("visuel"), res.getFloat("tarif"),
+                        categoriedao.getById(res.getInt("id_categorie"))));
             }
 
             if (res != null)

@@ -1,7 +1,6 @@
 package dao.mysql;
 
 import dao.CategorieDAO;
-import database.Connexion;
 import metier.Categorie;
 
 import java.sql.Connection;
@@ -11,8 +10,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import connection.Connexion;
+
 public class MySQLCategorieDAO implements CategorieDAO {
 
+	private static CategorieDAO instance;
+
+	public static CategorieDAO getInstance() {
+		if (instance == null) {
+			instance = new MySQLCategorieDAO();
+		}
+		return instance;
+	}
+
+	private MySQLCategorieDAO() {}
 
     @Override
     public Categorie getById(int id) {

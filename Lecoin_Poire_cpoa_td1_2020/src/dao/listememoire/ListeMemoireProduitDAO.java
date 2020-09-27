@@ -3,7 +3,9 @@ package dao.listememoire;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.CategorieDAO;
 import dao.ProduitDAO;
+import metier.Categorie;
 import metier.Produit;
 
 public class ListeMemoireProduitDAO implements ProduitDAO {
@@ -26,8 +28,9 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 
 		this.produits = new ArrayList<Produit>();
 
-		this.produits.add(new Produit(1, "nom", "description", "visuel", 4, 1));
-		this.produits.add(new Produit(2, "nom2", "description2", "visuel2", 5, 2));
+		Categorie categorie = new Categorie(1, "titre", "visuel");
+		this.produits.add(new Produit(1, "nom", "description", "visuel", 4, categorie));
+		this.produits.add(new Produit(2, "nom2", "description2", "visuel2", 5, categorie));
 	}
 
 	@Override
@@ -77,7 +80,9 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 	@Override
 	public Produit getById(int id) {
 		// Ne fonctionne que si l'objet métier est bien fait...
-		int idx = this.produits.indexOf(new Produit(id, "nom3", "description3", "visuel3", 445, 5));
+		CategorieDAO categoriedao = ListeMemoireCategorieDAO.getInstance();
+
+		int idx = this.produits.indexOf(new Produit(id, "nom3", "description3", "visuel3", 445, categoriedao.getById(2)));
 		if (idx == -1) {
 			throw new IllegalArgumentException("Aucune Produit ne possède cet identifiant");
 		} else {
@@ -89,11 +94,6 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 	public ArrayList<Produit> findAll() {
 		return (ArrayList<Produit>) this.produits;
 	}
-
-
-
-
-	
 
 	@Override
 	public ArrayList<Produit> getByNom(String nom) {

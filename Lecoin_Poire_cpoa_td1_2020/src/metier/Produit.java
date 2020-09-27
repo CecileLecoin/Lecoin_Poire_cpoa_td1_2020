@@ -2,18 +2,19 @@ package metier;
 
 public class Produit {
 
-    private int idProduit, idCategorie;
+    private int idProduit;
     private float tarif;
     private String nom, description, visuel;
+    private Categorie categorie;
 
-    public Produit(int idProduit, String nom, String description, String visuel, float tarif, int idCategorie) {
+    public Produit(int idProduit, String nom, String description, String visuel, float tarif, Categorie categorie) {
 
         this.idProduit = idProduit;
         this.description = description;
         this.nom = nom;
         this.visuel = visuel;
         this.tarif = tarif;
-        this.idCategorie = idCategorie;
+        this.categorie = categorie;
     }
 
     public Produit() {
@@ -61,12 +62,12 @@ public class Produit {
         this.visuel = visuel;
     }
 
-    public int getIdCategorie() {
-        return idCategorie;
+    public Categorie getCategorie() {
+        return categorie;
     }
 
-    public void setIdCategorie(int idCategorie) {
-        this.idCategorie = idCategorie;
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 
     //toString

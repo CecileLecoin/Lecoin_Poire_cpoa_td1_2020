@@ -1,7 +1,6 @@
 package dao.mysql;
 
 import dao.ClientDAO;
-import database.*;
 import metier.Client;
 
 import java.sql.Connection;
@@ -11,7 +10,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import connection.*;
+
 public class MySQLClientDAO implements ClientDAO {
+
+    private static ClientDAO instance;
+
+    public static ClientDAO getInstance() {
+        if (instance == null) {
+            instance = new MySQLClientDAO();
+        }
+        return instance;
+    }
+
+    private MySQLClientDAO() {}
 
     @Override
     public Client getById(int id) {

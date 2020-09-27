@@ -90,12 +90,6 @@ public class ListeMemoireClientDAO implements ClientDAO {
 		return (ArrayList<Client>) this.clients;
 	}
 
-
-
-
-
-	
-
 	@Override
 	public ArrayList<Client> getByNom(String nom) {
 		ArrayList<Client> lesNoms=new ArrayList<Client>();

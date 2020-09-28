@@ -22,6 +22,17 @@ public class Commande {
         return amount;
     }
 
+    public Commande(int idCommande, Date date, Client client, HashMap<Produit, Integer> produits){
+        this.idCommande = idCommande;
+        this.date = date;
+        this.client = client;
+        this.produits = produits;
+    }
+
+    public Commande(){
+        super();
+    }
+
     public void addProduit(Produit produit, int quantity) {
         if(produits == null) {
             produits = new HashMap<>();

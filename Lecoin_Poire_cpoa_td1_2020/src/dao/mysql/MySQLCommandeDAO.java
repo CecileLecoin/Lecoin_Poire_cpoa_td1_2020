@@ -8,12 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Scanner;
+import java.util.HashMap;
 
 import connection.Connexion;
-import dao.CategorieDAO;
+import dao.ClientDAO;
 import dao.CommandeDAO;
-import dao.ProduitDAO;
 import metier.Client;
 import metier.Commande;
 import metier.Produit;
@@ -45,8 +44,23 @@ public class MySQLCommandeDAO implements CommandeDAO {
             ResultSet res = requete.executeQuery();
 
             while (res.next()) {
+                PreparedStatement requete2 = laConnexion.prepareStatement("SELECT * FROM Ligne_commande WHERE id_commande=?");
+                requete2.setInt(1, id);
+                ResultSet res2 = requete2.executeQuery();
+
                 ClientDAO clientdao = MySQLClientDAO.getInstance();
-                commande = new Commande(res.getInt("id_commande"), res.getDate("date_commande"), clientdao.getById(res.getInt("id_client")));
+                HashMap<Produit, Integer> produits = new HashMap<>();
+                while(res2.next()){
+
+                    Produit produit = new Produit();
+                    produit.setIdProduit(res2.getInt("id_produit"));
+                    produits.put(produit, res.getInt("quantite"));
+
+
+                }
+
+                commande = new Commande(res.getInt("id_commande"), res.getDate("date_commande"), clientdao.getById(res.getInt("id_client")), produits);
+                
             }
 
             if (res != null)
@@ -79,7 +93,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
             requete1.executeUpdate();
             
             int index=0;
-            ArrayList<Produit> listeP = new ArrayList();
+            ArrayList<Produit> listeP = new ArrayList<Produit>();
             listeP.addAll((Collection<? extends Produit>) commande.getProduits().keySet());
             
             while(listeP.get(index)!=null) {
@@ -124,8 +138,48 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
 	@Override
 	public ArrayList<Commande> findAll() {
-		// TODO Stub de la méthode généré automatiquement
-		return null;
+
+		ArrayList<Commande> lesCommandes = new ArrayList<>();
+
+        Connexion connexion = new Connexion();
+        try {
+            Connection laConnexion = connexion.creeConnexion();
+
+            PreparedStatement requete = laConnexion.prepareStatement("SELECT * FROM Commande");
+            ResultSet res = requete.executeQuery();
+
+            while (res.next()) {
+                PreparedStatement requete2 = laConnexion.prepareStatement("SELECT * FROM Ligne_commande WHERE id_commande=?");
+                requete2.setInt(1, res.getInt("id_commande"));
+                ResultSet res2 = requete2.executeQuery();
+
+                ClientDAO clientdao = MySQLClientDAO.getInstance();
+                HashMap<Produit, Integer> produits = new HashMap<>();
+                while(res2.next()){
+
+                    Produit produit = new Produit();
+                    produit.setIdProduit(res2.getInt("id_produit"));
+                    produits.put(produit, res.getInt("quantite"));
+
+
+                }
+
+                lesCommandes.add(new Commande(res.getInt("id_commande"), res.getDate("date_commande"), clientdao.getById(res.getInt("id_client")), produits));
+                
+            }
+
+            if (res != null)
+                res.close();
+            if (requete != null)
+                requete.close();
+            if (laConnexion != null)
+                laConnexion.close();
+
+            } catch (SQLException sqle) {
+                System.out.println("Pb select" + sqle.getMessage());
+            }
+
+        return lesCommandes;
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package metier;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +8,7 @@ public class Commande {
 
     private int idCommande;
     private Client client;
-    private Date date;
+    private LocalDate date;
     private HashMap<Produit, Integer> produits;
 
     public double calculPrix() {
@@ -22,7 +22,7 @@ public class Commande {
         return amount;
     }
 
-    public Commande(int idCommande, Date date, Client client, HashMap<Produit, Integer> produits){
+    public Commande(int idCommande, LocalDate date, Client client, HashMap<Produit, Integer> produits){
         this.idCommande = idCommande;
         this.date = date;
         this.client = client;
@@ -53,11 +53,11 @@ public class Commande {
         this.idCommande = idCommande;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -72,4 +72,5 @@ public class Commande {
     public Map<Produit, Integer> getProduits() {
         return produits;
     }
+
 }

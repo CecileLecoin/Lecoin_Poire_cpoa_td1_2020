@@ -218,13 +218,12 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
                 ClientDAO clientdao = MySQLClientDAO.getInstance();
                 HashMap<Produit, Integer> produits = new HashMap<>();
+                
                 while(res2.next()){
 
                     Produit produit = new Produit();
                     produit.setIdProduit(res2.getInt("id_produit"));
                     produits.put(produit, res.getInt("quantite"));
-
-
                 }
 
                 lesCommandes.add(new Commande(res.getInt("id_commande"), res.getDate("date_commande").toLocalDate(), clientdao.getById(res.getInt("id_client")), produits));

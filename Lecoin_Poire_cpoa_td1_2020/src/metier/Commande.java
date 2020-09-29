@@ -28,6 +28,11 @@ public class Commande {
         this.client = client;
         this.produits = produits;
     }
+    
+    public Commande(int idCommande){
+        super();
+        this.idCommande = idCommande;
+    }
 
     public Commande(){
         super();

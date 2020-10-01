@@ -2,6 +2,7 @@ package daoFactory;
 
 import dao.CategorieDAO;
 import dao.ClientDAO;
+import dao.CommandeDAO;
 import dao.ProduitDAO;
 import dao.enumeration.Persistence;
 
@@ -25,4 +26,5 @@ public abstract class DAOFactory {
     public abstract CategorieDAO getCategorieDAO();
     public abstract ClientDAO getClientDAO();
     public abstract ProduitDAO getProduitDAO();
+    public abstract CommandeDAO getCommandeDAO();
 }

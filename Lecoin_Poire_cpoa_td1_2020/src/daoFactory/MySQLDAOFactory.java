@@ -2,9 +2,11 @@ package daoFactory;
 
 import dao.CategorieDAO;
 import dao.ClientDAO;
+import dao.CommandeDAO;
 import dao.ProduitDAO;
 import dao.mysql.MySQLCategorieDAO;
 import dao.mysql.MySQLClientDAO;
+import dao.mysql.MySQLCommandeDAO;
 import dao.mysql.MySQLProduitDAO;
 
 public class MySQLDAOFactory extends DAOFactory {
@@ -22,5 +24,10 @@ public class MySQLDAOFactory extends DAOFactory {
     @Override
     public ProduitDAO getProduitDAO() {
         return MySQLProduitDAO.getInstance();
+    }
+
+    @Override
+    public CommandeDAO getCommandeDAO() {
+        return MySQLCommandeDAO.getInstance();
     }
 }

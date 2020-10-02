@@ -47,4 +47,21 @@ public class Categorie {
     public String toString() {
         return String.format("Categorie [titre = %s, visuel = %s] ", titre, visuel);
     }
+    
+    public boolean equals(Object object) {
+    	boolean ret = false;
+    	if (this == object) {
+    		ret = true;
+    	}
+    	else if (object.getClass() == this.getClass()) {
+    		Categorie categorie = (Categorie) object;
+    		if (categorie.getIdCategorie() == this.idCategorie) {
+    			ret = true;
+    		}
+    	}
+    	else {
+    		ret = false;
+    	}
+    	return ret;
+    }
 }

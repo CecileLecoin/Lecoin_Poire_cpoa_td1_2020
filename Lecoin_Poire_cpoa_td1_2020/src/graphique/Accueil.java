@@ -41,6 +41,10 @@ public class Accueil {
             case "categorie": case "categories": case "cat":
                 new ManageCategories(daos);
                 break;
+            
+            case "commande": case "commandes": case "com":
+            	new ManageCommande(daos);
+            	break;
         }
         sc.close();
     }

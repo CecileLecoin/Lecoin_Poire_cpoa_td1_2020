@@ -97,13 +97,13 @@ public class MySQLCommandeDAO implements CommandeDAO {
             listeP.addAll((Collection<? extends Produit>) commande.getProduits().keySet());
             
             while(listeP.get(index)!=null) {
-            PreparedStatement requete2 = connection.prepareStatement(
+                PreparedStatement requete2 = connection.prepareStatement(
                 	"INSERT INTO Ligne_commande (id_commande, id_produit, quantite, tarif_unitaire) Values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            requete2.setInt(1, commande.getIdCommande());
-            requete2.setInt(2, listeP.get(index).getIdProduit()); //listeP.get(index) donne le produit
-            requete2.setInt(3, commande.getProduits().get(listeP.get(index))); //on recupere la quantite qui correspond au produit donné
-            requete2.setFloat(4, listeP.get(index).getTarif());
-            requete2.executeUpdate();
+                requete2.setInt(1, commande.getIdCommande());
+                requete2.setInt(2, listeP.get(index).getIdProduit()); //listeP.get(index) donne le produit
+                requete2.setInt(3, commande.getProduits().get(listeP.get(index))); //on recupere la quantite qui correspond au produit donné
+                requete2.setFloat(4, listeP.get(index).getTarif());
+                requete2.executeUpdate();
             
 
             if (requete2 != null)

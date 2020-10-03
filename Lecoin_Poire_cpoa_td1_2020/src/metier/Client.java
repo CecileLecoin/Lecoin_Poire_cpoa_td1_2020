@@ -121,6 +121,21 @@ public class Client {
 				+ ", mdp=" + mdp + ", num=" + num + ", voie=" + voie + ", cp=" + cp + ", ville=" + ville + ", pays=" + pays + "]";
 	}
 
-
+	public boolean equals(Object object) {
+    	boolean ret = false;
+    	if (this == object) {
+    		ret = true;
+    	}
+    	else if (object.getClass() == this.getClass()) {
+    		Client client = (Client) object;
+    		if (client.getIdClient() == this.idClient) {
+    			ret = true;
+    		}
+    	}
+    	else {
+    		ret = false;
+    	}
+    	return ret;
+	}
 
 }

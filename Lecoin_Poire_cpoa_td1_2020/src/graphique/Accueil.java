@@ -15,7 +15,7 @@ public class Accueil {
         String choice = sc.nextLine();
         choice = choice.toLowerCase();
 
-        DAOFactory daos;
+        DAOFactory daos = null;
 
         if (choice == "bdd" || choice == "sql") {
             daos = DAOFactory.getDaoFactory(Persistence.MYSQL);
@@ -28,6 +28,7 @@ public class Accueil {
 
         choice = sc.nextLine();
         choice = choice.toLowerCase();
+        
         switch (choice) {
             case "produit": case "produits" : case "prod":
                 new ManageProduits(daos);
@@ -40,6 +41,10 @@ public class Accueil {
             case "categorie": case "categories": case "cat":
                 new ManageCategories(daos);
                 break;
+            
+            case "commande": case "commandes": case "com":
+            	new ManageCommande(daos);
+            	break;
         }
         sc.close();
     }

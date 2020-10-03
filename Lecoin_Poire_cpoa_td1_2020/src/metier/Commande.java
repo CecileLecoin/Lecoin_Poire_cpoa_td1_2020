@@ -77,5 +77,21 @@ public class Commande {
     public Map<Produit, Integer> getProduits() {
         return produits;
     }
-
+    
+    public boolean equals(Object object) {
+    	boolean ret = false;
+    	if (this == object) {
+    		ret = true;
+    	}
+    	else if (object.getClass() == this.getClass()) {
+    		Commande commande = (Commande) object;
+    		if (commande.getIdCommande() == this.idCommande) {
+    			ret = true;
+    		}
+    	}
+    	else {
+    		ret = false;
+    	}
+    	return ret;
+    }
 }

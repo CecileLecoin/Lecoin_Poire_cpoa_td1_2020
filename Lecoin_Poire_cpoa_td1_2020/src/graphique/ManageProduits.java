@@ -100,7 +100,6 @@ public class ManageProduits {
         System.out.println("Voulez vous modif ce produit  : %s ? (o/n) %n" + produit);
 
         if(sc.nextLine().equals("o")) {
-            daos.getProduitDAO().delete(produit);
 
             System.out.println("Nouveau nom : \n");
             produit.setNom(sc.nextLine());
@@ -112,7 +111,7 @@ public class ManageProduits {
             System.out.println("Nouveau visuel : \n");
             produit.setVisuel(sc.nextLine());
 
-            daos.getProduitDAO().create(produit);
+            daos.getProduitDAO().update(produit);
 
             System.out.println("Fiche récap du produit " + produit);
         }

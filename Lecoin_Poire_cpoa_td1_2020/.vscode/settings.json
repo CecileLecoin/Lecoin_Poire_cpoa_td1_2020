@@ -1,5 +1,10 @@
 {
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ],
+        "exclude": [
+            "c:\\Lecoin_Poire_cpoa_td1_2020\\lib\\junit-4.13.jar"
+        ]
+    }
 }

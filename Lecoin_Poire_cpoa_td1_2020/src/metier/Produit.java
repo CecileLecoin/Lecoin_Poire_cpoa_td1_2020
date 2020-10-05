@@ -75,21 +75,19 @@ public class Produit {
     public String toString() {
         return String.format("Produit [nom = %s, descritpion = %s, tarif = %s, visuel = %s]", nom, description, tarif, visuel);
     }
-    
+
     public boolean equals(Object object) {
-    	boolean ret = false;
+
     	if (this == object) {
-    		ret = true;
+    		return true;
     	}
     	else if (object.getClass() == this.getClass()) {
     		Produit produit = (Produit) object;
     		if (produit.getIdProduit() == this.idProduit) {
-    			ret = true;
+    			return true;
     		}
     	}
-    	else {
-    		ret = false;
-    	}
-    	return ret;
+        return false;
     }
+
 }

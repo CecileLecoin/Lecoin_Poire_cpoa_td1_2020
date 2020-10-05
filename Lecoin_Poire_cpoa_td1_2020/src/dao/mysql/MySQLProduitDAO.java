@@ -64,15 +64,17 @@ public class MySQLProduitDAO implements ProduitDAO {
             Connection connection = connexion.creeConnexion();
 
             PreparedStatement requete = connection.prepareStatement(
-                "INSERT INTO Produit (id_categorie, nom, description, tarif, visuel, id_categorie) Values (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                "INSERT INTO Produit (nom, description, tarif, visuel, id_categorie) Values (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
-            requete.setInt(1, produit.getIdProduit());
-            requete.setString(2, produit.getNom());
-            requete.setString(3, produit.getDescription());
-            requete.setFloat(4, produit.getTarif());
-            requete.setString(5, produit.getVisuel());
-            requete.setInt(6, produit.getCategorie().getIdCategorie());
+            requete.setString(1, produit.getNom());
+            requete.setString(2, produit.getDescription());
+            requete.setFloat(3, produit.getTarif());
+            requete.setString(4, produit.getVisuel());
+            requete.setInt(5, produit.getCategorie().getIdCategorie());
             requete.executeUpdate();
+            ResultSet res = requete.getGeneratedKeys();
+            res.last();
+            produit.setIdProduit(res.getInt(1));
 
         if (requete != null)
             requete.close();

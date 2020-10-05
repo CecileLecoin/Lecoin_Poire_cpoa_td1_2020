@@ -1,18 +1,12 @@
-package tests;
+package tests.dao;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import dao.*;
+import junit.framework.TestCase;
 import metier.Commande;
-import metier.Produit;
-
-import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class MySQLCommandeDAOTest {
+public class MySQLCommandeDAOTest extends TestCase{
 
     private Commande commande;
 

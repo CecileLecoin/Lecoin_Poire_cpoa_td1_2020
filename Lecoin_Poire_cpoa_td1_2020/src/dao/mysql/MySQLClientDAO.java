@@ -143,6 +143,10 @@ public class MySQLClientDAO implements ClientDAO {
     @Override
     public ArrayList<Client> getByNom(String nom) {
 
+        if (nom == null || nom.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
+
         ArrayList<Client> listeClient = new ArrayList<>();
 
         Connexion connexion = new Connexion();
@@ -177,6 +181,10 @@ public class MySQLClientDAO implements ClientDAO {
     @Override
     public ArrayList<Client> getByPrenom(String prenom) {
 
+        if (prenom == null || prenom.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
+
         ArrayList<Client> listeClient = new ArrayList<>();
 
         Connexion connexion = new Connexion();
@@ -210,6 +218,11 @@ public class MySQLClientDAO implements ClientDAO {
 
     @Override
     public ArrayList<Client> getByIdentifiant(String identifiant) {
+
+        if (identifiant == null || identifiant.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
+
         ArrayList<Client> listeClient = new ArrayList<>();
 
         Connexion connexion = new Connexion();
@@ -243,6 +256,11 @@ public class MySQLClientDAO implements ClientDAO {
 
     @Override
     public ArrayList<Client> getByMpd(String mdp) {
+
+        if (mdp == null || mdp.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
+
         ArrayList<Client> listeClient = new ArrayList<>();
 
         Connexion connexion = new Connexion();
@@ -276,6 +294,11 @@ public class MySQLClientDAO implements ClientDAO {
 
     @Override
     public ArrayList<Client> getByNum(String num) {
+
+        if (num == null || num.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
+
         ArrayList<Client> listeClient = new ArrayList<>();
 
         Connexion connexion = new Connexion();
@@ -309,6 +332,11 @@ public class MySQLClientDAO implements ClientDAO {
 
     @Override
     public ArrayList<Client> getByVoie(String voie) {
+
+        if (voie == null || voie.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
+
         ArrayList<Client> listeClient = new ArrayList<>();
 
         Connexion connexion = new Connexion();
@@ -342,6 +370,11 @@ public class MySQLClientDAO implements ClientDAO {
 
     @Override
     public ArrayList<Client> getByCode(String cp) {
+
+        if (cp == null || cp.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
+
         ArrayList<Client> listeClient = new ArrayList<>();
 
         Connexion connexion = new Connexion();
@@ -375,6 +408,11 @@ public class MySQLClientDAO implements ClientDAO {
 
     @Override
     public ArrayList<Client> getByVille(String ville) {
+
+        if (ville == null || ville.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
+
         ArrayList<Client> listeClient = new ArrayList<>();
 
         Connexion connexion = new Connexion();
@@ -408,6 +446,11 @@ public class MySQLClientDAO implements ClientDAO {
 
     @Override
     public ArrayList<Client> getByPays(String pays) {
+
+        if (pays == null || pays.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
+
         ArrayList<Client> listeClient = new ArrayList<>();
 
         Connexion connexion = new Connexion();

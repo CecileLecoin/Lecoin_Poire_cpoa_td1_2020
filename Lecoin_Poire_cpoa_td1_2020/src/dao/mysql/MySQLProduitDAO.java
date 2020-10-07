@@ -146,6 +146,10 @@ public class MySQLProduitDAO implements ProduitDAO {
     @Override
     public ArrayList<Produit> getByNom(String nom) {
 
+        if (nom == null || nom.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
+
         ArrayList<Produit> listProduit = new ArrayList<>();
         Connexion connexion = new Connexion();
         try {
@@ -177,6 +181,10 @@ public class MySQLProduitDAO implements ProduitDAO {
 
     @Override
     public ArrayList<Produit> getByDescription(String description) {
+
+        if (description == null || description.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
 
         ArrayList<Produit> listProduit = new ArrayList<>();
         Connexion connexion = new Connexion();
@@ -242,6 +250,10 @@ public class MySQLProduitDAO implements ProduitDAO {
 
     @Override
     public ArrayList<Produit> getByVisuel(String visuel) {
+
+        if (visuel == null || visuel.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
 
         ArrayList<Produit> listProduit = new ArrayList<>();
         Connexion connexion = new Connexion();

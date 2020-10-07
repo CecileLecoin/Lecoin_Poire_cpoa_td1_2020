@@ -145,6 +145,10 @@ public class MySQLCategorieDAO implements CategorieDAO {
 	@Override
     public ArrayList<Categorie> getByTitre(String titre){
 
+		if (titre == null || titre.trim().length() == 0) {
+			throw new IllegalArgumentException("Libellé vide interdit !");
+		}
+
         ArrayList<Categorie> listCategorie = new ArrayList<>();
 		Connexion connexion = new Connexion();
 		try {
@@ -174,6 +178,10 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 	@Override
     public ArrayList<Categorie> getByVisuel(String visuel){
+
+		if (visuel == null || visuel.trim().length() == 0) {
+			throw new IllegalArgumentException("Libellé vide interdit !");
+		}
 
         ArrayList<Categorie> listCategorie = new ArrayList<>();
 		Connexion connexion = new Connexion();

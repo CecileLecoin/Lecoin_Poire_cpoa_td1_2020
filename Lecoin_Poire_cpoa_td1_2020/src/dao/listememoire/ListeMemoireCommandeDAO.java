@@ -52,7 +52,9 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 	@Override
 	public Commande getById(int id) {
 
-		int idx = this.commandes.indexOf(new Commande(id));
+		Commande commande = new Commande();
+		commande.setIdCommande(id);
+		int idx = this.commandes.indexOf(commande);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Aucune Commande ne possède cet identifiant");
 		} else {

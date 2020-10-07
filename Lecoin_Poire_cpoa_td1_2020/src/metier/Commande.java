@@ -29,10 +29,10 @@ public class Commande {
         this.produits = produits;
     }
     
-    public Commande(int idCommande){
+    /*public Commande(int idCommande){  //pb que j'avais eu jsp où
         super();
         this.idCommande = idCommande;
-    }
+    }*/
 
     public Commande(){
         super();

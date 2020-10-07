@@ -52,8 +52,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 HashMap<Produit, Integer> produits = new HashMap<>();
                 while(res2.next()){
 
-                    Produit produit = new Produit();
-                    produit.setIdProduit(res2.getInt("id_produit"));
+                    Produit produit = MySQLProduitDAO.getInstance().getById(res2.getInt("id_produit"));
                     produits.put(produit, res.getInt("quantite"));
 
 
@@ -221,8 +220,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 
                 while(res2.next()){
 
-                    Produit produit = new Produit();
-                    produit.setIdProduit(res2.getInt("id_produit"));
+                    Produit produit = MySQLProduitDAO.getInstance().getById(res2.getInt("id_produit"));
                     produits.put(produit, res.getInt("quantite"));
                 }
 
@@ -311,8 +309,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 HashMap<Produit, Integer> produits = new HashMap<>();
                 while(res2.next()){
 
-                    Produit produit = new Produit();
-                    produit.setIdProduit(res2.getInt("id_produit"));
+                    Produit produit = MySQLProduitDAO.getInstance().getById(res2.getInt("id_produit"));
                     produits.put(produit, res.getInt("quantite"));
 
 
@@ -358,8 +355,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 HashMap<Produit, Integer> produits = new HashMap<>();
                 while(res2.next()){
 
-                    Produit produit = new Produit();
-                    produit.setIdProduit(res2.getInt("id_produit"));
+                    Produit produit = MySQLProduitDAO.getInstance().getById(res2.getInt("id_produit"));
                     produits.put(produit, res.getInt("quantite"));
 
 

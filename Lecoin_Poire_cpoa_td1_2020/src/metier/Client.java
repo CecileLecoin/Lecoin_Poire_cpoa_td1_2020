@@ -6,21 +6,21 @@ public class Client {
 	private int idClient;
 	private String nom, prenom, identifiant, mdp, num, voie, cp, ville, pays;
 
-	// private List<Commande> 
+	// private List<Commande>
 
 	public Client(int idClient, String nom, String prenom, String identifiant,String mdp, String num, String voie,
 			String cp, String ville, String pays) {
 		super();
-		this.idClient = idClient;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.identifiant = identifiant;
-		this.mdp = mdp;
-		this.num = num;
-		this.voie = voie;
-		this.cp = cp;
-		this.ville = ville;
-		this.pays = pays;
+		setIdClient(idClient);
+		setNom(nom);
+		setPrenom(prenom);
+		setIdentifiant(identifiant);
+		setMdp(mdp);
+		setNum(num);
+		setVoie(voie);
+		setCp(cp);
+		setVille(ville);
+		setPays(pays);
 	}
 
 	public Client() {

@@ -27,7 +27,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
     @Override
     public Categorie getById(int id) {
-        Categorie categorie = new Categorie();
+		Categorie categorie = null;
 
 		Connexion connexion = new Connexion();
 		try {
@@ -47,10 +47,11 @@ public class MySQLCategorieDAO implements CategorieDAO {
 			if (laConnexion != null)
 				laConnexion.close();
 
-		} catch (SQLException sqle) {
+
+			} catch (SQLException sqle) {
 				System.out.println("Pb select" + sqle.getMessage());
-		}
-		return categorie;
+			}
+			return categorie;
     }
 
 
@@ -65,15 +66,18 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 			requete.setString(1, categorie.getTitre());
 			requete.setString(2, categorie.getVisuel());
-			//int reqBool = requete.executeUpdate();
+
 			requete.executeUpdate();
+
+			ResultSet res = requete.getGeneratedKeys();
+			res.last();
+			categorie.setIdCategorie(res.getInt(1));
 
 			if (requete != null)
 				requete.close();
 			if (connection != null)
 				connection.close();
 
-			//return reqBool==1;
 			return true;
 
 		} catch (SQLException sqle) {
@@ -92,12 +96,12 @@ public class MySQLCategorieDAO implements CategorieDAO {
 			Connection connection = connexion.creeConnexion();
 
 			PreparedStatement requete = connection.prepareStatement("UPDATE Categorie SET titre = ?, visuel = ? WHERE id_categorie = ?",
-				Statement.RETURN_GENERATED_KEYS);
+					Statement.RETURN_GENERATED_KEYS);
 
 			requete.setString(1, categorie.getTitre());
 			requete.setString(2, categorie.getVisuel());
 			requete.setInt(3, categorie.getIdCategorie());
-			//int reqBool = requete.executeUpdate();
+
 			requete.executeUpdate();
 
 			if (requete != null)
@@ -105,7 +109,6 @@ public class MySQLCategorieDAO implements CategorieDAO {
 			if (connection != null)
 				connection.close();
 
-			//return reqBool;     //avant on avait une fct  retournait un int, d'où reqBool. A priori on n'en a plus besoin, je garde un peu au cas où, on supprime plus tard
 			return true;
 
 		} catch (SQLException sqle) {

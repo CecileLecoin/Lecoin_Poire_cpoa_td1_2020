@@ -23,8 +23,7 @@ public class MySQLProduitDAOTest extends TestCase {
         assertNotNull(dao);
         assertNotNull(dao.findAll());
 
-        Categorie categorie = new Categorie();
-        categorie.setIdCategorie(2);
+        Categorie categorie = new Categorie(1, "titre", "visuel");
         produit = new Produit(1, "nom", "description", "visuel", 0.5f, categorie);
     }
 

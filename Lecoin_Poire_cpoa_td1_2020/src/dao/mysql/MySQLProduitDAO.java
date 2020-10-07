@@ -71,7 +71,9 @@ public class MySQLProduitDAO implements ProduitDAO {
             requete.setFloat(3, produit.getTarif());
             requete.setString(4, produit.getVisuel());
             requete.setInt(5, produit.getCategorie().getIdCategorie());
+            
             requete.executeUpdate();
+
             ResultSet res = requete.getGeneratedKeys();
             res.last();
             produit.setIdProduit(res.getInt(1));

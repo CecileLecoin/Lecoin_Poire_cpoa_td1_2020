@@ -6,16 +6,11 @@ public class Categorie {
     private String titre, visuel;
 
     public Categorie(int idCategorie, String titre, String visuel) {
-        this.idCategorie = idCategorie;
-        this.titre = titre;
-        this.visuel = visuel;
+        
+        setIdCategorie(idCategorie);
+        setTitre(titre);
+        setVisuel(visuel);
     }
-
-
-    public Categorie() {
-        super();
-	}
-
 
 	//Getters & Setters
     public int getIdCategorie() {
@@ -31,6 +26,7 @@ public class Categorie {
     }
 
     public void setTitre(String titre) {
+
         this.titre = titre;
     }
 
@@ -47,7 +43,7 @@ public class Categorie {
     public String toString() {
         return String.format("Categorie [titre = %s, visuel = %s] ", titre, visuel);
     }
-    
+
     public boolean equals(Object object) {
     	boolean ret = false;
     	if (this == object) {

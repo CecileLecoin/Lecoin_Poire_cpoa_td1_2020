@@ -57,20 +57,23 @@ public class MySQLClientDAO implements ClientDAO {
         Connexion connexion = new Connexion();
 		try {
 			Connection laConnexion = connexion.creeConnexion();
-			PreparedStatement requete = laConnexion.prepareStatement("insert into Client (id_client, nom, prenom, identifiant, mot_de_passe, adr_numero, adr_voie, adr_code_postal, adr_ville, adr_pays) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement requete = laConnexion.prepareStatement("insert into Client (nom, prenom, identifiant, mot_de_passe, adr_numero, adr_voie, adr_code_postal, adr_ville, adr_pays) values (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
-			requete.setInt(1, client.getIdClient());
-			requete.setString(2, client.getNom());
-			requete.setString(3, client.getPrenom());
-			requete.setString(4, client.getIdentifiant());
-			requete.setString(5, client.getMdp());
-			requete.setString(6, client.getNum());
-			requete.setString(7, client.getVoie());
-			requete.setString(8, client.getCp());
-			requete.setString(9, client.getVille());
-			requete.setString(10, client.getPays());
-			requete.executeUpdate();
-			ResultSet res = requete.getGeneratedKeys(); //Clé générée automatiquement (autoincrement) donc on voudra savoir ce que c'est dans les tests
+			requete.setString(1, client.getNom());
+			requete.setString(2, client.getPrenom());
+			requete.setString(3, client.getIdentifiant());
+			requete.setString(4, client.getMdp());
+			requete.setString(5, client.getNum());
+			requete.setString(6, client.getVoie());
+			requete.setString(7, client.getCp());
+			requete.setString(8, client.getVille());
+            requete.setString(9, client.getPays());
+
+            requete.executeUpdate();
+
+            ResultSet res = requete.getGeneratedKeys();
+            res.last();
+            client.setIdClient(res.getInt(1));
 
 			if (res != null)
 				res.close();
@@ -92,18 +95,17 @@ public class MySQLClientDAO implements ClientDAO {
 		try {
 			Connection laConnexion = connexion.creeConnexion();
 			PreparedStatement requete = laConnexion.prepareStatement(
-					"UPDATE Client SET nom = ?, prenom = ? WHERE id_client = ?");
+					"UPDATE Client SET nom = ?, prenom = ?, identifiant = ?, mot_de_passe = ?, adr_numero = ?, adr_voie = ?, adr_code_postal = ?, adr_ville = ?, adr_pays = ? WHERE id_client = ?");
 			requete.setString(1, client.getNom());
 			requete.setString(2, client.getPrenom());
-			requete.setInt(3, client.getIdClient());
-			requete.setString(4, client.getIdentifiant());
-			requete.setString(5, client.getMdp());
-			requete.setString(6, client.getNum());
-			requete.setString(7, client.getVoie());
-			requete.setString(7, client.getVoie());
-			requete.setString(8, client.getCp());
-			requete.setString(9, client.getVille());
-			requete.setString(10, client.getPays());
+			requete.setString(3, client.getIdentifiant());
+			requete.setString(4, client.getMdp());
+			requete.setString(5, client.getNum());
+			requete.setString(6, client.getVoie());
+			requete.setString(7, client.getCp());
+			requete.setString(8, client.getVille());
+			requete.setString(9, client.getPays());
+			requete.setInt(10, client.getIdClient());
 			requete.executeUpdate();
 
 			if (requete != null)
@@ -113,7 +115,7 @@ public class MySQLClientDAO implements ClientDAO {
 			return true;
 
 		} catch (SQLException sqle) {
-			System.out.println("Pb select" + sqle.getMessage());
+			System.out.println(sqle.getMessage());
 			return false;
 		}
     }

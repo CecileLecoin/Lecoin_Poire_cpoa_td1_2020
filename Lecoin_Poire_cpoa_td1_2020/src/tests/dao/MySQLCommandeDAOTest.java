@@ -23,17 +23,18 @@ public class MySQLCommandeDAOTest extends TestCase{
     private Commande commande;
 
 	@Before
+	@Override
 	public void setUp() {
 
 		dao = DAOFactory.getDaoFactory(Persistence.MYSQL);
-        //assertNotNull(dao);
+        // assertNotNull(dao);
 		assertNotNull(dao.getCommandeDAO().findAll());
-		
+
 		DateTimeFormatter formatage = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate dateDebut = LocalDate.parse("2020-09-02 13:12:00", formatage);
-		
+
 		Client client = new Client(1, "nom", "prenom", "identifiant", "mdp", "num", "voie", "cp", "ville", "pays");
-		
+
 		HashMap<Produit, Integer> produitsHM = new HashMap<>();
 		ArrayList<Produit> produits = new ArrayList<Produit>();
 		Categorie categorie = new Categorie(1, "titre", "visuel");
@@ -41,8 +42,8 @@ public class MySQLCommandeDAOTest extends TestCase{
 		produits.add(new Produit(2, "nom2", "description2", "visuel2", 5, categorie));
 		produitsHM.put(produits.get(1), 2);
 		produitsHM.put(produits.get(1), 4);
-		
-		commande = new Commande(1, dateDebut, client, produitsHM); 
+
+		commande = new Commande(1, dateDebut, client, produitsHM);
 	}
 
     @Test

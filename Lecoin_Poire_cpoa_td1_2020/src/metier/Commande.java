@@ -11,6 +11,19 @@ public class Commande {
     private LocalDate date;
     private HashMap<Produit, Integer> produits;
 
+
+    public Commande(int idCommande, LocalDate date, Client client, HashMap<Produit, Integer> produits){
+
+        setIdCommande(idCommande);
+        setDate(date);
+        setClient(client);
+        setProduits(produits);
+    }
+
+    public Commande(){
+        super();
+    }
+
     public double calculPrix() {
 
         double amount = (double) 0;
@@ -21,22 +34,11 @@ public class Commande {
         }
         return amount;
     }
-
-    public Commande(int idCommande, LocalDate date, Client client, HashMap<Produit, Integer> produits){
-        this.idCommande = idCommande;
-        this.date = date;
-        this.client = client;
-        this.produits = produits;
-    }
-    
     /*public Commande(int idCommande){  //pb que j'avais eu jsp où
         super();
         this.idCommande = idCommande;
     }*/
 
-    public Commande(){
-        super();
-    }
 
     public void addProduit(Produit produit, int quantity) {
         if(produits == null) {
@@ -46,7 +48,7 @@ public class Commande {
     }
 
     public void supprProduit(Produit produit) {
-        
+
         produits.remove(produit);
     }
 
@@ -77,7 +79,11 @@ public class Commande {
     public Map<Produit, Integer> getProduits() {
         return produits;
     }
-    
+
+    public void setProduits(HashMap<Produit, Integer> produits) {
+        this.produits = produits;
+    }
+
     public boolean equals(Object object) {
     	boolean ret = false;
     	if (this == object) {

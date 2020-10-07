@@ -18,7 +18,7 @@ import metier.Commande;
 import metier.Produit;
 
 public class MySQLCommandeDAO implements CommandeDAO {
-	
+
 	 private static CommandeDAO instance;
 
 	    public static CommandeDAO getInstance() {
@@ -32,7 +32,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
 	@Override
 	public Commande getById(int id) {
-		
+
 		Commande commande = new Commande();
 
         Connexion connexion = new Connexion();
@@ -59,7 +59,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 }
 
                 commande = new Commande(res.getInt("id_commande"), res.getDate("date_commande").toLocalDate(), clientdao.getById(res.getInt("id_client")), produits);
-                
+
             }
 
             if (res != null)
@@ -83,18 +83,21 @@ public class MySQLCommandeDAO implements CommandeDAO {
             Connection connection = connexion.creeConnexion();
 
             PreparedStatement requete1 = connection.prepareStatement(
-                "INSERT INTO Commande (id_commande, date_commande, id_client) Values (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            
+                "INSERT INTO Commande (date_commande, id_client) Values (?, ?)", Statement.RETURN_GENERATED_KEYS);
 
-            requete1.setInt(1, commande.getIdCommande());
-            requete1.setDate(2, java.sql.Date.valueOf(commande.getDate()));
-            requete1.setInt(3, commande.getClient().getIdClient());
+
+            requete1.setDate(1, java.sql.Date.valueOf(commande.getDate()));
+            requete1.setInt(2, commande.getClient().getIdClient());
             requete1.executeUpdate();
-            
+
+            ResultSet res = requete1.getGeneratedKeys();
+            res.last();
+            commande.setIdCommande(res.getInt(1));
+
             int index=0; //index nous permets de parcourir une liste de chaque produit de la hashmap
             ArrayList<Produit> listeP = new ArrayList<Produit>();
             listeP.addAll((Collection<? extends Produit>) commande.getProduits().keySet());
-            
+
             while(listeP.get(index)!=null) {
                 PreparedStatement requete2 = connection.prepareStatement(
                 	"INSERT INTO Ligne_commande (id_commande, id_produit, quantite, tarif_unitaire) Values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
@@ -102,12 +105,11 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 requete2.setInt(2, listeP.get(index).getIdProduit()); //listeP.get(index) donne le produit
                 requete2.setInt(3, commande.getProduits().get(listeP.get(index))); //on recupere la quantite qui correspond au produit donné
                 requete2.setFloat(4, listeP.get(index).getTarif());
+
                 requete2.executeUpdate();
-            
 
             if (requete2 != null)
                 requete2.close();
-            
             }
 
         if (requete1 != null)
@@ -142,13 +144,13 @@ public class MySQLCommandeDAO implements CommandeDAO {
             int index=0;
             ArrayList<Produit> listeP = new ArrayList<Produit>();
             listeP.addAll((Collection<? extends Produit>) commande.getProduits().keySet());
-            
+
             while(listeP.get(index)!=null) {
                 PreparedStatement requete2 = connection.prepareStatement(
                     "UPDATE Ligne_commande SET id_produit = ?, quantite = ?, tarif_unitaire=? WHERE id_commande = ?",
                     Statement.RETURN_GENERATED_KEYS);
 
-                requete2.setInt(1, listeP.get(index).getIdProduit()); 
+                requete2.setInt(1, listeP.get(index).getIdProduit());
                 requete2.setInt(2, commande.getProduits().get(listeP.get(index)));
                 requete2.setFloat(3, listeP.get(index).getTarif());
                 requete2.setInt(4, commande.getIdCommande());
@@ -217,7 +219,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
                 ClientDAO clientdao = MySQLClientDAO.getInstance();
                 HashMap<Produit, Integer> produits = new HashMap<>();
-                
+
                 while(res2.next()){
 
                     Produit produit = MySQLProduitDAO.getInstance().getById(res2.getInt("id_produit"));
@@ -225,7 +227,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 }
 
                 lesCommandes.add(new Commande(res.getInt("id_commande"), res.getDate("date_commande").toLocalDate(), clientdao.getById(res.getInt("id_client")), produits));
-                
+
             }
 
             if (res != null)
@@ -244,7 +246,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
 	@Override
 	public ArrayList<Commande> getByProduit(Produit produit) {
-        
+
         ArrayList<Commande> lesCommandes = new ArrayList<>();
 
         Connexion connexion = new Connexion();
@@ -271,7 +273,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 }
 
                 lesCommandes.add(new Commande(res.getInt("id_commande"), res.getDate("date_commande").toLocalDate(), clientdao.getById(res.getInt("id_client")), produits));
-                
+
             }
 
             if (res != null)
@@ -290,7 +292,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
 	@Override
 	public ArrayList<Commande> getByClient(Client client) {
-        
+
         ArrayList<Commande> lesCommandes = new ArrayList<>();
 
         Connexion connexion = new Connexion();
@@ -316,7 +318,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 }
 
                 lesCommandes.add(new Commande(res.getInt("id_commande"), res.getDate("date_commande").toLocalDate(), client, produits));
-                
+
             }
 
             if (res != null)
@@ -362,7 +364,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 }
 
                 lesCommandes.add(new Commande(res.getInt("id_commande"), res.getDate("date_commande").toLocalDate(), clientdao.getById(res.getInt("id_client")), produits));
-                
+
             }
 
             if (res != null)

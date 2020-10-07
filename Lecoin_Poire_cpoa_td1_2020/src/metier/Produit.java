@@ -9,12 +9,12 @@ public class Produit {
 
     public Produit(int idProduit, String nom, String description, String visuel, float tarif, Categorie categorie) {
 
-        this.idProduit = idProduit;
-        this.description = description;
-        this.nom = nom;
-        this.visuel = visuel;
-        this.tarif = tarif;
-        this.categorie = categorie;
+        setIdProduit(idProduit);
+        setDescription(description);
+        setNom(nom);
+        setVisuel(visuel);
+        setTarif(tarif);
+        setCategorie(categorie);
     }
 
     public Produit() {

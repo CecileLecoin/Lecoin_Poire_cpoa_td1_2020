@@ -76,5 +76,13 @@ public class ListeMemoireCommandeDAOTest extends TestCase {
 
         // Suppression du produit créer par le test
         dao.getCommandeDAO().delete(commande);
-	}
+    }
+
+    @Test
+    public void testDelete() {
+        System.out.println("\n----- \ntestDelete");
+
+        dao.getCommandeDAO().create(commande);
+        assertTrue(dao.getCommandeDAO().delete(commande));
+    }
 }

@@ -27,7 +27,7 @@ public class MySQLProduitDAO implements ProduitDAO {
 
     @Override
     public Produit getById(int id) {
-    	Produit produit = new Produit();
+    	Produit produit = null;
 
         Connexion connexion = new Connexion();
         try {
@@ -71,7 +71,7 @@ public class MySQLProduitDAO implements ProduitDAO {
             requete.setFloat(3, produit.getTarif());
             requete.setString(4, produit.getVisuel());
             requete.setInt(5, produit.getCategorie().getIdCategorie());
-            
+
             requete.executeUpdate();
 
             ResultSet res = requete.getGeneratedKeys();

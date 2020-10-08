@@ -6,7 +6,7 @@ public class Categorie {
     private String titre, visuel;
 
     public Categorie(int idCategorie, String titre, String visuel) {
-        
+
         setIdCategorie(idCategorie);
         setTitre(titre);
         setVisuel(visuel);
@@ -18,6 +18,7 @@ public class Categorie {
     }
 
     public void setIdCategorie(int id) {
+
         this.idCategorie = id;
     }
 
@@ -27,6 +28,9 @@ public class Categorie {
 
     public void setTitre(String titre) {
 
+        if (titre == null || titre.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
         this.titre = titre;
     }
 
@@ -35,6 +39,9 @@ public class Categorie {
     }
 
     public void setVisuel(String visuel) {
+        if (visuel == null || visuel.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
         this.visuel = visuel;
     }
 

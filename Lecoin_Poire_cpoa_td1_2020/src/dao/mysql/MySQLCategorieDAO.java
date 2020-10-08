@@ -47,7 +47,6 @@ public class MySQLCategorieDAO implements CategorieDAO {
 			if (laConnexion != null)
 				laConnexion.close();
 
-
 			} catch (SQLException sqle) {
 				System.out.println("Pb select" + sqle.getMessage());
 			}
@@ -87,7 +86,6 @@ public class MySQLCategorieDAO implements CategorieDAO {
 		}
 
     }
-
 
     @Override
     public boolean update(Categorie categorie) {

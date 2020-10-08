@@ -33,7 +33,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
 	@Override
 	public Commande getById(int id) {
 
-		Commande commande = new Commande();
+		Commande commande = null;
 
         Connexion connexion = new Connexion();
         try {

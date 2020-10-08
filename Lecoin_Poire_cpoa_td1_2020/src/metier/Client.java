@@ -23,13 +23,6 @@ public class Client {
 		setPays(pays);
 	}
 
-	public Client() {
-		super();
-
-	}
-
-
-
 	//getters et setters
 	public int getIdClient() {
 		return idClient;
@@ -44,6 +37,9 @@ public class Client {
 	}
 
 	public void setNom(String nom) {
+		if (nom == null || nom.trim().length() == 0) {
+			throw new IllegalArgumentException("Libellé vide interdit !");
+		}
 		this.nom = nom;
 	}
 
@@ -52,6 +48,9 @@ public class Client {
 	}
 
 	public void setPrenom(String prenom) {
+		if (prenom == null || prenom.trim().length() == 0) {
+			throw new IllegalArgumentException("Libellé vide interdit !");
+		}
 		this.prenom = prenom;
 	}
 
@@ -60,6 +59,9 @@ public class Client {
 	}
 
 	public void setIdentifiant(String identifiant) {
+		if (identifiant == null || identifiant.trim().length() == 0) {
+			throw new IllegalArgumentException("Libellé vide interdit !");
+		}
 		this.identifiant = identifiant;
 	}
 
@@ -68,6 +70,9 @@ public class Client {
 	}
 
 	public void setMdp(String mdp) {
+		if (mdp == null || mdp.trim().length() == 0) {
+			throw new IllegalArgumentException("Libellé vide interdit !");
+		}
 		this.mdp = mdp;
 	}
 
@@ -76,6 +81,9 @@ public class Client {
 	}
 
 	public void setNum(String num) {
+		if (num == null || num.trim().length() == 0) {
+			throw new IllegalArgumentException("Libellé vide interdit !");
+		}
 		this.num = num;
 	}
 
@@ -84,6 +92,9 @@ public class Client {
 	}
 
 	public void setVoie(String voie) {
+		if (voie == null || voie.trim().length() == 0) {
+			throw new IllegalArgumentException("Libellé vide interdit !");
+		}
 		this.voie = voie;
 	}
 
@@ -92,6 +103,9 @@ public class Client {
 	}
 
 	public void setCp(String cp) {
+		if (cp == null || cp.trim().length() == 0) {
+			throw new IllegalArgumentException("Libellé vide interdit !");
+		}
 		this.cp = cp;
 	}
 
@@ -100,6 +114,9 @@ public class Client {
 	}
 
 	public void setVille(String ville) {
+		if (ville == null || ville.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
 		this.ville = ville;
 	}
 
@@ -108,6 +125,9 @@ public class Client {
 	}
 
 	public void setPays(String pays) {
+		if (pays == null || pays.trim().length() == 0) {
+			throw new IllegalArgumentException("Libellé vide interdit !");
+		}
 		this.pays = pays;
 	}
 

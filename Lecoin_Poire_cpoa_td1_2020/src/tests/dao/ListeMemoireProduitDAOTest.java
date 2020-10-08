@@ -3,7 +3,6 @@ package tests.dao;
 import org.junit.Before;
 import org.junit.Test;
 
-import dao.CategorieDAO;
 import dao.ProduitDAO;
 import dao.enumeration.Persistence;
 import daoFactory.DAOFactory;

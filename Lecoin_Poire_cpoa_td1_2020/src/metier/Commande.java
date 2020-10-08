@@ -20,8 +20,12 @@ public class Commande {
         setProduits(produits);
     }
 
-    public Commande(){
-        super();
+    public Commande(int idCommande, LocalDate date, Client client){
+
+        setIdCommande(idCommande);
+        setDate(date);
+        setClient(client);
+        setProduits(new HashMap<>());
     }
 
     public double calculPrix() {
@@ -34,11 +38,6 @@ public class Commande {
         }
         return amount;
     }
-    /*public Commande(int idCommande){  //pb que j'avais eu jsp où
-        super();
-        this.idCommande = idCommande;
-    }*/
-
 
     public void addProduit(Produit produit, int quantity) {
         if(produits == null) {
@@ -99,5 +98,14 @@ public class Commande {
     		ret = false;
     	}
     	return ret;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        for (Produit produit : this.getProduits().keySet()) {
+            string.append(produit);
+        }
+        return String.format("Commande [id= %d, date = %s, client = %s, produits = %s", idCommande, date, client, string);
     }
 }

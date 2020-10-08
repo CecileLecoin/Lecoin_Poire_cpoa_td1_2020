@@ -17,10 +17,6 @@ public class Produit {
         setCategorie(categorie);
     }
 
-    public Produit() {
-        super();
-    }
-
     // getters et setters
     public int getIdProduit() {
         return idProduit;
@@ -35,6 +31,9 @@ public class Produit {
     }
 
     public void setTarif(float tarif) {
+        if (0 > tarif) {
+            throw new IllegalArgumentException("Le prix ne peut être nul ou négatif!");
+        }
         this.tarif = tarif;
     }
 
@@ -43,6 +42,9 @@ public class Produit {
     }
 
     public void setNom(String nom) {
+        if (nom == null || nom.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
         this.nom = nom;
     }
 
@@ -51,6 +53,9 @@ public class Produit {
     }
 
     public void setDescription(String description) {
+        if (description == null || description.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
         this.description = description;
     }
 
@@ -59,6 +64,9 @@ public class Produit {
     }
 
     public void setVisuel(String visuel) {
+        if (visuel == null || visuel.trim().length() == 0) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
         this.visuel = visuel;
     }
 

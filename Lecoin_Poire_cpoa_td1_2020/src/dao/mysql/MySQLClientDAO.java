@@ -27,7 +27,7 @@ public class MySQLClientDAO implements ClientDAO {
 
     @Override
     public Client getById(int id) {
-        Client client = new Client();
+        Client client = null;
 		Connexion connexion = new Connexion();
 		try {
 			Connection laConnexion = connexion.creeConnexion();

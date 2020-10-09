@@ -38,6 +38,9 @@ public class ManageCommande {
 				break;
 
 			case "gerer":
+				gestionCommande();
+				//TODOO
+				//gestion de la commande comprends : -ajout d'un produit -modification de sa quantité -suppression d'un produit
 				break;
 		}
 		sc.close();
@@ -49,5 +52,37 @@ public class ManageCommande {
 		daos.getCommandeDAO().create(commande);
 	}
 
+	public void gestionCommande() {
+		// TODOO
+		// gestion de la commande comprends : -ajout d'un produit -modification de sa
+		// quantité -suppression d'un produit
+		// TODOO
+		// gestion de la commande comprends : -ajout d'un produit -modification de sa
+		// quantité -suppression d'un produit
+		// TODOO
+		// gestion de la commande comprends : -ajout d'un produit -modification de sa
+		// quantité -suppression d'un produit
+		// TODOO
+		// gestion de la commande comprends : -ajout d'un produit -modification de sa
+		// quantité -suppression d'un produit
+		// TODOO
+		// gestion de la commande comprends : -ajout d'un produit -modification de sa
+		// quantité -suppression d'un produit
+		// TODOO
+		// gestion de la commande comprends : -ajout d'un produit -modification de sa
+		// quantité -suppression d'un produit
+		// TODOO
+		// gestion de la commande comprends : -ajout d'un produit -modification de sa
+		// quantité -suppression d'un produit
+		// TODOO
+		// gestion de la commande comprends : -ajout d'un produit -modification de sa
+		// quantité -suppression d'un produit
+		// TODOO
+		// gestion de la commande comprends : -ajout d'un produit -modification de sa
+		// quantité -suppression d'un produit
+		// TODOO
+		// gestion de la commande comprends : -ajout d'un produit -modification de sa
+		// quantité -suppression d'un produit
 
+	}
 }

@@ -20,12 +20,16 @@ public class Commande {
         setProduits(produits);
     }
 
-    public Commande(int idCommande, LocalDate date, Client client){
+    public Commande(int idCommande, Client client){
 
         setIdCommande(idCommande);
-        setDate(date);
+        setDate(LocalDate.now());
         setClient(client);
         setProduits(new HashMap<>());
+    }
+
+    public Commande() {
+        
     }
 
     public double calculPrix() {
@@ -40,6 +44,9 @@ public class Commande {
     }
 
     public void addProduit(Produit produit, int quantity) {
+        if (produit == null || quantity < 1) {
+            throw new IllegalArgumentException("Libellé vide interdit !");
+        }
         if(produits == null) {
             produits = new HashMap<>();
         }
@@ -83,6 +90,7 @@ public class Commande {
         this.produits = produits;
     }
 
+    @Override
     public boolean equals(Object object) {
     	boolean ret = false;
     	if (this == object) {

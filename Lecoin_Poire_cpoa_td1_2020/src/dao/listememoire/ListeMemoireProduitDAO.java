@@ -121,10 +121,10 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 
 	@Override
 	public ArrayList<Produit> getByTarif(float tarif) {
-		ArrayList<Produit> lesTarifs=new ArrayList<Produit>();
+		ArrayList<Produit> lesTarifs = new ArrayList<Produit>();
 		for(Produit produit : produits)
 		{
-			if(produit.getTarif()==tarif) {
+			if(produit.getTarif() == tarif) {
 				lesTarifs.add(produit);
 			}
 		}
@@ -143,4 +143,3 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 		return lesVisuels;
 	}
 }
-

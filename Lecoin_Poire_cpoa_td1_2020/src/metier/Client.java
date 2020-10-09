@@ -23,6 +23,10 @@ public class Client {
 		setPays(pays);
 	}
 
+	public Client() {
+		
+	}
+
 	//getters et setters
 	public int getIdClient() {
 		return idClient;
@@ -141,6 +145,7 @@ public class Client {
 				+ ", mdp=" + mdp + ", num=" + num + ", voie=" + voie + ", cp=" + cp + ", ville=" + ville + ", pays=" + pays + "]";
 	}
 
+	@Override
 	public boolean equals(Object object) {
     	boolean ret = false;
     	if (this == object) {

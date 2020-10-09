@@ -1,5 +1,7 @@
 package tests.metier;
 
+import static org.junit.Assert.assertThrows;
+
 import org.junit.Test;
 
 import junit.framework.TestCase;
@@ -33,41 +35,14 @@ public class ClientTest extends TestCase {
 
         Client client = new Client(1, "nom", "prenom", "identifiant", "mdp", "num", "voie", "cp", "ville", "pays");
 
-        try {
-            client.setNom("");
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
-        try {
-            client.setPrenom("");
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
-        try {
-            client.setIdentifiant("");
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
-        try {
-            client.setMdp("");
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
-        try {
-            client.setNum("");
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
-        try {
-            client.setVoie("");
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
-        try {
-            client.setCp("");
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
-        try {
-            client.setVille("");
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
-        try {
-            client.setPays("");
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
+        assertThrows(IllegalArgumentException.class, () -> client.setNom(""));
+        assertThrows(IllegalArgumentException.class, () -> client.setPrenom(""));
+        assertThrows(IllegalArgumentException.class, () -> client.setIdentifiant(""));
+        assertThrows(IllegalArgumentException.class, () -> client.setMdp(""));
+        assertThrows(IllegalArgumentException.class, () -> client.setNum(""));
+        assertThrows(IllegalArgumentException.class, () -> client.setVoie(""));
+        assertThrows(IllegalArgumentException.class, () -> client.setCp(""));
+        assertThrows(IllegalArgumentException.class, () -> client.setVille(""));
+        assertThrows(IllegalArgumentException.class, () -> client.setPays(""));
     }
 }

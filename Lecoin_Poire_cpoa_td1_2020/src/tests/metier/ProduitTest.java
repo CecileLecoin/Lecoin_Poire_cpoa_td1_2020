@@ -1,5 +1,7 @@
 package tests.metier;
 
+import static org.junit.Assert.assertThrows;
+
 import org.junit.Test;
 
 import junit.framework.TestCase;
@@ -32,25 +34,11 @@ public class ProduitTest extends TestCase{
         Categorie categorie = new Categorie(1, "titre", "visuel");
         Produit produit = new Produit(1, "nom", "description", "visuel", 1.5f, categorie);
 
-        try {
-            produit.setVisuel("   ");
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
+        assertThrows(IllegalArgumentException.class, () -> produit.setVisuel(" "));
+        assertThrows(IllegalArgumentException.class, () -> produit.setDescription(null));
+        assertThrows(IllegalArgumentException.class, () -> produit.setNom("   "));
+        assertThrows(IllegalArgumentException.class, () -> produit.setTarif(-1f));
 
-        try {
-            produit.setDescription(null);
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
-
-        try {
-            produit.setNom("   ");
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
-
-        try {
-            produit.setTarif(-1f);
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
     }
 
 }

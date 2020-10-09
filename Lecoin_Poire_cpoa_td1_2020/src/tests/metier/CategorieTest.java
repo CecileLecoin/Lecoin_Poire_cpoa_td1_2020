@@ -1,5 +1,7 @@
 package tests.metier;
 
+import static org.junit.Assert.assertThrows;
+
 import org.junit.Test;
 
 import junit.framework.TestCase;
@@ -26,14 +28,7 @@ public class CategorieTest extends TestCase{
 
         Categorie categorie = new Categorie(1, "titre", "visuel");
 
-        try {
-            categorie.setVisuel("   ");
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
-
-        try {
-            categorie.setTitre(null);
-            fail("Exception non lancée !");
-        } catch (IllegalArgumentException iae) {}
+        assertThrows(IllegalArgumentException.class, () -> categorie.setVisuel("   "));
+        assertThrows(IllegalArgumentException.class, () -> categorie.setTitre(null));
     }
 }

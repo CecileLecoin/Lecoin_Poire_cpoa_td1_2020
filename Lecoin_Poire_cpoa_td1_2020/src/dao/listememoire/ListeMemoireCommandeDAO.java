@@ -133,7 +133,7 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 
 	@Override
 	public ArrayList<Commande> getByClient(Client client) {
-		
+
 		ArrayList<Commande> parCli = new ArrayList<Commande>();
 		for(Commande commande : commandes)
 		{
@@ -142,7 +142,7 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 			}
 		}
 		return parCli;
-        
+
 	}
 
 	@Override
@@ -156,7 +156,7 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 			}
 		}
 		return parDate;
-		
+
 	}
-    
+
 }

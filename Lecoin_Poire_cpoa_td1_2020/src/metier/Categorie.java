@@ -12,6 +12,10 @@ public class Categorie {
         setVisuel(visuel);
     }
 
+    public Categorie() {
+
+    }
+
 	//Getters & Setters
     public int getIdCategorie() {
         return idCategorie;
@@ -51,6 +55,7 @@ public class Categorie {
         return String.format("Categorie [titre = %s, visuel = %s] ", titre, visuel);
     }
 
+    @Override
     public boolean equals(Object object) {
     	boolean ret = false;
     	if (this == object) {

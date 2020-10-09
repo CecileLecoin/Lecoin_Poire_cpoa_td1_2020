@@ -31,7 +31,6 @@ public class MySQLCommandeDAOTest extends TestCase{
 	public void setUp() {
 
 		dao = DAOFactory.getDaoFactory(Persistence.MYSQL);
-        // assertNotNull(dao);
 		assertNotNull(dao.getCommandeDAO().findAll());
 
 

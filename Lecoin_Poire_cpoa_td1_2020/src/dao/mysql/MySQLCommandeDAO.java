@@ -53,8 +53,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 while(res2.next()){
 
                     Produit produit = MySQLProduitDAO.getInstance().getById(res2.getInt("id_produit"));
-                    produits.put(produit, res.getInt("quantite"));
-
+                    produits.put(produit, res2.getInt("quantite"));
 
                 }
 
@@ -223,7 +222,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 while(res2.next()){
 
                     Produit produit = MySQLProduitDAO.getInstance().getById(res2.getInt("id_produit"));
-                    produits.put(produit, res.getInt("quantite"));
+                    produits.put(produit, res2.getInt("quantite"));
                 }
 
                 lesCommandes.add(new Commande(res.getInt("id_commande"), res.getDate("date_commande").toLocalDate(), clientdao.getById(res.getInt("id_client")), produits));
@@ -267,7 +266,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 while(res2.next()){
 
                     produit.setIdProduit(produit.getIdProduit());
-                    produits.put(produit, res.getInt("quantite"));
+                    produits.put(produit, res2.getInt("quantite"));
 
 
                 }
@@ -312,7 +311,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 while(res2.next()){
 
                     Produit produit = MySQLProduitDAO.getInstance().getById(res2.getInt("id_produit"));
-                    produits.put(produit, res.getInt("quantite"));
+                    produits.put(produit, res2.getInt("quantite"));
 
 
                 }
@@ -358,7 +357,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 while(res2.next()){
 
                     Produit produit = MySQLProduitDAO.getInstance().getById(res2.getInt("id_produit"));
-                    produits.put(produit, res.getInt("quantite"));
+                    produits.put(produit, res2.getInt("quantite"));
 
 
                 }

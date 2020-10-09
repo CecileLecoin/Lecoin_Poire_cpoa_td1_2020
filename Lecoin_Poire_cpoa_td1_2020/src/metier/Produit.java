@@ -1,5 +1,9 @@
 package metier;
 
+import java.lang.reflect.Field;
+import java.util.List;
+import java.util.stream.Stream;
+
 public class Produit {
 
     private int idProduit;
@@ -15,6 +19,33 @@ public class Produit {
         setVisuel(visuel);
         setTarif(tarif);
         setCategorie(categorie);
+    }
+
+    public Produit() {
+        
+    }
+
+    @Override
+    public int hashCode() {
+
+        int nbPremier = 19;
+
+        return description.hashCode() + nom.hashCode() + visuel.hashCode() + (int)tarif + categorie.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+
+        if (!(object instanceof Client)) {
+            return false;
+        }
+        else {
+            Produit produit = (Produit) object;
+            if ((produit.getIdProduit() == this.idProduit) || (this.hashCode() == object.hashCode())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // getters et setters
@@ -78,24 +109,10 @@ public class Produit {
         this.categorie = categorie;
     }
 
+
     //toString
     @Override
     public String toString() {
         return String.format("Produit [nom = %s, descritpion = %s, tarif = %s, visuel = %s]", nom, description, tarif, visuel);
     }
-
-    public boolean equals(Object object) {
-
-    	if (this == object) {
-    		return true;
-    	}
-    	else if (object.getClass() == this.getClass()) {
-    		Produit produit = (Produit) object;
-    		if (produit.getIdProduit() == this.idProduit) {
-    			return true;
-    		}
-    	}
-        return false;
-    }
-
 }

@@ -56,6 +56,21 @@ public class Client {
 
 		return hashCode;
 	}
+	
+    @Override
+    public boolean equals(Object object) {
+
+        if (!(object instanceof Client)) {
+            return false;
+        }
+        else {
+            Client client = (Client) object;
+            if ((client.getIdClient() == this.idClient) || (this.hashCode() == client.hashCode())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 	//getters et setters
 	public int getIdClient() {
@@ -173,24 +188,6 @@ public class Client {
 	public String toString() {
 		return "Client [id_client=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", identifiant=" + identifiant
 				+ ", mdp=" + mdp + ", num=" + num + ", voie=" + voie + ", cp=" + cp + ", ville=" + ville + ", pays=" + pays + "]";
-	}
-
-	@Override
-	public boolean equals(Object object) {
-    	boolean ret = false;
-    	if (this == object) {
-    		ret = true;
-    	}
-    	else if (object.getClass() == this.getClass()) {
-    		Client client = (Client) object;
-    		if (client.getIdClient() == this.idClient) {
-    			ret = true;
-    		}
-    	}
-    	else {
-    		ret = false;
-    	}
-    	return ret;
 	}
 
 }

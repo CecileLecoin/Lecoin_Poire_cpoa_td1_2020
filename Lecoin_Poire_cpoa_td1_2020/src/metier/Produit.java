@@ -63,7 +63,7 @@ public class Produit {
         }
         else {
             Produit produit = (Produit) object;
-            if ((produit.getIdProduit() == this.idProduit) || (this.hashCode() == object.hashCode())) {
+            if ((produit.getIdProduit() == this.idProduit) || (this.hashCode() == produit.hashCode())) {
                 return true;
             }
         }

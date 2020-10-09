@@ -61,6 +61,21 @@ public class Commande {
 
         return hashCode;
     }
+    
+    @Override
+    public boolean equals(Object object) {
+
+        if (!(object instanceof Client)) {
+            return false;
+        }
+        else {
+            Commande commande = (Commande) object;
+            if ((commande.getIdCommande() == this.idCommande) || (this.hashCode() == commande.hashCode())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public double calculPrix() {
 
@@ -118,24 +133,6 @@ public class Commande {
 
     public void setProduits(HashMap<Produit, Integer> produits) {
         this.produits = produits;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-    	boolean ret = false;
-    	if (this == object) {
-    		ret = true;
-    	}
-    	else if (object.getClass() == this.getClass()) {
-    		Commande commande = (Commande) object;
-    		if (commande.getIdCommande() == this.idCommande) {
-    			ret = true;
-    		}
-    	}
-    	else {
-    		ret = false;
-    	}
-    	return ret;
     }
 
     @Override

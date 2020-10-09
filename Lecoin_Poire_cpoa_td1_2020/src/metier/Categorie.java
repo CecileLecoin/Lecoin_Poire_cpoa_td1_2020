@@ -46,6 +46,21 @@ public class Categorie {
 
         return hashCode;
     }
+    
+    @Override
+    public boolean equals(Object object) {
+
+        if (!(object instanceof Client)) {
+            return false;
+        }
+        else {
+            Categorie categorie= (Categorie) object;
+            if ((categorie.getIdCategorie() == this.idCategorie) || (this.hashCode() == categorie.hashCode())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 	//Getters & Setters
     public int getIdCategorie() {
@@ -84,23 +99,5 @@ public class Categorie {
     @Override
     public String toString() {
         return String.format("Categorie [titre = %s, visuel = %s] ", titre, visuel);
-    }
-
-    @Override
-    public boolean equals(Object object) {
-    	boolean ret = false;
-    	if (this == object) {
-    		ret = true;
-    	}
-    	else if (object.getClass() == this.getClass()) {
-    		Categorie categorie = (Categorie) object;
-    		if (categorie.getIdCategorie() == this.idCategorie) {
-    			ret = true;
-    		}
-    	}
-    	else {
-    		ret = false;
-    	}
-    	return ret;
     }
 }

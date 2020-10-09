@@ -1,7 +1,5 @@
 package metier;
 
-import java.lang.reflect.Field;
-
 public class Client {
 
 	private int idClient;
@@ -28,35 +26,42 @@ public class Client {
 
 	}
 
-	public int calculhashCode(Field field) {
-
-		int hashCode = 0;
-		int nbPremier = 19;
-
-		try {
-			if (field.get(this) != null && !(field.getType().isPrimitive())) {
-				hashCode += nbPremier * field.get(this).hashCode();
-//			} else {
-//				hashCode += nbPremier * (int) field.get(this);
-			}
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		return hashCode;
-	}
-
 	@Override
 	public int hashCode() {
 
-		int hashCode = 0;
-
-		for (Field f : getClass().getDeclaredFields()) {
-			hashCode += calculhashCode(f);
+		int nbpremier = 19;
+		int hashCode = idClient * nbpremier;
+		if (nom != null) {
+			hashCode += nom.hashCode() * nbpremier;
+		}
+		if (prenom != null) {
+			hashCode += prenom.hashCode() * nbpremier;
+		}
+		if (identifiant != null) {
+			hashCode += identifiant.hashCode() * nbpremier;
+		}
+		if (mdp != null) {
+			hashCode += mdp.hashCode() * nbpremier;
+		}
+		if (num != null) {
+			hashCode += num.hashCode() * nbpremier;
+		}
+		if (voie != null) {
+			hashCode += voie.hashCode() * nbpremier;
+		}
+		if (cp != null) {
+			hashCode += cp.hashCode() * nbpremier;
+		}
+		if (ville != null) {
+			hashCode += ville.hashCode() * nbpremier;
+		}
+		if (pays != null) {
+			hashCode += pays.hashCode() * nbpremier;
 		}
 
 		return hashCode;
 	}
-	
+
     @Override
     public boolean equals(Object object) {
 

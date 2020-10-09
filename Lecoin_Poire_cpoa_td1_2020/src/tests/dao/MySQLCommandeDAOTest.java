@@ -21,14 +21,19 @@ public class MySQLCommandeDAOTest extends TestCase{
 
 	private DAOFactory dao;
 	private Commande commande;
-	private DateTimeFormatter formatage = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-	private Categorie categorie = new Categorie(1, "titre", "visuel");
-	private Produit p1 =new Produit(8, "nom", "description", "visuel", 4, categorie);
-	private Produit p2 =new Produit(9, "nom2", "description2", "visuel2", 5, categorie);
+	private DateTimeFormatter formatage;
+	private Categorie categorie;
+	private Produit p1;
+	private Produit p2;
 
 	@Before
 	@Override
 	public void setUp() {
+
+		categorie = new Categorie(1, "titre", "visuel");
+		p1 = new Produit(8, "nom", "description", "visuel", 4, categorie);
+		p2 = new Produit(9, "nom2", "description2", "visuel2", 5, categorie);
+		formatage = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 		dao = DAOFactory.getDaoFactory(Persistence.MYSQL);
 		assertNotNull(dao.getCommandeDAO().findAll());

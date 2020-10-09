@@ -94,9 +94,9 @@ public class MySQLCommandeDAO implements CommandeDAO {
             ResultSet res = requete1.getGeneratedKeys();
             res.last();
             commande.setIdCommande(res.getInt(1));
-            
+
             System.out.println("cles générées : "+ res.getInt(1));
-            
+
             int index=0; //index nous permets de parcourir une liste de chaque produit de la hashmap
             ArrayList<Produit> listeP = new ArrayList<Produit>();
             listeP.addAll((Collection<? extends Produit>) commande.getProduits().keySet());
@@ -107,10 +107,11 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 	"INSERT INTO Ligne_commande (id_commande, id_produit, quantite, tarif_unitaire) Values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
                 requete2.setInt(1, commande.getIdCommande());
                 requete2.setInt(2, listeP.get(index).getIdProduit()); //listeP.get(index) donne le produit
+                System.out.println(commande.getProduits().get(listeP.get(index)));
                 requete2.setInt(3, commande.getProduits().get(listeP.get(index))); //on recupere la quantite qui correspond au produit donné
                 requete2.setFloat(4, listeP.get(index).getTarif());
                 requete2.executeUpdate();
-                
+
                 index++;
 
             if (requete2 != null)
@@ -150,7 +151,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
             ArrayList<Produit> listeP = new ArrayList<Produit>();
             listeP.addAll((Collection<? extends Produit>) commande.getProduits().keySet());
             int fin =listeP.size();
-            
+
             while(index<fin) {
                 PreparedStatement requete2 = connection.prepareStatement(
                     "UPDATE Ligne_commande SET id_produit = ?, quantite = ?, tarif_unitaire=? WHERE id_commande = ?",
@@ -161,7 +162,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 requete2.setFloat(3, listeP.get(index).getTarif());
                 requete2.setInt(4, commande.getIdCommande());
                 requete2.executeUpdate();
-                
+
                 index++;
             }
 

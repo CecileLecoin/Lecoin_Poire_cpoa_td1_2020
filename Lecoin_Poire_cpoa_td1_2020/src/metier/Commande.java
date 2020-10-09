@@ -1,6 +1,5 @@
 package metier;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,35 +32,24 @@ public class Commande {
 
     }
 
-    public int calculhashCode(Field field) {
-
-        int hashCode = 0;
-        int nbPremier = 19;
-
-        try {
-            if (field.get(this) != null && !(field.getType().isPrimitive())) {
-                hashCode += nbPremier * field.get(this).hashCode();
-//            } else {
-//                hashCode += nbPremier * (int) field.get(this);
-           }
-        } catch (IllegalArgumentException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return hashCode;
-    }
-
     @Override
     public int hashCode() {
 
-        int hashCode = 0;
-
-        for (Field f : getClass().getDeclaredFields()) {
-            hashCode += calculhashCode(f);
+        int nbpremier = 19;
+        int hashCode = idCommande * nbpremier;
+        if (date != null) {
+            hashCode += date.hashCode() * nbpremier;
+        }
+        if (client != null) {
+            hashCode += client.hashCode() * nbpremier;
+        }
+        if (produits != null) {
+            hashCode += produits.hashCode() * nbpremier;
         }
 
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object object) {
 
@@ -127,7 +115,7 @@ public class Commande {
         this.client = client;
     }
 
-    public Map<Produit, Integer> getProduits() {
+    public HashMap<Produit, Integer> getProduits() {
         return produits;
     }
 

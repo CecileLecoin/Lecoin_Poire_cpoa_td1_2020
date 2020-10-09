@@ -1,9 +1,5 @@
 package metier;
 
-import java.lang.reflect.Field;
-import java.util.List;
-import java.util.stream.Stream;
-
 public class Produit {
 
     private int idProduit;
@@ -25,31 +21,23 @@ public class Produit {
 
     }
 
-    public int calculhashCode(Field field) {
-
-        int hashCode = 0;
-        int nbPremier = 19;
-
-        try {
-            if (field.get(this) != null && !(field.getType().isPrimitive())) {
-                hashCode += nbPremier * field.get(this).hashCode();
-            }
-//            else {
-//                hashCode += nbPremier * field.get(this);
-//            }
-        } catch (IllegalArgumentException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return hashCode;
-    }
-
     @Override
     public int hashCode() {
 
-        int hashCode = 0;
+        int nbpremier = 19;
+        int hashCode = idProduit * nbpremier;
 
-        for (Field f : getClass().getDeclaredFields()) {
-            hashCode += calculhashCode(f);
+        if (nom != null) {
+            hashCode += nom.hashCode() * nbpremier;
+        }
+        if (description != null) {
+            hashCode += description.hashCode() * nbpremier;
+        }
+        if (visuel != null) {
+            hashCode += visuel.hashCode() * nbpremier;
+        }
+        if (categorie != null) {
+            hashCode += categorie.hashCode() * nbpremier;
         }
 
         return hashCode;

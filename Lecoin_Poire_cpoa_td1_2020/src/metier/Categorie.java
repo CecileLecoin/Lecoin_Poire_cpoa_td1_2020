@@ -1,7 +1,5 @@
 package metier;
 
-import java.lang.reflect.Field;
-
 public class Categorie {
 
     private int idCategorie;
@@ -18,35 +16,21 @@ public class Categorie {
 
     }
 
-    public int calculhashCode(Field field) {
-
-        int hashCode = 0;
-        int nbPremier = 19;
-
-        try {
-            if (field.get(this) != null && !(field.getType().isPrimitive())) {
-                hashCode += nbPremier * field.get(this).hashCode();
-//            } else {
-//                hashCode += nbPremier * (int) field.get(this);
-            }
-        } catch (IllegalArgumentException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return hashCode;
-    }
-
     @Override
     public int hashCode() {
 
-        int hashCode = 0;
-
-        for (Field f : getClass().getDeclaredFields()) {
-            hashCode += calculhashCode(f);
+        int nbpremier = 19;
+        int hashCode = idCategorie * nbpremier;
+        if (titre != null) {
+            hashCode += titre.hashCode() * nbpremier;
+        }
+        if (visuel != null) {
+            hashCode += visuel.hashCode() * nbpremier;
         }
 
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object object) {
 

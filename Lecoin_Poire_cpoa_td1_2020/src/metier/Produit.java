@@ -22,15 +22,37 @@ public class Produit {
     }
 
     public Produit() {
-        
+
+    }
+
+    public int calculhashCode(Field field) {
+
+        int hashCode = 0;
+        int nbPremier = 19;
+
+        try {
+            if (field.get(this) != null && !(field.getType().isPrimitive())) {
+                hashCode += nbPremier * field.get(this).hashCode();
+            }
+            else {
+                hashCode += nbPremier * (int)field.get(this);
+            }
+        } catch (IllegalArgumentException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return hashCode;
     }
 
     @Override
     public int hashCode() {
 
-        int nbPremier = 19;
+        int hashCode = 0;
 
-        return description.hashCode() + nom.hashCode() + visuel.hashCode() + (int)tarif + categorie.hashCode();
+        for (Field f : getClass().getDeclaredFields()) {
+            hashCode += calculhashCode(f);
+        }
+
+        return hashCode;
     }
 
     @Override

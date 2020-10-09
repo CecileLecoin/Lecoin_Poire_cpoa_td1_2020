@@ -34,9 +34,9 @@ public class Produit {
             if (field.get(this) != null && !(field.getType().isPrimitive())) {
                 hashCode += nbPremier * field.get(this).hashCode();
             }
-            else {
-                hashCode += nbPremier * (int)field.get(this);
-            }
+//            else {
+//                hashCode += nbPremier * field.get(this);
+//            }
         } catch (IllegalArgumentException | IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -58,7 +58,7 @@ public class Produit {
     @Override
     public boolean equals(Object object) {
 
-        if (!(object instanceof Client)) {
+        if (!(object instanceof Produit)) {
             return false;
         }
         else {

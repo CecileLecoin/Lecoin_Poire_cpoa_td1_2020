@@ -21,10 +21,10 @@ public class MySQLCommandeDAOTest extends TestCase{
 
 	private DAOFactory dao;
 	private Commande commande;
-	private DateTimeFormatter formatage = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private DateTimeFormatter formatage = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	private Categorie categorie = new Categorie(1, "titre", "visuel");
-	private Produit p1 =new Produit(1, "nom", "description", "visuel", 4, categorie);
-	private Produit p2 =new Produit(2, "nom2", "description2", "visuel2", 5, categorie);
+	private Produit p1 =new Produit(8, "nom", "description", "visuel", 4, categorie);
+	private Produit p2 =new Produit(9, "nom2", "description2", "visuel2", 5, categorie);
 
 	@Before
 	@Override
@@ -35,19 +35,19 @@ public class MySQLCommandeDAOTest extends TestCase{
 
 
 		LocalDate dateDebut = LocalDate.parse("2020-09-02 13:12:00", formatage);
-
+		//Le ptn de formatage fonctionne pas ses grands morts
 		Client client = new Client(1, "nom", "prenom", "identifiant", "mdp", "num", "voie", "cp", "ville", "pays");
 
 		HashMap<Produit, Integer> produitsHM = new HashMap<>();
 		produitsHM.put(p1, 2);
-		produitsHM.put(p1, 4);
 
-		commande = new Commande(1, dateDebut, client, produitsHM);
+		commande = new Commande(1, LocalDate.now(), client, produitsHM);
 	}
 
 	@Test
     public void testGetById() {
 
+		assertTrue(dao.getProduitDAO().create(p1));
 		assertTrue(dao.getCommandeDAO().create(commande));
 		Commande commande2 =dao.getCommandeDAO().getById(commande.getIdCommande());
 
@@ -56,6 +56,7 @@ public class MySQLCommandeDAOTest extends TestCase{
 
 		assertEquals(commande, commande2);
 		assertTrue(dao.getCommandeDAO().delete(commande));
+		assertTrue(dao.getProduitDAO().delete(p1));
 	}
 
 	@Test
@@ -64,18 +65,21 @@ public class MySQLCommandeDAOTest extends TestCase{
 
         int size = dao.getCommandeDAO().findAll().size();
 
+        assertTrue(dao.getProduitDAO().create(p1));
         assertTrue(dao.getCommandeDAO().create(commande));
         System.out.println(String.format("list size : before : %d after : %d ", size, dao.getCommandeDAO().findAll().size()));
         assertEquals(++size, dao.getCommandeDAO().findAll().size());
 
         //Suppression du commande créer par le test
         dao.getCommandeDAO().delete(commande);
+        assertTrue(dao.getProduitDAO().delete(p1));
 	}
 
 	@Test
     public void testUpdate() {
         System.out.println("\n----- \ntestUpdate");
 
+        assertTrue(dao.getProduitDAO().create(p1));
         dao.getCommandeDAO().create(commande);
         System.out.println("Before : " + dao.getCommandeDAO().getById(commande.getIdCommande()));
 
@@ -85,11 +89,14 @@ public class MySQLCommandeDAOTest extends TestCase{
 		HM.put(p2, 1);
 		commande.setProduits(HM);
 
+		assertTrue(dao.getProduitDAO().create(p2));
         assertTrue(dao.getCommandeDAO().update(commande));
         System.out.println("After : " + dao.getCommandeDAO().getById(commande.getIdCommande()));
 
         // Suppression du produit créer par le test
         dao.getCommandeDAO().delete(commande);
+        assertTrue(dao.getProduitDAO().delete(p1));
+        assertTrue(dao.getProduitDAO().delete(p2));
 	}
 
 	@Test

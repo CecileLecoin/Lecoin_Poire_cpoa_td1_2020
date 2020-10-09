@@ -7,9 +7,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+import dao.CategorieDAO;
 import dao.ClientDAO;
 import dao.CommandeDAO;
 import dao.ProduitDAO;
+import metier.Categorie;
 import metier.Client;
 import metier.Commande;
 import metier.Produit;
@@ -34,19 +36,24 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 		this.commandes = new ArrayList<Commande>();
 
 		ClientDAO clientdao = ListeMemoireClientDAO.getInstance();
-		DateTimeFormatter formatage = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		Client client = new Client(1, "nom", "prenom", "identifiant", "mdp", "num", "voie", "cp", "ville", "pays");
+		DateTimeFormatter formatage = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		LocalDate dateDebut = LocalDate.parse("2020-09-02 13:12:00", formatage);
+		
 		ProduitDAO produitdao = ListeMemoireProduitDAO.getInstance();
+		System.out.println("produitdao : " +produitdao.findAll().toString());
+		CategorieDAO categoriedao = ListeMemoireCategorieDAO.getInstance();
+		Categorie categorie = new Categorie(1, "titre", "visuel");
+		Produit p1 = new Produit(1, "nom", "description", "visuel", 4, categorie);
 		HashMap<Produit, Integer> produits = new HashMap<>();
-		produits.put(produitdao.getById(2), 2);
-		produits.put(produitdao.getById(6), 2);
+		produits.put(p1, 2);
+		
 
-		this.commandes.add(new Commande(1, dateDebut, clientdao.getById(1), produits));
-
+		this.commandes.add(new Commande(1, dateDebut, client, produits));
+		System.out.println("commandes : " );
 		dateDebut = LocalDate.parse("2020-08-30 11:22:00", formatage);
-		produits.clear();
-		produits.put(produitdao.getById(12), 4);
-		this.commandes.add(new Commande(2, dateDebut, clientdao.getById(1), produits));
+		produits.put(p1, 4);
+		this.commandes.add(new Commande(2, dateDebut, client, produits));
 	}
 
 	@Override
@@ -54,10 +61,12 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 
 		Commande commande = new Commande();
 		commande.setIdCommande(id);
+		System.out.println("commande id :" + commande.getIdCommande());
 		int idx = this.commandes.indexOf(commande);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Aucune Commande ne possède cet identifiant");
 		} else {
+			System.out.println("trouvé : " + idx);
 			return this.commandes.get(idx);
 		}
 	}
@@ -107,6 +116,7 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 
 	@Override
 	public ArrayList<Commande> findAll() {
+		System.out.println("findall");
 
 		return (ArrayList<Commande>) this.commandes;
 	}

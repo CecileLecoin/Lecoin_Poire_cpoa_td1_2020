@@ -78,6 +78,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
 	@Override
 	public boolean create(Commande commande) {
 		Connexion connexion = new Connexion();
+		System.out.println("Dans le create");
         try {
             Connection connection = connexion.creeConnexion();
 
@@ -87,25 +88,30 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
             requete1.setDate(1, java.sql.Date.valueOf(commande.getDate()));
             requete1.setInt(2, commande.getClient().getIdClient());
+            System.out.println("avant executeUpdate");
             requete1.executeUpdate();
 
             ResultSet res = requete1.getGeneratedKeys();
             res.last();
             commande.setIdCommande(res.getInt(1));
-
+            
+            System.out.println("cles générées : "+ res.getInt(1));
+            
             int index=0; //index nous permets de parcourir une liste de chaque produit de la hashmap
             ArrayList<Produit> listeP = new ArrayList<Produit>();
             listeP.addAll((Collection<? extends Produit>) commande.getProduits().keySet());
+            int fin =listeP.size();
 
-            while(listeP.get(index)!=null) {
+            while(index<fin) {
                 PreparedStatement requete2 = connection.prepareStatement(
                 	"INSERT INTO Ligne_commande (id_commande, id_produit, quantite, tarif_unitaire) Values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
                 requete2.setInt(1, commande.getIdCommande());
                 requete2.setInt(2, listeP.get(index).getIdProduit()); //listeP.get(index) donne le produit
                 requete2.setInt(3, commande.getProduits().get(listeP.get(index))); //on recupere la quantite qui correspond au produit donné
                 requete2.setFloat(4, listeP.get(index).getTarif());
-
                 requete2.executeUpdate();
+                
+                index++;
 
             if (requete2 != null)
                 requete2.close();
@@ -143,8 +149,9 @@ public class MySQLCommandeDAO implements CommandeDAO {
             int index=0;
             ArrayList<Produit> listeP = new ArrayList<Produit>();
             listeP.addAll((Collection<? extends Produit>) commande.getProduits().keySet());
-
-            while(listeP.get(index)!=null) {
+            int fin =listeP.size();
+            
+            while(index<fin) {
                 PreparedStatement requete2 = connection.prepareStatement(
                     "UPDATE Ligne_commande SET id_produit = ?, quantite = ?, tarif_unitaire=? WHERE id_commande = ?",
                     Statement.RETURN_GENERATED_KEYS);
@@ -154,6 +161,8 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 requete2.setFloat(3, listeP.get(index).getTarif());
                 requete2.setInt(4, commande.getIdCommande());
                 requete2.executeUpdate();
+                
+                index++;
             }
 
             if (requete != null)

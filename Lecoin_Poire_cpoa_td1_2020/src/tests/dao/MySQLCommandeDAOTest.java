@@ -31,7 +31,7 @@ public class MySQLCommandeDAOTest extends TestCase{
 	public void setUp() {
 
 		categorie = new Categorie(1, "titre", "visuel");
-		p1 = new Produit(8, "nom", "description", "visuel", 4, categorie);
+		p1 = new Produit(8, "nom", "description", "visuel", 0, categorie);
 		p2 = new Produit(9, "nom2", "description2", "visuel2", 5, categorie);
 		formatage = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 

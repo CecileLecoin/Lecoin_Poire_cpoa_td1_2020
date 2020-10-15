@@ -8,21 +8,24 @@
             "type": "java",
             "name": "Debug (Launch) - Current File",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "${file}",
+            "vmArgs": "--module-path \"C:\\Program Files\\JavaTools\\javafx-sdk-11.0.2\\lib\" --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
             "name": "Debug (Launch)-Main<Lecoin_Poire_cpoa_td1_2020>",
             "request": "launch",
             "mainClass": "Main",
-            "projectName": "Lecoin_Poire_cpoa_td1_2020"
+            "projectName": "Lecoin_Poire_cpoa_td1_2020",
+            "vmArgs": "--module-path \"C:\\Program Files\\JavaTools\\javafx-sdk-11.0.2\\lib\" --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
             "name": "Debug (Launch)-TimezoneDump<Lecoin_Poire_cpoa_td1_2020>",
             "request": "launch",
             "mainClass": "com.mysql.cj.jdbc.admin.TimezoneDump",
-            "projectName": "Lecoin_Poire_cpoa_td1_2020"
+            "projectName": "Lecoin_Poire_cpoa_td1_2020",
+            "vmArgs": "--module-path \"C:\\Program Files\\JavaTools\\javafx-sdk-11.0.2\\lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }

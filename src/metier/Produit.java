@@ -84,7 +84,7 @@ public class Produit {
 
     public void setNom(String nom) {
         if (nom == null || nom.trim().length() == 0) {
-            throw new IllegalArgumentException("Libellé vide interdit !");
+            throw new IllegalArgumentException("nom non renseigné !");
         }
         this.nom = nom;
     }
@@ -95,7 +95,7 @@ public class Produit {
 
     public void setDescription(String description) {
         if (description == null || description.trim().length() == 0) {
-            throw new IllegalArgumentException("Libellé vide interdit !");
+            throw new IllegalArgumentException("description non renseignée !");
         }
         this.description = description;
     }
@@ -106,7 +106,7 @@ public class Produit {
 
     public void setVisuel(String visuel) {
         if (visuel == null || visuel.trim().length() == 0) {
-            throw new IllegalArgumentException("Libellé vide interdit !");
+            throw new IllegalArgumentException("visuel non renseigné !");
         }
         this.visuel = visuel;
     }
@@ -123,6 +123,6 @@ public class Produit {
     //toString
     @Override
     public String toString() {
-        return String.format("Produit [nom = %s, descritpion = %s, tarif = %s, visuel = %s]", nom, description, tarif, visuel);
+        return String.format("%s (%s), %s, %s euros", nom, categorie.getTitre(), description, tarif);
     }
 }

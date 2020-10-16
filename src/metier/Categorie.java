@@ -82,6 +82,6 @@ public class Categorie {
     // toStrings
     @Override
     public String toString() {
-        return String.format("Categorie [titre = %s, visuel = %s] ", titre, visuel);
+        return String.format("%s  ", titre);
     }
 }

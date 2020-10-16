@@ -3,7 +3,6 @@ package graphique.controleur;
 import dao.enumeration.Persistence;
 import daoFactory.DAOFactory;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -22,12 +21,10 @@ public class CtrlProduits implements Initializable {
     @FXML
     private ChoiceBox<Categorie> choiceBoxCategorie;
     @FXML
-    private Button btnCreer;
-    @FXML
     private TextField textFieldTarif;
     @FXML
     private TextField textFieldNom;
-    
+
     private DAOFactory dao;
     
     @Override
@@ -39,36 +36,52 @@ public class CtrlProduits implements Initializable {
     }
 
     public void creerProduit() {
-    	
+
     	Produit produit = new Produit();
     	Categorie categorie = this.choiceBoxCategorie.getValue();
-    	
+    	String erreur = "";
+
     	try {
     		String nom = this.textFieldNom.getText().trim();
-    		produit.setNom(nom);    		
+    		produit.setNom(nom);
     	} catch (IllegalArgumentException e){
-    		this.labelAffiche.setText(e.getMessage());
+    		erreur = e.getMessage();
     	}
     	try {
     		String description = this.textAreaDescription.getText().trim();
-    		produit.setDescription(description);    		
+    		produit.setDescription(description);
     	} catch (IllegalArgumentException e){
-    		this.labelAffiche.setText(e.getMessage());
+    		erreur += e.getMessage();
     	}
     	try {
+    		if (this.textFieldTarif.getText().trim().length() == 0){
+    			erreur += "tarif non renseigné";
+			}
+    		else {
     		float tarif = Float.parseFloat(this.textFieldTarif.getText().trim());
-    		produit.setTarif(tarif);    		
+			System.out.println(tarif);
+    		produit.setTarif(tarif);
+			}
     	} catch (IllegalArgumentException e){
-    		this.labelAffiche.setText(e.getMessage());
+    		erreur += e.getMessage();
     	}
     	if (categorie == null) {
-    		this.labelAffiche.setText("Aucune catégorie séléctionner");
+    		erreur += "Aucune catégorie séléctionnée";
     	}
     	else {
-    		produit.setCategorie(categorie);    		
+    		produit.setCategorie(categorie);
     	}
 
-    	this.labelAffiche.setText(produit.toString());
-    	dao.getProduitDAO().create(produit);
+		if (erreur.length() == 0) {
+			this.labelAffiche.setText(produit.toString());
+			this.labelAffiche.setStyle("-fx-text-fill: black;");
+
+			dao.getProduitDAO().create(produit);
+		}
+		else {
+			this.labelAffiche.setText(erreur);
+			this.labelAffiche.setStyle("-fx-text-fill: red;");
+		}
+
     }
 }

@@ -1,5 +1,6 @@
 package tests.dao;
 
+import metier.Commande;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,6 +15,7 @@ public class MySQLProduitDAOTest extends TestCase {
 
     private ProduitDAO dao;
     private Produit produit;
+    private Categorie categorie;
 
     @Before
     @Override
@@ -23,8 +25,25 @@ public class MySQLProduitDAOTest extends TestCase {
         assertNotNull(dao);
         assertNotNull(dao.findAll());
 
-        Categorie categorie = new Categorie(1, "titre", "visuel");
+        categorie = new Categorie(1, "titre", "visuel");
         produit = new Produit(1, "nom", "description", "visuel", 0.5f, categorie);
+    }
+
+    @Test
+    public void testGetById() {
+
+        assertTrue(DAOFactory.getDaoFactory(Persistence.MYSQL).getCategorieDAO().create(categorie));
+        assertTrue(dao.create(produit));
+        System.out.println(produit.getIdProduit());
+        Produit p2 =dao.getById(produit.getIdProduit());
+
+
+        //System.out.println(commande.toString());
+        //System.out.println(commande2.toString());
+
+        assertEquals(produit, p2);
+        assertTrue(dao.delete(produit));
+        assertTrue(DAOFactory.getDaoFactory(Persistence.MYSQL).getCategorieDAO().delete(categorie));
     }
 
     @Test
@@ -45,6 +64,7 @@ public class MySQLProduitDAOTest extends TestCase {
     public void testUpdate() {
         System.out.println("\n----- \ntestUpdate");
 
+        assertTrue(DAOFactory.getDaoFactory(Persistence.MYSQL).getCategorieDAO().create(categorie));
         dao.create(produit);
         System.out.println("Before : " + dao.getById(produit.getIdProduit()));
 
@@ -57,6 +77,7 @@ public class MySQLProduitDAOTest extends TestCase {
 
         // Suppression du produit créer par le test
         dao.delete(produit);
+        assertTrue(DAOFactory.getDaoFactory(Persistence.MYSQL).getCategorieDAO().delete(categorie));
     }
 
     @Test

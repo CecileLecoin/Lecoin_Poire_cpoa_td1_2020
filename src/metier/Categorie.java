@@ -13,7 +13,7 @@ public class Categorie {
     }
 
     public Categorie() {
-
+        super();
     }
 
     @Override

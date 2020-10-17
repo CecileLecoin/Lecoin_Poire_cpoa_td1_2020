@@ -18,14 +18,16 @@ public class Produit {
     }
 
     public Produit() {
-
+        super();
     }
 
     @Override
     public int hashCode() {
 
         int nbpremier = 19;
-        int hashCode = idProduit * nbpremier;
+        //int hashCode = idProduit * nbpremier;
+
+        int hashCode = Float.hashCode(tarif) * nbpremier;
 
         if (nom != null) {
             hashCode += nom.hashCode() * nbpremier;
@@ -123,6 +125,6 @@ public class Produit {
     //toString
     @Override
     public String toString() {
-        return String.format("%s (%s), %s, %s euros", nom, categorie.getTitre(), description, tarif);
+        return String.format("%s (%s), %s, %f euros", nom, categorie.getTitre(), description, tarif);
     }
 }

@@ -23,8 +23,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MultiViewProjectFXML/src/main/java/com/gluonapplication" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="JavaSE-1.8" jdkType="JavaSDK" />
-    <orderEntry type="module-library">
+    <orderEntry type="jdk" jdkName="11" jdkType="JavaSDK" />
+    <orderEntry type="module-library" exported="">
       <library name="mysql-connector-java-8.0.17.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/mysql-connector-java-8.0.17.jar!/" />
@@ -33,7 +33,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="junit-4.13.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/junit-4.13.jar!/" />
@@ -116,5 +116,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="lib1" level="project" />
   </component>
 </module>

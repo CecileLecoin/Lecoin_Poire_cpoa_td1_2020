@@ -31,7 +31,7 @@ public class MySQLCommandeDAOTest extends TestCase{
 	public void setUp() {
 
 		categorie = new Categorie(1, "titre", "visuel");
-		p1 = new Produit(8, "nom", "description", "visuel", 0, categorie);
+		p1 = new Produit(8, "testCrea", "description", "visuel", 0, categorie);
 		p2 = new Produit(9, "nom2", "description2", "visuel2", 5, categorie);
 		formatage = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
@@ -52,16 +52,24 @@ public class MySQLCommandeDAOTest extends TestCase{
 	@Test
     public void testGetById() {
 
+		System.out.println("crea cate");
+		assertTrue(dao.getCategorieDAO().create(categorie));
+		System.out.println("crea pdt");
 		assertTrue(dao.getProduitDAO().create(p1));
+		System.out.println("crea cmd");
 		assertTrue(dao.getCommandeDAO().create(commande));
+		System.out.println("get id cmd");
+		System.out.println(commande.getIdCommande());
 		Commande commande2 =dao.getCommandeDAO().getById(commande.getIdCommande());
 
-		System.out.println(commande.toString());
-		System.out.println(commande2.toString());
+
+		//System.out.println(commande.toString());
+		//System.out.println(commande2.toString());
 
 		assertEquals(commande, commande2);
 		assertTrue(dao.getCommandeDAO().delete(commande));
 		assertTrue(dao.getProduitDAO().delete(p1));
+		assertTrue(dao.getCategorieDAO().delete(categorie));
 	}
 
 	@Test
@@ -84,9 +92,10 @@ public class MySQLCommandeDAOTest extends TestCase{
     public void testUpdate() {
         System.out.println("\n----- \ntestUpdate");
 
+		assertTrue(dao.getCategorieDAO().create(categorie));
         assertTrue(dao.getProduitDAO().create(p1));
         dao.getCommandeDAO().create(commande);
-        System.out.println("Before : " + dao.getCommandeDAO().getById(commande.getIdCommande()));
+        //System.out.println("Before : " + dao.getCommandeDAO().getById(commande.getIdCommande()));
 
         commande.setDate(LocalDate.parse("2000-01-01 01:01:00", formatage));
         commande.setClient(new Client(2, "Unom", "Uprenom", "Uidentifiant", "Umdp", "Unum", "Uvoie", "Ucp", "Uville", "Upays"));
@@ -96,12 +105,13 @@ public class MySQLCommandeDAOTest extends TestCase{
 
 		assertTrue(dao.getProduitDAO().create(p2));
         assertTrue(dao.getCommandeDAO().update(commande));
-        System.out.println("After : " + dao.getCommandeDAO().getById(commande.getIdCommande()));
+        //System.out.println("After : " + dao.getCommandeDAO().getById(commande.getIdCommande()));
 
         // Suppression du produit créer par le test
         dao.getCommandeDAO().delete(commande);
         assertTrue(dao.getProduitDAO().delete(p1));
         assertTrue(dao.getProduitDAO().delete(p2));
+		assertTrue(dao.getCategorieDAO().delete(categorie));
 	}
 
 	@Test

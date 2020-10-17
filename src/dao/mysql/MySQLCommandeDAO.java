@@ -52,8 +52,10 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 HashMap<Produit, Integer> produits = new HashMap<>();
                 while(res2.next()){
 
+                    System.out.println(res2.getInt("id_produit"));
                     Produit produit = MySQLProduitDAO.getInstance().getById(res2.getInt("id_produit"));
                     produits.put(produit, res2.getInt("quantite"));
+                    //System.out.println(produit.getIdProduit());
 
                 }
 
@@ -107,8 +109,16 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 	"INSERT INTO Ligne_commande (id_commande, id_produit, quantite, tarif_unitaire) Values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
                 requete2.setInt(1, commande.getIdCommande());
                 requete2.setInt(2, listeP.get(index).getIdProduit()); //listeP.get(index) donne le produit
+
+                // NOTRE PB
+                System.out.println(" liste de pdts :");
+                System.out.println(commande.getProduits().keySet().toString());
+                System.out.println("fin liste");
+                System.out.println(listeP.get(index));
+                System.out.println(commande.getProduits().containsKey(listeP.get(index)));
                 System.out.println(commande.getProduits().get(listeP.get(index)));
                 requete2.setInt(3, commande.getProduits().get(listeP.get(index))); //on recupere la quantite qui correspond au produit donné
+                /////////////////////////
                 requete2.setFloat(4, listeP.get(index).getTarif());
                 requete2.executeUpdate();
 

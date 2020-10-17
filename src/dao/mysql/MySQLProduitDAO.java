@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import connection.Connexion;
 import dao.CategorieDAO;
 import dao.ProduitDAO;
+import exceptions.CommandeApplicationException;
 import metier.Produit;
 
 public class MySQLProduitDAO implements ProduitDAO {
@@ -26,7 +27,7 @@ public class MySQLProduitDAO implements ProduitDAO {
     private MySQLProduitDAO() {}
 
     @Override
-    public Produit getById(int id) {
+    public Produit getById(int id) throws CommandeApplicationException {
     	Produit produit = null;
 
         Connexion connexion = new Connexion();
@@ -52,13 +53,14 @@ public class MySQLProduitDAO implements ProduitDAO {
 
             } catch (SQLException sqle) {
                 System.out.println("Pb select" + sqle.getMessage());
+                throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return produit;
     }
 
     @Override
-    public boolean create(Produit produit) {
+    public boolean create(Produit produit) throws CommandeApplicationException {
     	Connexion connexion = new Connexion();
         try {
             Connection connection = connexion.creeConnexion();
@@ -86,13 +88,13 @@ public class MySQLProduitDAO implements ProduitDAO {
 
         } catch (SQLException sqle) {
             System.out.println("Probleme lors de la connexion ou execution de la requete" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
-        return false;
     }
 
     @Override
-    public boolean update(Produit produit) {
+    public boolean update(Produit produit) throws CommandeApplicationException {
     	Connexion connexion = new Connexion();
         try {
             Connection connection = connexion.creeConnexion();
@@ -117,12 +119,13 @@ public class MySQLProduitDAO implements ProduitDAO {
 
         } catch (SQLException sqle) {
             System.out.println("Probleme lors de la connexion ou execution de la requete" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
-        return false;
+        //return false;
     }
 
     @Override
-    public boolean delete(Produit produit) {
+    public boolean delete(Produit produit) throws CommandeApplicationException {
     	 Connexion connexion = new Connexion();
          try {
              Connection connection = connexion.creeConnexion();
@@ -141,12 +144,13 @@ public class MySQLProduitDAO implements ProduitDAO {
 
          } catch (SQLException sqle) {
              System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
+             throw new CommandeApplicationException(sqle.getMessage());
          }
-         return false;
+         //return false;
     }
 
     @Override
-    public ArrayList<Produit> getByNom(String nom) {
+    public ArrayList<Produit> getByNom(String nom) throws CommandeApplicationException {
 
         if (nom == null || nom.trim().length() == 0) {
             throw new IllegalArgumentException("Libellé vide interdit !");
@@ -176,13 +180,14 @@ public class MySQLProduitDAO implements ProduitDAO {
 
         } catch (SQLException sqle) {
             System.out.println("Probleme de selection des donnees" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listProduit;
     }
 
     @Override
-    public ArrayList<Produit> getByDescription(String description) {
+    public ArrayList<Produit> getByDescription(String description) throws CommandeApplicationException {
 
         if (description == null || description.trim().length() == 0) {
             throw new IllegalArgumentException("Libellé vide interdit !");
@@ -212,13 +217,14 @@ public class MySQLProduitDAO implements ProduitDAO {
 
         } catch (SQLException sqle) {
             System.out.println("Probleme de selection des donnees" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listProduit;
     }
 
     @Override
-    public ArrayList<Produit> getByTarif(float tarif) {
+    public ArrayList<Produit> getByTarif(float tarif) throws CommandeApplicationException {
 
         ArrayList<Produit> listProduit = new ArrayList<>();
         Connexion connexion = new Connexion();
@@ -245,13 +251,14 @@ public class MySQLProduitDAO implements ProduitDAO {
 
         } catch (SQLException sqle) {
             System.out.println("Probleme de selection des donnees" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listProduit;
     }
 
     @Override
-    public ArrayList<Produit> getByVisuel(String visuel) {
+    public ArrayList<Produit> getByVisuel(String visuel) throws CommandeApplicationException {
 
         if (visuel == null || visuel.trim().length() == 0) {
             throw new IllegalArgumentException("Libellé vide interdit !");
@@ -282,13 +289,14 @@ public class MySQLProduitDAO implements ProduitDAO {
 
         } catch (SQLException sqle) {
             System.out.println("Probleme de selection des donnees" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listProduit;
     }
 
     @Override
-    public ArrayList<Produit> findAll() {
+    public ArrayList<Produit> findAll() throws CommandeApplicationException {
     	ArrayList<Produit> listProduit = new ArrayList<>();
         Connexion connexion = new Connexion();
         try {
@@ -312,6 +320,7 @@ public class MySQLProduitDAO implements ProduitDAO {
 
             } catch (SQLException sqle) {
                 System.out.println("Probleme de selection des donnees" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return listProduit;

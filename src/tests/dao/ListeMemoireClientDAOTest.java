@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import dao.ClientDAO;
 import dao.enumeration.Persistence;
-import daoFactory.DAOFactory;
+import daofactory.DAOFactory;
 import junit.framework.TestCase;
 import metier.Client;
 

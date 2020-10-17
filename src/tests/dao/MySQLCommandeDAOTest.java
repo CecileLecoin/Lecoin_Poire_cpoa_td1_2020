@@ -8,14 +8,13 @@ import metier.Produit;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import dao.enumeration.Persistence;
-import daoFactory.DAOFactory;
+import daofactory.DAOFactory;
 
 public class MySQLCommandeDAOTest extends TestCase{
 

@@ -1,4 +1,4 @@
-package daoFactory;
+package daofactory;
 
 import dao.CategorieDAO;
 import dao.ClientDAO;

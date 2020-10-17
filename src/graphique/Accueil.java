@@ -3,7 +3,7 @@ package graphique;
 import java.util.Scanner;
 
 import dao.enumeration.Persistence;
-import daoFactory.DAOFactory;
+import daofactory.DAOFactory;
 
 public class Accueil {
 

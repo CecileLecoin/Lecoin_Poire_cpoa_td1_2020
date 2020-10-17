@@ -1,6 +1,7 @@
 package dao.mysql;
 
 import dao.CategorieDAO;
+import exceptions.CommandeApplicationException;
 import metier.Categorie;
 
 import java.sql.Connection;
@@ -26,7 +27,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 	private MySQLCategorieDAO() {}
 
     @Override
-    public Categorie getById(int id) {
+    public Categorie getById(int id) throws CommandeApplicationException {
 		Categorie categorie = null;
 
 		Connexion connexion = new Connexion();
@@ -47,15 +48,17 @@ public class MySQLCategorieDAO implements CategorieDAO {
 			if (laConnexion != null)
 				laConnexion.close();
 
+
 			} catch (SQLException sqle) {
 				System.out.println("Pb select" + sqle.getMessage());
+			throw new CommandeApplicationException(sqle.getMessage());
 			}
 			return categorie;
     }
 
 
     @Override
-    public boolean create(Categorie categorie) {
+    public boolean create(Categorie categorie) throws CommandeApplicationException {
         Connexion connexion = new Connexion();
 		try {
 			Connection connection = connexion.creeConnexion();
@@ -81,14 +84,15 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 		} catch (SQLException sqle) {
 			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
+			throw new CommandeApplicationException(sqle.getMessage());
 
-			return false;
+			//return false;
 		}
 
     }
 
     @Override
-    public boolean update(Categorie categorie) {
+    public boolean update(Categorie categorie) throws CommandeApplicationException {
         Connexion connexion = new Connexion();
 		try {
 			Connection connection = connexion.creeConnexion();
@@ -111,13 +115,14 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 		} catch (SQLException sqle) {
 			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
-			return false;
+			throw new CommandeApplicationException(sqle.getMessage());
+			//return false;
 		}
     }
 
 
     @Override
-    public boolean delete(Categorie categorie) {
+    public boolean delete(Categorie categorie) throws CommandeApplicationException {
         Connexion connexion = new Connexion();
 		try {
 			Connection connection = connexion.creeConnexion();
@@ -138,13 +143,14 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 		} catch (SQLException sqle) {
 			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
-			return false;
+			throw new CommandeApplicationException(sqle.getMessage());
+			//return false;
 		}
     }
 
 
 	@Override
-    public ArrayList<Categorie> getByTitre(String titre){
+    public ArrayList<Categorie> getByTitre(String titre) throws CommandeApplicationException {
 
 		if (titre == null || titre.trim().length() == 0) {
 			throw new IllegalArgumentException("Libellé vide interdit !");
@@ -171,6 +177,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 		} catch (SQLException sqle) {
 			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
+			throw new CommandeApplicationException(sqle.getMessage());
 		}
 
 		return listCategorie;
@@ -178,7 +185,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 
 	@Override
-    public ArrayList<Categorie> getByVisuel(String visuel){
+    public ArrayList<Categorie> getByVisuel(String visuel) throws CommandeApplicationException {
 
 		if (visuel == null || visuel.trim().length() == 0) {
 			throw new IllegalArgumentException("Libellé vide interdit !");
@@ -205,13 +212,14 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 		} catch (SQLException sqle) {
 			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
+			throw new CommandeApplicationException(sqle.getMessage());
 		}
 
 		return listCategorie;
     }
 
 	@Override
-    public ArrayList<Categorie> findAll() {
+    public ArrayList<Categorie> findAll() throws CommandeApplicationException {
         ArrayList<Categorie> listCategorie = new ArrayList<>();
 		Connexion connexion = new Connexion();
 		try {
@@ -231,6 +239,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 		} catch (SQLException sqle) {
 			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
+			throw new CommandeApplicationException(sqle.getMessage());
 		}
 
 		return listCategorie;

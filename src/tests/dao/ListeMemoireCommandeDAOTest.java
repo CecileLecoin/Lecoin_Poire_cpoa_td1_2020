@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dao.enumeration.Persistence;
-import daoFactory.DAOFactory;
+import daofactory.DAOFactory;
 import junit.framework.TestCase;
 import metier.Categorie;
 import metier.Client;

@@ -1,7 +1,7 @@
 package graphique.controleur;
 
 import dao.enumeration.Persistence;
-import daoFactory.DAOFactory;
+import daofactory.DAOFactory;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

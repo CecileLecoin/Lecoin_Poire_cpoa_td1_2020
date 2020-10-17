@@ -2,7 +2,7 @@ package graphique;
 
 import java.util.Scanner;
 
-import daoFactory.DAOFactory;
+import daofactory.DAOFactory;
 import metier.Produit;
 
 public class ManageProduits {

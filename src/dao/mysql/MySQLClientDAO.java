@@ -1,6 +1,7 @@
 package dao.mysql;
 
 import dao.ClientDAO;
+import exceptions.CommandeApplicationException;
 import metier.Client;
 
 import java.sql.Connection;
@@ -26,7 +27,7 @@ public class MySQLClientDAO implements ClientDAO {
     private MySQLClientDAO() {}
 
     @Override
-    public Client getById(int id) {
+    public Client getById(int id) throws CommandeApplicationException {
         Client client = null;
 		Connexion connexion = new Connexion();
 		try {
@@ -47,6 +48,7 @@ public class MySQLClientDAO implements ClientDAO {
 				laConnexion.close();
 		} catch (SQLException sqle) {
 			System.out.println("Pb select" + sqle.getMessage());
+			throw new CommandeApplicationException(sqle.getMessage());
 
 		}
 		return client;

@@ -1,12 +1,11 @@
 package tests.dao;
 
-import metier.Produit;
 import org.junit.Before;
 import org.junit.Test;
 
 import dao.CategorieDAO;
 import dao.enumeration.Persistence;
-import daoFactory.DAOFactory;
+import daofactory.DAOFactory;
 import junit.framework.TestCase;
 import metier.Categorie;
 

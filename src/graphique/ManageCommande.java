@@ -3,7 +3,7 @@ package graphique;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import daoFactory.DAOFactory;
+import daofactory.DAOFactory;
 import metier.Commande;
 
 public class ManageCommande {

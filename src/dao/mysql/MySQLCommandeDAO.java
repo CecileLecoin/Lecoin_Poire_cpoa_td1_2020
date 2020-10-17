@@ -11,6 +11,7 @@ import java.util.*;
 import connection.Connexion;
 import dao.ClientDAO;
 import dao.CommandeDAO;
+import exceptions.CommandeApplicationException;
 import metier.Client;
 import metier.Commande;
 import metier.Produit;
@@ -29,7 +30,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
 	    private MySQLCommandeDAO() {}
 
 	@Override
-	public Commande getById(int id) {
+	public Commande getById(int id) throws CommandeApplicationException {
 
 		Commande commande = null;
 
@@ -68,13 +69,14 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
             } catch (SQLException sqle) {
                 System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return commande;
 	}
 
 	@Override
-	public boolean create(Commande commande) {
+	public boolean create(Commande commande) throws CommandeApplicationException {
 		Connexion connexion = new Connexion();
         try {
             Connection connection = connexion.creeConnexion();
@@ -118,13 +120,14 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
         } catch (SQLException sqle) {
             System.out.println("Probleme lors de la connexion ou execution de la requete" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
-        return false;
+        //return false;
 	}
 
 	@Override
-	public boolean update(Commande commande) {
+	public boolean update(Commande commande) throws CommandeApplicationException {
 
 		Connexion connexion = new Connexion();
         try {
@@ -165,12 +168,13 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
         } catch (SQLException sqle) {
             System.out.println("Probleme lors de la connexion ou execution de la requete" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
-        return false;
+        //return false;
 	}
 
 	@Override
-	public boolean delete(Commande commande) {
+	public boolean delete(Commande commande) throws CommandeApplicationException {
 
 		Connexion connexion = new Connexion();
          try {
@@ -196,12 +200,13 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
          } catch (SQLException sqle) {
              System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
+             throw new CommandeApplicationException(sqle.getMessage());
          }
-         return false;
+         //return false;
 	}
 
 	@Override
-	public ArrayList<Commande> findAll() {
+	public ArrayList<Commande> findAll() throws CommandeApplicationException {
 
 		ArrayList<Commande> lesCommandes = new ArrayList<>();
 
@@ -239,13 +244,14 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
             } catch (SQLException sqle) {
                 System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return lesCommandes;
 	}
 
 	@Override
-	public ArrayList<Commande> getByProduit(Produit produit) {
+	public ArrayList<Commande> getByProduit(Produit produit) throws CommandeApplicationException {
 
         ArrayList<Commande> lesCommandes = new ArrayList<>();
 
@@ -285,13 +291,14 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
             } catch (SQLException sqle) {
                 System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return lesCommandes;
 	}
 
 	@Override
-	public ArrayList<Commande> getByClient(Client client) {
+	public ArrayList<Commande> getByClient(Client client) throws CommandeApplicationException {
 
         ArrayList<Commande> lesCommandes = new ArrayList<>();
 
@@ -330,13 +337,14 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
             } catch (SQLException sqle) {
                 System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return lesCommandes;
 	}
 
 	@Override
-	public ArrayList<Commande> getByDate(LocalDate date) {
+	public ArrayList<Commande> getByDate(LocalDate date) throws CommandeApplicationException {
 
 		ArrayList<Commande> lesCommandes = new ArrayList<>();
 
@@ -376,6 +384,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
             } catch (SQLException sqle) {
                 System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return lesCommandes;

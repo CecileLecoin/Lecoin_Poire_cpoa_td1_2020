@@ -37,6 +37,7 @@ public class Commande {
 
         int nbpremier = 19;
         int hashCode = idCommande * nbpremier;
+
         if (date != null) {
             hashCode += date.hashCode() * nbpremier;
         }

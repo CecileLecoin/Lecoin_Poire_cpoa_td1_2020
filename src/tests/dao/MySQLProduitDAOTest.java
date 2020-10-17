@@ -34,12 +34,7 @@ public class MySQLProduitDAOTest extends TestCase {
 
         assertTrue(DAOFactory.getDaoFactory(Persistence.MYSQL).getCategorieDAO().create(categorie));
         assertTrue(dao.create(produit));
-        System.out.println(produit.getIdProduit());
         Produit p2 =dao.getById(produit.getIdProduit());
-
-
-        //System.out.println(commande.toString());
-        //System.out.println(commande2.toString());
 
         assertEquals(produit, p2);
         assertTrue(dao.delete(produit));

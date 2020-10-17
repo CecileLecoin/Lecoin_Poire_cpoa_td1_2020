@@ -25,9 +25,9 @@ public class Produit {
     public int hashCode() {
 
         int nbpremier = 19;
-        //int hashCode = idProduit * nbpremier;
+        int hashCode = idProduit * nbpremier;
 
-        int hashCode = Float.hashCode(tarif) * nbpremier;
+        hashCode += Float.hashCode(tarif) * nbpremier;
 
         if (nom != null) {
             hashCode += nom.hashCode() * nbpremier;
@@ -54,6 +54,7 @@ public class Produit {
         else {
             Produit produit = (Produit) object;
             if ((produit.getIdProduit() == this.idProduit) || (this.hashCode() == produit.hashCode())) {
+                System.out.println(" id produit : " + idProduit + " id de l'objet : " + produit.getIdProduit());
                 return true;
             }
         }

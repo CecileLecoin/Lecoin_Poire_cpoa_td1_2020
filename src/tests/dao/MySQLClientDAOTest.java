@@ -1,5 +1,6 @@
 package tests.dao;
 
+import metier.Produit;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,6 +24,16 @@ public class MySQLClientDAOTest extends TestCase {
         assertNotNull(dao.findAll());
 
         client = new Client(0, "nom", "prenom", "identifiant", "mdp", "num", "voie", "cp", "ville", "pays");
+    }
+
+    @Test
+    public void testGetById() {
+
+        assertTrue(dao.create(client));
+        Client c2 =dao.getById(client.getIdClient());
+
+        assertEquals(client, c2);
+        assertTrue(dao.delete(client));
     }
 
     @Test

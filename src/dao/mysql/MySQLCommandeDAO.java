@@ -6,9 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
 
 import connection.Connexion;
 import dao.ClientDAO;
@@ -52,10 +50,8 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 HashMap<Produit, Integer> produits = new HashMap<>();
                 while(res2.next()){
 
-                    System.out.println(res2.getInt("id_produit"));
                     Produit produit = MySQLProduitDAO.getInstance().getById(res2.getInt("id_produit"));
                     produits.put(produit, res2.getInt("quantite"));
-                    //System.out.println(produit.getIdProduit());
 
                 }
 
@@ -80,7 +76,6 @@ public class MySQLCommandeDAO implements CommandeDAO {
 	@Override
 	public boolean create(Commande commande) {
 		Connexion connexion = new Connexion();
-		System.out.println("Dans le create");
         try {
             Connection connection = connexion.creeConnexion();
 
@@ -90,7 +85,6 @@ public class MySQLCommandeDAO implements CommandeDAO {
 
             requete1.setDate(1, java.sql.Date.valueOf(commande.getDate()));
             requete1.setInt(2, commande.getClient().getIdClient());
-            System.out.println("avant executeUpdate");
             requete1.executeUpdate();
 
             ResultSet res = requete1.getGeneratedKeys();
@@ -98,36 +92,24 @@ public class MySQLCommandeDAO implements CommandeDAO {
             commande.setIdCommande(res.getInt(1));
 
             System.out.println("cles générées : "+ res.getInt(1));
+            Iterator iterator = commande.getProduits().entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry mapentry = (Map.Entry) iterator.next();
+                Produit produit = (Produit) mapentry.getKey();
+                Integer quantite = (Integer) mapentry.getValue();
 
-            int index=0; //index nous permets de parcourir une liste de chaque produit de la hashmap
-            ArrayList<Produit> listeP = new ArrayList<Produit>();
-            listeP.addAll((Collection<? extends Produit>) commande.getProduits().keySet());
-            int fin =listeP.size();
-
-            while(index<fin) {
                 PreparedStatement requete2 = connection.prepareStatement(
-                	"INSERT INTO Ligne_commande (id_commande, id_produit, quantite, tarif_unitaire) Values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                        "INSERT INTO Ligne_commande (id_commande, id_produit, quantite, tarif_unitaire) Values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
                 requete2.setInt(1, commande.getIdCommande());
-                requete2.setInt(2, listeP.get(index).getIdProduit()); //listeP.get(index) donne le produit
-
-                // NOTRE PB
-                System.out.println(" liste de pdts :");
-                System.out.println(commande.getProduits().keySet().toString());
-                System.out.println("fin liste");
-                System.out.println(listeP.get(index));
-                System.out.println(commande.getProduits().containsKey(listeP.get(index)));
-                System.out.println(commande.getProduits().get(listeP.get(index)));
-                requete2.setInt(3, commande.getProduits().get(listeP.get(index))); //on recupere la quantite qui correspond au produit donné
-                /////////////////////////
-                requete2.setFloat(4, listeP.get(index).getTarif());
+                requete2.setInt(2, produit.getIdProduit());
+                requete2.setInt(3, quantite);
+                requete2.setFloat(4, produit.getTarif());
                 requete2.executeUpdate();
 
-                index++;
+                if (requete2 != null)
+                    requete2.close();
 
-            if (requete2 != null)
-                requete2.close();
             }
-
         if (requete1 != null)
             requete1.close();
         if (connection != null)
@@ -157,23 +139,22 @@ public class MySQLCommandeDAO implements CommandeDAO {
             requete.setInt(3, commande.getIdCommande());
             requete.executeUpdate();
 
-            int index=0;
-            ArrayList<Produit> listeP = new ArrayList<Produit>();
-            listeP.addAll((Collection<? extends Produit>) commande.getProduits().keySet());
-            int fin =listeP.size();
+            Iterator iterator = commande.getProduits().entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry mapentry = (Map.Entry) iterator.next();
+                Produit produit = (Produit) mapentry.getKey();
+                Integer quantite = (Integer) mapentry.getValue();
 
-            while(index<fin) {
                 PreparedStatement requete2 = connection.prepareStatement(
-                    "UPDATE Ligne_commande SET id_produit = ?, quantite = ?, tarif_unitaire=? WHERE id_commande = ?",
-                    Statement.RETURN_GENERATED_KEYS);
-
-                requete2.setInt(1, listeP.get(index).getIdProduit());
-                requete2.setInt(2, commande.getProduits().get(listeP.get(index)));
-                requete2.setFloat(3, listeP.get(index).getTarif());
-                requete2.setInt(4, commande.getIdCommande());
+                        "INSERT INTO Ligne_commande (id_commande, id_produit, quantite, tarif_unitaire) Values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                requete2.setInt(1, commande.getIdCommande());
+                requete2.setInt(2, produit.getIdProduit());
+                requete2.setInt(3, quantite);
+                requete2.setFloat(4, produit.getTarif());
                 requete2.executeUpdate();
 
-                index++;
+                if (requete2 != null)
+                    requete2.close();
             }
 
             if (requete != null)

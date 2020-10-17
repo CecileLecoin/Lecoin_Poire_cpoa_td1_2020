@@ -41,8 +41,6 @@ public class MySQLProduitDAO implements ProduitDAO {
                 CategorieDAO categoriedao = MySQLCategorieDAO.getInstance();
                 produit = new Produit(res.getInt("id_produit"), res.getString("nom"), res.getString("description"),
                         res.getString("visuel"), res.getFloat("tarif"), categoriedao.getById(res.getInt("id_categorie")));
-                System.out.println("dans le produit dao");
-                //System.out.println(produit.toString());
             }
 
             if (res != null)

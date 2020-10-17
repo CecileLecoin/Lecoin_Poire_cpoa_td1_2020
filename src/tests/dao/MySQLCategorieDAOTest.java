@@ -1,5 +1,6 @@
 package tests.dao;
 
+import metier.Produit;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,6 +24,16 @@ public class MySQLCategorieDAOTest extends TestCase{
         assertNotNull(dao.findAll());
 
         categorie = new Categorie(1, "titre", "visuel");
+    }
+
+    @Test
+    public void testGetById() {
+
+        assertTrue(dao.create(categorie));
+        Categorie ct2 =dao.getById(categorie.getIdCategorie());
+
+        assertEquals(categorie, ct2);
+        assertTrue(dao.delete(categorie));
     }
 
     @Test

@@ -21,6 +21,8 @@ public class Categorie {
 
         int nbpremier = 19;
         int hashCode = idCategorie * nbpremier;
+
+
         if (titre != null) {
             hashCode += titre.hashCode() * nbpremier;
         }

@@ -14,7 +14,13 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			URL fxmlURL=getClass().getResource("graphique/fxml/Home.fxml");
-			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
+			System.out.println("URL");
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			System.out.println("new");
+			fxmlLoader.setLocation(fxmlURL);
+			System.out.println("Loc");
+			System.out.println(fxmlLoader.getLocation());
+			System.out.println(fxmlLoader.getCharset());
 			Node root = fxmlLoader.load();
 			Scene scene = new Scene((VBox) root, 600, 400);
 

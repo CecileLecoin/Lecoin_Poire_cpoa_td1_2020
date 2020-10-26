@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import dao.enumeration.Persistence;
 import daofactory.DAOFactory;
+import javafx.scene.input.MouseEvent;
 
 public class Accueil {
 
@@ -47,6 +48,12 @@ public class Accueil {
             	break;
         }
         sc.close();
+    }
+
+    //faut specifier UN SEUL controleur donc j'ai mis accueil (obv) du coup les managers appellent celui là... c'est pas opti
+    public static void retourPage(MouseEvent mouseEvent)
+    {
+        new Accueil();
     }
 }
 */

@@ -3,6 +3,7 @@
 import java.util.Scanner;
 
 import daofactory.DAOFactory;
+import javafx.scene.input.MouseEvent;
 import metier.Categorie;
 
 public class ManageCategories {
@@ -93,5 +94,13 @@ public class ManageCategories {
 		}
 		sc.close();
     }
+
+    //FAIT PAR MOI DONC FAUT VERIFIER CE QUE JECRIS COMME POUR LES ENFANTS
+	//fct retourPage : btn retour dans toutes les pages, doit faire revenir à la page précédente donc ici dans les managers de base on revient à l'acceuil
+
+	public void retourPage(MouseEvent mouseEvent)
+	{
+		Accueil.retourPage(mouseEvent);
+	}
 }
 */

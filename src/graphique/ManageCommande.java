@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 import daofactory.DAOFactory;
+import javafx.scene.input.MouseEvent;
 import metier.Commande;
 
 public class ManageCommande {
@@ -84,6 +85,13 @@ public class ManageCommande {
 		// gestion de la commande comprends : -ajout d'un produit -modification de sa
 		// quantité -suppression d'un produit
 
+	}
+
+	//FAIT PAR MOI DONC FAUT VERIFIER CE QUE JECRIS COMME POUR LES ENFANTS
+	//fct retourPage : btn retour dans toutes les pages, doit faire revenir à la page précédente donc ici dans les managers de base on revient à l'acceuil
+	public void retourPage(MouseEvent mouseEvent)
+	{
+		Accueil.retourPage(mouseEvent);
 	}
 }
 */

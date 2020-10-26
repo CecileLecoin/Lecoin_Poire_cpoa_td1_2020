@@ -52,7 +52,6 @@ public class MySQLProduitDAO implements ProduitDAO {
                 laConnexion.close();
 
             } catch (SQLException sqle) {
-                System.out.println("Pb select" + sqle.getMessage());
                 throw new CommandeApplicationException(sqle.getMessage());
             }
 
@@ -87,7 +86,6 @@ public class MySQLProduitDAO implements ProduitDAO {
         return true;
 
         } catch (SQLException sqle) {
-            System.out.println("Probleme lors de la connexion ou execution de la requete" + sqle.getMessage());
             throw new CommandeApplicationException(sqle.getMessage());
         }
 
@@ -118,10 +116,8 @@ public class MySQLProduitDAO implements ProduitDAO {
             return true;
 
         } catch (SQLException sqle) {
-            System.out.println("Probleme lors de la connexion ou execution de la requete" + sqle.getMessage());
             throw new CommandeApplicationException(sqle.getMessage());
         }
-        //return false;
     }
 
     @Override
@@ -143,10 +139,8 @@ public class MySQLProduitDAO implements ProduitDAO {
              return true;
 
          } catch (SQLException sqle) {
-             System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
              throw new CommandeApplicationException(sqle.getMessage());
          }
-         //return false;
     }
 
     @Override
@@ -179,7 +173,6 @@ public class MySQLProduitDAO implements ProduitDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Probleme de selection des donnees" + sqle.getMessage());
             throw new CommandeApplicationException(sqle.getMessage());
         }
 
@@ -216,7 +209,6 @@ public class MySQLProduitDAO implements ProduitDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Probleme de selection des donnees" + sqle.getMessage());
             throw new CommandeApplicationException(sqle.getMessage());
         }
 
@@ -250,7 +242,6 @@ public class MySQLProduitDAO implements ProduitDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Probleme de selection des donnees" + sqle.getMessage());
             throw new CommandeApplicationException(sqle.getMessage());
         }
 
@@ -288,7 +279,6 @@ public class MySQLProduitDAO implements ProduitDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Probleme de selection des donnees" + sqle.getMessage());
             throw new CommandeApplicationException(sqle.getMessage());
         }
 
@@ -319,8 +309,7 @@ public class MySQLProduitDAO implements ProduitDAO {
                 connection.close();
 
             } catch (SQLException sqle) {
-                System.out.println("Probleme de selection des donnees" + sqle.getMessage());
-            throw new CommandeApplicationException(sqle.getMessage());
+                throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return listProduit;

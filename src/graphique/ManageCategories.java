@@ -1,4 +1,4 @@
-package graphique;
+/*package graphique;
 
 import java.util.Scanner;
 
@@ -94,3 +94,4 @@ public class ManageCategories {
 		sc.close();
     }
 }
+*/

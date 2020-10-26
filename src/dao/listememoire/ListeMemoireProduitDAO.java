@@ -5,6 +5,7 @@ import java.util.List;
 
 import dao.CategorieDAO;
 import dao.ProduitDAO;
+import exceptions.CommandeApplicationException;
 import metier.Categorie;
 import metier.Produit;
 
@@ -79,7 +80,7 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 	}
 
 	@Override
-	public Produit getById(int id) {
+	public Produit getById(int id) throws CommandeApplicationException {
 		// Ne fonctionne que si l'objet métier est bien fait...
 		CategorieDAO categoriedao = ListeMemoireCategorieDAO.getInstance();
 

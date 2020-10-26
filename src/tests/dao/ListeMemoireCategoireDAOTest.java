@@ -1,5 +1,6 @@
 package tests.dao;
 
+import exceptions.CommandeApplicationException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ public class ListeMemoireCategoireDAOTest extends TestCase {
 
     @Before
     @Override
-    public void setUp() {
+    public void setUp() throws CommandeApplicationException {
 
         dao = DAOFactory.getDaoFactory(Persistence.LISTEMEMOIRE).getCategorieDAO();
         assertNotNull(dao);
@@ -26,7 +27,7 @@ public class ListeMemoireCategoireDAOTest extends TestCase {
     }
 
     @Test
-    public void testCreate() {
+    public void testCreate() throws CommandeApplicationException {
         System.out.println("\n----- \ntestCreate");
 
         int size = dao.findAll().size();
@@ -40,7 +41,7 @@ public class ListeMemoireCategoireDAOTest extends TestCase {
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws CommandeApplicationException {
         System.out.println("\n----- \ntestUpdate");
 
         dao.create(categorie);
@@ -57,7 +58,7 @@ public class ListeMemoireCategoireDAOTest extends TestCase {
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws CommandeApplicationException {
         System.out.println("\n----- \ntestDelete");
 
         dao.create(categorie);

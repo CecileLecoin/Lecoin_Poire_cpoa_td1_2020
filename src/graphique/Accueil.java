@@ -1,4 +1,4 @@
-package graphique;
+/*package graphique;
 
 import java.util.Scanner;
 
@@ -49,3 +49,4 @@ public class Accueil {
         sc.close();
     }
 }
+*/

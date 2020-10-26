@@ -47,7 +47,6 @@ public class MySQLClientDAO implements ClientDAO {
 			if (laConnexion != null)
 				laConnexion.close();
 		} catch (SQLException sqle) {
-			System.out.println("Pb select" + sqle.getMessage());
 			throw new CommandeApplicationException(sqle.getMessage());
 
 		}
@@ -55,7 +54,7 @@ public class MySQLClientDAO implements ClientDAO {
     }
 
     @Override
-    public boolean create(Client client) {
+    public boolean create(Client client) throws CommandeApplicationException {
         Connexion connexion = new Connexion();
 		try {
 			Connection laConnexion = connexion.creeConnexion();
@@ -86,13 +85,12 @@ public class MySQLClientDAO implements ClientDAO {
 			return true;
 
 		} catch (SQLException sqle) {
-			System.out.println("Pb select" + sqle.getMessage());
-			return false;
+            throw new CommandeApplicationException(sqle.getMessage());
 		}
     }
 
     @Override
-    public boolean update(Client client) {
+    public boolean update(Client client) throws CommandeApplicationException {
         Connexion connexion = new Connexion();
 		try {
 			Connection laConnexion = connexion.creeConnexion();
@@ -117,13 +115,12 @@ public class MySQLClientDAO implements ClientDAO {
 			return true;
 
 		} catch (SQLException sqle) {
-			System.out.println(sqle.getMessage());
-			return false;
+            throw new CommandeApplicationException(sqle.getMessage());
 		}
     }
 
     @Override
-    public boolean delete(Client client) {
+    public boolean delete(Client client) throws CommandeApplicationException {
         Connexion connexion = new Connexion();
 		try {
 			Connection laConnexion = connexion.creeConnexion();
@@ -139,13 +136,12 @@ public class MySQLClientDAO implements ClientDAO {
 			return true;
 
 		} catch (SQLException sqle) {
-			System.out.println("Pb select" + sqle.getMessage());
-			return false;
+            throw new CommandeApplicationException(sqle.getMessage());
 		}
     }
 
     @Override
-    public ArrayList<Client> getByNom(String nom) {
+    public ArrayList<Client> getByNom(String nom) throws CommandeApplicationException {
 
         if (nom == null || nom.trim().length() == 0) {
             throw new IllegalArgumentException("Libellé vide interdit !");
@@ -175,7 +171,7 @@ public class MySQLClientDAO implements ClientDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listeClient;
@@ -183,7 +179,7 @@ public class MySQLClientDAO implements ClientDAO {
 
 
     @Override
-    public ArrayList<Client> getByPrenom(String prenom) {
+    public ArrayList<Client> getByPrenom(String prenom) throws CommandeApplicationException {
 
         if (prenom == null || prenom.trim().length() == 0) {
             throw new IllegalArgumentException("Libellé vide interdit !");
@@ -213,7 +209,7 @@ public class MySQLClientDAO implements ClientDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listeClient;
@@ -221,7 +217,7 @@ public class MySQLClientDAO implements ClientDAO {
 
 
     @Override
-    public ArrayList<Client> getByIdentifiant(String identifiant) {
+    public ArrayList<Client> getByIdentifiant(String identifiant) throws CommandeApplicationException {
 
         if (identifiant == null || identifiant.trim().length() == 0) {
             throw new IllegalArgumentException("Libellé vide interdit !");
@@ -251,7 +247,7 @@ public class MySQLClientDAO implements ClientDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listeClient;
@@ -259,7 +255,7 @@ public class MySQLClientDAO implements ClientDAO {
 
 
     @Override
-    public ArrayList<Client> getByMpd(String mdp) {
+    public ArrayList<Client> getByMpd(String mdp) throws CommandeApplicationException {
 
         if (mdp == null || mdp.trim().length() == 0) {
             throw new IllegalArgumentException("Libellé vide interdit !");
@@ -289,7 +285,7 @@ public class MySQLClientDAO implements ClientDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listeClient;
@@ -297,7 +293,7 @@ public class MySQLClientDAO implements ClientDAO {
 
 
     @Override
-    public ArrayList<Client> getByNum(String num) {
+    public ArrayList<Client> getByNum(String num) throws CommandeApplicationException {
 
         if (num == null || num.trim().length() == 0) {
             throw new IllegalArgumentException("Libellé vide interdit !");
@@ -327,7 +323,7 @@ public class MySQLClientDAO implements ClientDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listeClient;
@@ -335,7 +331,7 @@ public class MySQLClientDAO implements ClientDAO {
 
 
     @Override
-    public ArrayList<Client> getByVoie(String voie) {
+    public ArrayList<Client> getByVoie(String voie) throws CommandeApplicationException {
 
         if (voie == null || voie.trim().length() == 0) {
             throw new IllegalArgumentException("Libellé vide interdit !");
@@ -365,7 +361,7 @@ public class MySQLClientDAO implements ClientDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listeClient;
@@ -373,7 +369,7 @@ public class MySQLClientDAO implements ClientDAO {
 
 
     @Override
-    public ArrayList<Client> getByCode(String cp) {
+    public ArrayList<Client> getByCode(String cp) throws CommandeApplicationException {
 
         if (cp == null || cp.trim().length() == 0) {
             throw new IllegalArgumentException("Libellé vide interdit !");
@@ -403,7 +399,7 @@ public class MySQLClientDAO implements ClientDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listeClient;
@@ -411,7 +407,7 @@ public class MySQLClientDAO implements ClientDAO {
 
 
     @Override
-    public ArrayList<Client> getByVille(String ville) {
+    public ArrayList<Client> getByVille(String ville) throws CommandeApplicationException {
 
         if (ville == null || ville.trim().length() == 0) {
             throw new IllegalArgumentException("Libellé vide interdit !");
@@ -441,7 +437,7 @@ public class MySQLClientDAO implements ClientDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listeClient;
@@ -449,7 +445,7 @@ public class MySQLClientDAO implements ClientDAO {
 
 
     @Override
-    public ArrayList<Client> getByPays(String pays) {
+    public ArrayList<Client> getByPays(String pays) throws CommandeApplicationException {
 
         if (pays == null || pays.trim().length() == 0) {
             throw new IllegalArgumentException("Libellé vide interdit !");
@@ -479,7 +475,7 @@ public class MySQLClientDAO implements ClientDAO {
                 laConnexion.close();
 
         } catch (SQLException sqle) {
-            System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
         }
 
         return listeClient;
@@ -487,7 +483,7 @@ public class MySQLClientDAO implements ClientDAO {
 
 
     @Override
-    public ArrayList<Client> findAll() {
+    public ArrayList<Client> findAll() throws CommandeApplicationException {
         ArrayList<Client> listeClient = new ArrayList<>();
 
 		Connexion connexion = new Connexion();
@@ -509,7 +505,7 @@ public class MySQLClientDAO implements ClientDAO {
 				laConnexion.close();
 
 		} catch (SQLException sqle) {
-			System.out.println("Pb select" + sqle.getMessage());
+            throw new CommandeApplicationException(sqle.getMessage());
 		}
 
 		return listeClient;

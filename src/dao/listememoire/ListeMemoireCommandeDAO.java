@@ -11,6 +11,7 @@ import dao.CategorieDAO;
 import dao.ClientDAO;
 import dao.CommandeDAO;
 import dao.ProduitDAO;
+import exceptions.CommandeApplicationException;
 import metier.Categorie;
 import metier.Client;
 import metier.Commande;
@@ -22,7 +23,7 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 
 	private List<Commande> commandes;
 
-	public static ListeMemoireCommandeDAO getInstance() {
+	public static ListeMemoireCommandeDAO getInstance() throws CommandeApplicationException {
 
 		if (instance == null) {
 			instance = new ListeMemoireCommandeDAO();
@@ -31,7 +32,7 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 		return instance;
 	}
 
-	private ListeMemoireCommandeDAO() {
+	private ListeMemoireCommandeDAO() throws CommandeApplicationException {
 
 		this.commandes = new ArrayList<Commande>();
 

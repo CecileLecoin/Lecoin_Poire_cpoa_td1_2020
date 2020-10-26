@@ -68,8 +68,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 laConnexion.close();
 
             } catch (SQLException sqle) {
-                System.out.println("Pb select" + sqle.getMessage());
-            throw new CommandeApplicationException(sqle.getMessage());
+                throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return commande;
@@ -119,11 +118,8 @@ public class MySQLCommandeDAO implements CommandeDAO {
         return true;
 
         } catch (SQLException sqle) {
-            System.out.println("Probleme lors de la connexion ou execution de la requete" + sqle.getMessage());
             throw new CommandeApplicationException(sqle.getMessage());
         }
-
-        //return false;
 	}
 
 	@Override
@@ -167,10 +163,8 @@ public class MySQLCommandeDAO implements CommandeDAO {
             return true;
 
         } catch (SQLException sqle) {
-            System.out.println("Probleme lors de la connexion ou execution de la requete" + sqle.getMessage());
             throw new CommandeApplicationException(sqle.getMessage());
         }
-        //return false;
 	}
 
 	@Override
@@ -199,10 +193,8 @@ public class MySQLCommandeDAO implements CommandeDAO {
              return true;
 
          } catch (SQLException sqle) {
-             System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
              throw new CommandeApplicationException(sqle.getMessage());
          }
-         //return false;
 	}
 
 	@Override
@@ -243,8 +235,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 laConnexion.close();
 
             } catch (SQLException sqle) {
-                System.out.println("Pb select" + sqle.getMessage());
-            throw new CommandeApplicationException(sqle.getMessage());
+                throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return lesCommandes;
@@ -290,8 +281,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 laConnexion.close();
 
             } catch (SQLException sqle) {
-                System.out.println("Pb select" + sqle.getMessage());
-            throw new CommandeApplicationException(sqle.getMessage());
+                throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return lesCommandes;
@@ -336,8 +326,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 laConnexion.close();
 
             } catch (SQLException sqle) {
-                System.out.println("Pb select" + sqle.getMessage());
-            throw new CommandeApplicationException(sqle.getMessage());
+                throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return lesCommandes;
@@ -368,7 +357,6 @@ public class MySQLCommandeDAO implements CommandeDAO {
                     Produit produit = MySQLProduitDAO.getInstance().getById(res2.getInt("id_produit"));
                     produits.put(produit, res2.getInt("quantite"));
 
-
                 }
 
                 lesCommandes.add(new Commande(res.getInt("id_commande"), res.getDate("date_commande").toLocalDate(), clientdao.getById(res.getInt("id_client")), produits));
@@ -383,8 +371,7 @@ public class MySQLCommandeDAO implements CommandeDAO {
                 laConnexion.close();
 
             } catch (SQLException sqle) {
-                System.out.println("Pb select" + sqle.getMessage());
-            throw new CommandeApplicationException(sqle.getMessage());
+                throw new CommandeApplicationException(sqle.getMessage());
             }
 
         return lesCommandes;

@@ -1,5 +1,6 @@
 package tests.dao;
 
+import exceptions.CommandeApplicationException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class MySQLProduitDAOTest extends TestCase {
 
     @Before
     @Override
-    public void setUp() {
+    public void setUp() throws CommandeApplicationException {
 
         dao = DAOFactory.getDaoFactory(Persistence.MYSQL).getProduitDAO();
         assertNotNull(dao);
@@ -29,7 +30,7 @@ public class MySQLProduitDAOTest extends TestCase {
     }
 
     @Test
-    public void testGetById() {
+    public void testGetById() throws CommandeApplicationException {
 
         assertTrue(DAOFactory.getDaoFactory(Persistence.MYSQL).getCategorieDAO().create(categorie));
         assertTrue(dao.create(produit));
@@ -41,7 +42,7 @@ public class MySQLProduitDAOTest extends TestCase {
     }
 
     @Test
-    public void testCreate() {
+    public void testCreate() throws CommandeApplicationException {
         System.out.println("\n----- \ntestCreate");
 
         int size = dao.findAll().size();
@@ -55,7 +56,7 @@ public class MySQLProduitDAOTest extends TestCase {
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws CommandeApplicationException {
         System.out.println("\n----- \ntestUpdate");
 
         assertTrue(DAOFactory.getDaoFactory(Persistence.MYSQL).getCategorieDAO().create(categorie));
@@ -75,7 +76,7 @@ public class MySQLProduitDAOTest extends TestCase {
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws CommandeApplicationException {
         System.out.println("\n----- \ntestDelete");
 
         dao.create(produit);

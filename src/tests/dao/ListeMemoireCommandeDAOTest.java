@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
+import exceptions.CommandeApplicationException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,7 +27,7 @@ public class ListeMemoireCommandeDAOTest extends TestCase {
 
 	@Before
 	@Override
-	public void setUp() {
+	public void setUp() throws CommandeApplicationException {
 		
 		dao = DAOFactory.getDaoFactory(Persistence.LISTEMEMOIRE);
 		
@@ -48,7 +49,7 @@ public class ListeMemoireCommandeDAOTest extends TestCase {
 	}
 
 	@Test
-    public void testGetById() {
+    public void testGetById() throws CommandeApplicationException {
 		System.out.println("debut testById");
 
 		assertTrue(dao.getProduitDAO().create(p1));
@@ -64,7 +65,7 @@ public class ListeMemoireCommandeDAOTest extends TestCase {
 	}
 
 	@Test
-    public void testCreate() {
+    public void testCreate() throws CommandeApplicationException {
         System.out.println("\n----- \ntestCreate");
 
         int size = dao.getCommandeDAO().findAll().size();
@@ -81,7 +82,7 @@ public class ListeMemoireCommandeDAOTest extends TestCase {
 	}
 
 	@Test
-    public void testUpdate() {
+    public void testUpdate() throws CommandeApplicationException {
         System.out.println("\n----- \ntestUpdate");
 
         assertTrue(dao.getProduitDAO().create(p1));
@@ -105,7 +106,7 @@ public class ListeMemoireCommandeDAOTest extends TestCase {
 	}
 
 	@Test
-    public void testDelete() {
+    public void testDelete() throws CommandeApplicationException {
         System.out.println("\n----- \ntestDelete");
 
         dao.getCommandeDAO().create(commande);

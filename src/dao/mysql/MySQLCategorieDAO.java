@@ -50,8 +50,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 
 
 			} catch (SQLException sqle) {
-				System.out.println("Pb select" + sqle.getMessage());
-			throw new CommandeApplicationException(sqle.getMessage());
+				throw new CommandeApplicationException(sqle.getMessage());
 			}
 			return categorie;
     }
@@ -83,10 +82,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 			return true;
 
 		} catch (SQLException sqle) {
-			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
 			throw new CommandeApplicationException(sqle.getMessage());
-
-			//return false;
 		}
 
     }
@@ -114,9 +110,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 			return true;
 
 		} catch (SQLException sqle) {
-			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
 			throw new CommandeApplicationException(sqle.getMessage());
-			//return false;
 		}
     }
 
@@ -142,9 +136,7 @@ public class MySQLCategorieDAO implements CategorieDAO {
 			return true;
 
 		} catch (SQLException sqle) {
-			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
 			throw new CommandeApplicationException(sqle.getMessage());
-			//return false;
 		}
     }
 
@@ -176,7 +168,6 @@ public class MySQLCategorieDAO implements CategorieDAO {
 				laConnexion.close();
 
 		} catch (SQLException sqle) {
-			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
 			throw new CommandeApplicationException(sqle.getMessage());
 		}
 
@@ -211,7 +202,6 @@ public class MySQLCategorieDAO implements CategorieDAO {
 				laConnexion.close();
 
 		} catch (SQLException sqle) {
-			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
 			throw new CommandeApplicationException(sqle.getMessage());
 		}
 
@@ -238,7 +228,6 @@ public class MySQLCategorieDAO implements CategorieDAO {
 				connection.close();
 
 		} catch (SQLException sqle) {
-			System.out.println("Problème lors de la connexion ou execution de la requete" + sqle.getMessage());
 			throw new CommandeApplicationException(sqle.getMessage());
 		}
 

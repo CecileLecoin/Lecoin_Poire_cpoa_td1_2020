@@ -5,6 +5,7 @@ import dao.ClientDAO;
 import dao.CommandeDAO;
 import dao.ProduitDAO;
 import dao.enumeration.Persistence;
+import exceptions.CommandeApplicationException;
 
 public abstract class DAOFactory {
 
@@ -26,5 +27,5 @@ public abstract class DAOFactory {
     public abstract CategorieDAO getCategorieDAO();
     public abstract ClientDAO getClientDAO();
     public abstract ProduitDAO getProduitDAO();
-    public abstract CommandeDAO getCommandeDAO();
+    public abstract CommandeDAO getCommandeDAO() throws CommandeApplicationException;
 }

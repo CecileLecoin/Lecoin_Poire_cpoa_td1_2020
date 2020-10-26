@@ -1,5 +1,6 @@
 package tests.dao;
 
+import exceptions.CommandeApplicationException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ public class MySQLClientDAOTest extends TestCase {
 
     @Before
     @Override
-    public void setUp() {
+    public void setUp() throws CommandeApplicationException {
 
         dao = DAOFactory.getDaoFactory(Persistence.MYSQL).getClientDAO();
         assertNotNull(dao);
@@ -26,7 +27,7 @@ public class MySQLClientDAOTest extends TestCase {
     }
 
     @Test
-    public void testGetById() {
+    public void testGetById() throws CommandeApplicationException {
 
         assertTrue(dao.create(client));
         Client c2 =dao.getById(client.getIdClient());
@@ -36,7 +37,7 @@ public class MySQLClientDAOTest extends TestCase {
     }
 
     @Test
-    public void testCreate() {
+    public void testCreate() throws CommandeApplicationException {
         System.out.println("\n----- \ntestCreate");
 
         int size = dao.findAll().size();
@@ -50,7 +51,7 @@ public class MySQLClientDAOTest extends TestCase {
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws CommandeApplicationException {
         System.out.println("\n----- \ntestUpdate");
 
         dao.create(client);
@@ -73,7 +74,7 @@ public class MySQLClientDAOTest extends TestCase {
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws CommandeApplicationException {
         System.out.println("\n----- \ntestDelete");
 
         dao.create(client);

@@ -8,6 +8,7 @@ import dao.listememoire.ListeMemoireCategorieDAO;
 import dao.listememoire.ListeMemoireClientDAO;
 import dao.listememoire.ListeMemoireCommandeDAO;
 import dao.listememoire.ListeMemoireProduitDAO;
+import exceptions.CommandeApplicationException;
 
 public class ListeMemoireDAOFactory extends DAOFactory {
 
@@ -27,7 +28,7 @@ public class ListeMemoireDAOFactory extends DAOFactory {
     }
 
     @Override
-    public CommandeDAO getCommandeDAO() {
+    public CommandeDAO getCommandeDAO() throws CommandeApplicationException {
         return ListeMemoireCommandeDAO.getInstance();
     }
 }

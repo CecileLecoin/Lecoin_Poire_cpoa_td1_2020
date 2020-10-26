@@ -1,5 +1,6 @@
 package tests.dao;
 
+import exceptions.CommandeApplicationException;
 import junit.framework.TestCase;
 import metier.Categorie;
 import metier.Client;
@@ -27,7 +28,7 @@ public class MySQLCommandeDAOTest extends TestCase{
 
 	@Before
 	@Override
-	public void setUp() {
+	public void setUp() throws CommandeApplicationException {
 
 		categorie = new Categorie(1, "titre", "visuel");
 		p1 = new Produit(8, "testCrea", "description", "visuel", 0, categorie);
@@ -49,7 +50,7 @@ public class MySQLCommandeDAOTest extends TestCase{
 	}
 
 	@Test
-    public void testGetById() {
+    public void testGetById() throws CommandeApplicationException {
 
 		assertTrue(dao.getCategorieDAO().create(categorie));
 		assertTrue(dao.getProduitDAO().create(p1));
@@ -67,7 +68,7 @@ public class MySQLCommandeDAOTest extends TestCase{
 	}
 
 	@Test
-    public void testCreate() {
+    public void testCreate() throws CommandeApplicationException {
         System.out.println("\n----- \ntestCreate");
 
         int size = dao.getCommandeDAO().findAll().size();
@@ -83,7 +84,7 @@ public class MySQLCommandeDAOTest extends TestCase{
 	}
 
 	@Test
-    public void testUpdate() {
+    public void testUpdate() throws CommandeApplicationException {
         System.out.println("\n----- \ntestUpdate");
 
 		assertTrue(dao.getCategorieDAO().create(categorie));
@@ -107,7 +108,7 @@ public class MySQLCommandeDAOTest extends TestCase{
 	}
 
 	@Test
-    public void testDelete() {
+    public void testDelete() throws CommandeApplicationException {
         System.out.println("\n----- \ntestDelete");
 
         dao.getCommandeDAO().create(commande);

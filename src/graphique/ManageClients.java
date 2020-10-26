@@ -1,4 +1,4 @@
-package graphique;
+/*package graphique;
 
 import java.util.Scanner;
 
@@ -109,3 +109,4 @@ public class ManageClients {
 		sc.close();
     }
 }
+*/

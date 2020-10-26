@@ -2,6 +2,7 @@ package graphique.controleur;
 
 import dao.enumeration.Persistence;
 import daofactory.DAOFactory;
+import exceptions.CommandeApplicationException;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,11 +32,15 @@ public class CtrlProduits implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         dao = DAOFactory.getDaoFactory(Persistence.LISTEMEMOIRE);
-        dao.getCategorieDAO().create(new Categorie(0, "titre", "visuel"));
-        this.choiceBoxCategorie.setItems(FXCollections.observableArrayList(dao.getCategorieDAO().findAll()));
+		try {
+			dao.getCategorieDAO().create(new Categorie(0, "titre", "visuel"));
+			this.choiceBoxCategorie.setItems(FXCollections.observableArrayList(dao.getCategorieDAO().findAll()));
+		} catch (CommandeApplicationException e) {
+			e.printStackTrace();
+		}
     }
 
-    public void creerProduit() {
+    public void creerProduit() throws CommandeApplicationException {
 
     	Produit produit = new Produit();
     	Categorie categorie = this.choiceBoxCategorie.getValue();

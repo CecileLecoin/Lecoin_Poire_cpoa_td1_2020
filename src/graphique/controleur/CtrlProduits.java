@@ -81,7 +81,11 @@ public class CtrlProduits implements Initializable {
 			this.labelAffiche.setText(produit.toString());
 			this.labelAffiche.setStyle("-fx-text-fill: black;");
 
-			dao.getProduitDAO().create(produit);
+			try {
+				dao.getProduitDAO().create(produit);
+			} catch (CommandeApplicationException e) {
+				e.printStackTrace();
+			}
 		}
 		else {
 			this.labelAffiche.setText(erreur);

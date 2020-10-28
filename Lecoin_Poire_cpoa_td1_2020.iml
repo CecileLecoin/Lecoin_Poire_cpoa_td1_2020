@@ -43,7 +43,7 @@
       </library>
     </orderEntry>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="javafx.base.jar">
         <CLASSES>
           <root url="file://lib/javafx.base.jar" />
@@ -52,7 +52,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="javafx.controls.jar">
         <CLASSES>
           <root url="file://lib/javafx.controls.jar" />
@@ -61,7 +61,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="javafx.fxml.jar">
         <CLASSES>
           <root url="file://lib/javafx.fxml.jar" />
@@ -70,7 +70,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="javafx.graphics.jar">
         <CLASSES>
           <root url="file://lib/javafx.graphics.jar" />
@@ -79,7 +79,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="javafx.media.jar">
         <CLASSES>
           <root url="file://lib/javafx.media.jar" />
@@ -88,7 +88,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="javafx.swing.jar">
         <CLASSES>
           <root url="file://lib/javafx.swing.jar" />
@@ -97,7 +97,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="javafx.web.jar">
         <CLASSES>
           <root url="file://lib/javafx.web.jar" />
@@ -106,7 +106,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="javafx-swt.jar">
         <CLASSES>
           <root url="file://lib/javafx-swt.jar" />

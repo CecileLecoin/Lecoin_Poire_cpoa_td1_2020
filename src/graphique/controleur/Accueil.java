@@ -34,9 +34,13 @@ public class Accueil implements Initializable {
 
     }
     public void goToProduit() {
+        url ="res/fxml/Produit.fxml";
+        start(null);
 
     }
     public void goToCommande() {
+        url ="res/fxml/Commande.fxml";
+        start(null);
 
     }
     public void goToCategorie() {

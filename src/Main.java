@@ -18,7 +18,7 @@ public class Main extends Application {
 			Scene scene = new Scene((VBox) root, 600, 400);
 
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Ma première fenêtre JavaFX");
+			primaryStage.setTitle("Bienvenue dans votre gestionnaire de boutique");
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox id="homePage" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphique.controleur.CtrlClients">
+<VBox id="homePage" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphique.controleur.Accueil">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
@@ -56,11 +56,11 @@
                         </ImageInput>
                      </effect>
                   </Button>
-                  <Button id="btnAddCli" fx:id="btnAddCli" mnemonicParsing="false" onMouseClicked="#AddCli" prefHeight="46.0" prefWidth="56.0" text="Button" GridPane.rowIndex="1">
+                  <Button id="btnAddCli" fx:id="btnAddProd" mnemonicParsing="false" onMouseClicked="#AddProd" prefHeight="46.0" prefWidth="56.0" text="Button" GridPane.rowIndex="1">
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="@/res/images/account-plus.png" />
+                              <Image url="file:/D:/workspaceScBldIntJ/Lecoin_Poire_cpoa_td1_2020/src/res/images/cart-plus.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -78,11 +78,11 @@
                         <Insets left="15.0" top="-180.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button id="btnShowCli" fx:id="btnShowCli" mnemonicParsing="false" onMouseClicked="#ShowCli" prefHeight="46.0" prefWidth="56.0" text="Button" visible="false" GridPane.rowIndex="1">
+                  <Button id="btnShowCmd" fx:id="btnShowCmd" mnemonicParsing="false" onMouseClicked="#ShowCmd" prefHeight="46.0" prefWidth="56.0" text="Button" visible="false" GridPane.rowIndex="1">
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="@/res/images/account-details.png" />
+                              <Image url="file:/D:/workspaceScBldIntJ/Lecoin_Poire_cpoa_td1_2020/src/res/images/format-align-justify.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -90,11 +90,11 @@
                         <Insets left="15.0" top="150.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button id="btnModifCli" fx:id="btnModifCli" mnemonicParsing="false" onMouseClicked="#ModifCli" prefHeight="45.0" prefWidth="46.0" text="Button" visible="false" GridPane.rowIndex="1">
+                  <Button id="btnModifCmd" fx:id="btnModifCmd" mnemonicParsing="false" onMouseClicked="#ModifCmd" prefHeight="45.0" prefWidth="46.0" text="Button" visible="false" GridPane.rowIndex="1">
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="@/res/images/account-edit.png" />
+                              <Image url="file:/D:/workspaceScBldIntJ/Lecoin_Poire_cpoa_td1_2020/src/res/images/pencil-outline.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -102,11 +102,11 @@
                         <Insets left="100.0" top="150.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button id="btnDelCli" fx:id="btnDelCli" mnemonicParsing="false" onMouseClicked="#DeleteCli" prefHeight="46.0" prefWidth="52.0" text="Button" visible="false" GridPane.rowIndex="1">
+                  <Button id="btnDelCmd" fx:id="btnDelCmd" mnemonicParsing="false" onMouseClicked="#DeleteCmd" prefHeight="46.0" prefWidth="52.0" text="Button" visible="false" GridPane.rowIndex="1">
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="@/res/images/account-minus(1).png" />
+                              <Image url="file:/D:/workspaceScBldIntJ/Lecoin_Poire_cpoa_td1_2020/src/res/images/cart-minus.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -114,19 +114,15 @@
                         <Insets left="200.0" top="150.0" />
                      </GridPane.margin>
                   </Button>
-                  <TableView id="listeCmd" fx:id="listeCmd" onMouseClicked="#selectCmd" prefHeight="333.0" prefWidth="330.0" GridPane.rowIndex="1">
+                  <TableView id="listeCmd" fx:id="listeCmd" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#selectCmd" prefHeight="333.0" prefWidth="330.0" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn editable="false" prefWidth="19.19995152950287" text="N°" />
-                      <TableColumn prefWidth="59.20001220703125" text="Nom" />
-                        <TableColumn editable="false" prefWidth="65.5999755859375" text="Prenom" />
-                        <TableColumn editable="false" prefWidth="32.0" text="Num" />
-                        <TableColumn editable="false" minWidth="5.60003662109375" prefWidth="60.0" text="Voie" />
-                        <TableColumn editable="false" prefWidth="46.39996337890625" text="Code postale" />
-                        <TableColumn editable="false" prefWidth="59.20001220703125" text="Ville" />
-                        <TableColumn editable="false" prefWidth="38.4000244140625" text="Pays" />
+                      <TableColumn editable="false" prefWidth="87.99999845027924" text="Commande N°" />
+                      <TableColumn editable="false" prefWidth="75.19995880126953" text="Client" />
+                        <TableColumn editable="false" prefWidth="93.60003662109375" text="Date" />
+                        <TableColumn editable="false" prefWidth="73.60003662109375" text="Prix total" />
                     </columns>
                      <GridPane.margin>
-                        <Insets left="260.0" />
+                        <Insets left="310.0" />
                      </GridPane.margin>
                   </TableView>
                </children>

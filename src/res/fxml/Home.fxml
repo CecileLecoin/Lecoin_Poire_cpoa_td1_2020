@@ -33,7 +33,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="btnClient" mnemonicParsing="false" prefHeight="135.0" prefWidth="138.0" GridPane.rowIndex="1">
+                  <Button fx:id="btnClient" mnemonicParsing="false" onMouseClicked="#goToClient" prefHeight="135.0" prefWidth="138.0" GridPane.rowIndex="1">
                       <graphic>
                           <ImageView id="logo" pickOnBounds="true">
                               <Image smooth="false" url="@/res/images/client2.1.png" />
@@ -43,7 +43,7 @@
                         <Insets left="75.0" top="-200.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="btnProduit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="135.0" prefWidth="138.0" GridPane.rowIndex="1">
+                  <Button fx:id="btnProduit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#goToProduit" prefHeight="135.0" prefWidth="138.0" GridPane.rowIndex="1">
                      <graphic>
                          <ImageView id="logo" pickOnBounds="true">
                              <Image smooth="false" url="@/res/images/basket2.png" />
@@ -53,7 +53,7 @@
                         <Insets left="75.0" top="130.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="btnCommande" mnemonicParsing="false" prefHeight="135.0" prefWidth="138.0" GridPane.rowIndex="1">
+                  <Button fx:id="btnCommande" mnemonicParsing="false" onMouseClicked="#goToCommande" prefHeight="135.0" prefWidth="138.0" GridPane.rowIndex="1">
                       <graphic>
                           <ImageView id="logo" pickOnBounds="true">
                               <Image smooth="false" url="@/res/images/cart2.png" />
@@ -63,7 +63,7 @@
                         <Insets left="300.0" top="130.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="btnCategorie" mnemonicParsing="false" prefHeight="135.0" prefWidth="138.0" GridPane.rowIndex="1">
+                  <Button fx:id="btnCategorie" mnemonicParsing="false" onMouseClicked="#goToCategorie" prefHeight="135.0" prefWidth="138.0" GridPane.rowIndex="1">
                       <graphic>
                           <ImageView id="logo" pickOnBounds="true">
                               <Image smooth="false" url="@/res/images/tag2.png" />

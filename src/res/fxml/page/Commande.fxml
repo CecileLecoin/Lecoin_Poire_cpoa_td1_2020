@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox id="homePage" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphique.controleur.Accueil">
+<VBox id="homePage" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphique.controleur.ControlCommandes">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
@@ -60,7 +60,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/D:/workspaceScBldIntJ/Lecoin_Poire_cpoa_td1_2020/src/res/images/cart-plus.png" />
+                              <Image url="@/res/images/cart-plus.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -82,7 +82,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/D:/workspaceScBldIntJ/Lecoin_Poire_cpoa_td1_2020/src/res/images/format-align-justify.png" />
+                              <Image url="@/res/images/format-align-justify.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -94,7 +94,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/D:/workspaceScBldIntJ/Lecoin_Poire_cpoa_td1_2020/src/res/images/pencil-outline.png" />
+                              <Image url="@/res/images/pencil-outline.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -106,7 +106,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/D:/workspaceScBldIntJ/Lecoin_Poire_cpoa_td1_2020/src/res/images/cart-minus.png" />
+                              <Image url="@/res/images/cart-minus.png" />
                            </source>
                         </ImageInput>
                      </effect>

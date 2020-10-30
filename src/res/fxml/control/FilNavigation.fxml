@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<fx:root alignment="CENTER_LEFT" spacing="5.0" type="HBox" xmlns:fx="http://javafx.com/fxml" fx:controller="graphique.control.ControlFilNavigation">
+   <Label text="&gt;" />
+   <Hyperlink fx:id="hyperlink_Navigation" onAction="#hyperlink_Navigation_OnClick"/>
+</fx:root>

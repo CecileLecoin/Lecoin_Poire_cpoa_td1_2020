@@ -13,7 +13,7 @@ import metier.Produit;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CtrlProduits implements Initializable {
+public class ControlCreateProduit implements Initializable {
 
     @FXML
     private Label labelAffiche;

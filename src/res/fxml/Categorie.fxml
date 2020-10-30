@@ -78,7 +78,7 @@
                         <Insets left="15.0" top="-180.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button id="btnShowProd" fx:id="btnShowProd" mnemonicParsing="false" onMouseClicked="#ShowProd" prefHeight="46.0" prefWidth="56.0" text="Button" visible="false" GridPane.rowIndex="1">
+                  <Button id="btnShowCate" fx:id="btnShowCate" mnemonicParsing="false" onMouseClicked="#ShowCate" prefHeight="46.0" prefWidth="56.0" text="Button" visible="false" GridPane.rowIndex="1">
                      <effect>
                         <ImageInput>
                            <source>
@@ -90,7 +90,7 @@
                         <Insets left="15.0" top="150.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button id="btnModifProd" fx:id="btnModifProd" mnemonicParsing="false" onMouseClicked="#ModifProd" prefHeight="45.0" prefWidth="46.0" text="Button" visible="false" GridPane.rowIndex="1">
+                  <Button id="btnModifCate" fx:id="btnModifCate" mnemonicParsing="false" onMouseClicked="#ModifCate" prefHeight="45.0" prefWidth="46.0" text="Button" visible="false" GridPane.rowIndex="1">
                      <effect>
                         <ImageInput>
                            <source>
@@ -102,11 +102,11 @@
                         <Insets left="100.0" top="150.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button id="btnDelProd" fx:id="btnDelProd" mnemonicParsing="false" onMouseClicked="#DeleteProd" prefHeight="46.0" prefWidth="52.0" text="Button" visible="false" GridPane.rowIndex="1">
+                  <Button id="btnDelCate" fx:id="btnDelCate" mnemonicParsing="false" onMouseClicked="#DeleteCate" prefHeight="46.0" prefWidth="52.0" text="Button" visible="false" GridPane.rowIndex="1">
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/D:/workspaceScBldIntJ/Lecoin_Poire_cpoa_td1_2020/src/res/images/basket-minus.png" />
+                              <Image url="file:/D:/workspaceScBldIntJ/Lecoin_Poire_cpoa_td1_2020/src/res/images/tag-minus.png" />
                            </source>
                         </ImageInput>
                      </effect>

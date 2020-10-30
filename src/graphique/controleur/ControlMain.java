@@ -1,6 +1,6 @@
 package graphique.controleur;
 
-import graphique.control.ControlFilNavigation;
+import graphique.control.FilNavigation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +22,7 @@ public class ControlMain {
     private static ControlMain instance;
 
     private Stack<Node> navigationPage;
-    private Stack<ControlFilNavigation> filNavigation;
+    private Stack<FilNavigation> filNavigation;
 
 
     public ControlMain() {
@@ -36,7 +36,7 @@ public class ControlMain {
     public void pop() {
 
         Node oldPage = navigationPage.pop();
-        ControlFilNavigation oldFilNavigation = filNavigation.pop();
+        FilNavigation oldFilNavigation = filNavigation.pop();
 
         clearDisplay(oldPage);
         hBox_StackNavigation.getChildren().remove(oldFilNavigation);
@@ -46,9 +46,9 @@ public class ControlMain {
     }
 
 
-    public void pop(ControlFilNavigation controlFilNavigation) {
+    public void pop(FilNavigation FilNavigation) {
 
-        while (filNavigation.peek() != controlFilNavigation && filNavigation.size() > 0) {
+        while (filNavigation.peek() != FilNavigation && filNavigation.size() > 0) {
             pop();
         }
     }
@@ -67,7 +67,7 @@ public class ControlMain {
         }
 
         navigationPage.add(page);
-        filNavigation.add(new ControlFilNavigation(titrePage));
+        filNavigation.add(new FilNavigation(titrePage));
 
 
         gridPane_Main.add(page, 0, 1);

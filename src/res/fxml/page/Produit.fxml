@@ -44,29 +44,25 @@
                         <Insets left="15.0" top="-250.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Button id="btnRecherche" fx:id="btnRecherche" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="30.0" text="Button" GridPane.rowIndex="1">
+                  <Button id="btnRecherche" fx:id="btnRecherche" maxWidth="-Infinity" mnemonicParsing="true" prefWidth="30.0" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="120.0" top="-250.0" />
                      </GridPane.margin>
-                     <effect>
-                        <ImageInput>
-                           <source>
-                              <Image url="@/res/images/magnify.png" />
-                           </source>
-                        </ImageInput>
-                     </effect>
+                     <graphic>
+                        <ImageView>
+                          <Image url="@/res/images/magnify.png" />
+                        </ImageView>
+                     </graphic>
                   </Button>
                   <Button id="btnAddCli" fx:id="btnAddProd" mnemonicParsing="false" onMouseClicked="#AddProd" prefHeight="46.0" prefWidth="56.0" text="Button" GridPane.rowIndex="1">
-                     <effect>
-                        <ImageInput>
-                           <source>
-                              <Image url="@/res/images/basket-plus.png" />
-                           </source>
-                        </ImageInput>
-                     </effect>
-                     <GridPane.margin>
+                    <graphic>
+                      <ImageView>
+                        <Image url="@/res/images/basket-plus.png" />
+                      </ImageView>
+                    </graphic>
+                    <GridPane.margin>
                         <Insets left="100.0" />
-                     </GridPane.margin>
+                    </GridPane.margin>
                   </Button>
                   <ChoiceBox id="btnSelectBy" fx:id="btnSelectBy" disable="true" prefWidth="150.0" visible="false" GridPane.rowIndex="1">
                      <GridPane.margin>
@@ -79,37 +75,31 @@
                      </GridPane.margin>
                   </Label>
                   <Button id="btnShowProd" fx:id="btnShowProd" mnemonicParsing="false" onMouseClicked="#ShowProd" prefHeight="46.0" prefWidth="56.0" text="Button" visible="false" GridPane.rowIndex="1">
-                     <effect>
-                        <ImageInput>
-                           <source>
-                              <Image url="@/res/images/format-align-justify.png" />
-                           </source>
-                        </ImageInput>
-                     </effect>
-                     <GridPane.margin>
+                      <graphic>
+                          <ImageView>
+                            <Image url="@/res/images/format-align-justify.png" />
+                          </ImageView>
+                      </graphic>
+                      <GridPane.margin>
                         <Insets left="15.0" top="150.0" />
-                     </GridPane.margin>
+                      </GridPane.margin>
                   </Button>
                   <Button id="btnModifProd" fx:id="btnModifProd" mnemonicParsing="false" onMouseClicked="#ModifProd" prefHeight="45.0" prefWidth="46.0" text="Button" visible="false" GridPane.rowIndex="1">
-                     <effect>
-                        <ImageInput>
-                           <source>
+                      <graphic>
+                          <ImageView>
                               <Image url="@/res/images/pencil-outline.png" />
-                           </source>
-                        </ImageInput>
-                     </effect>
+                          </ImageView>
+                      </graphic>
                      <GridPane.margin>
                         <Insets left="100.0" top="150.0" />
                      </GridPane.margin>
                   </Button>
                   <Button id="btnDelProd" fx:id="btnDelProd" mnemonicParsing="false" onMouseClicked="#DeleteProd" prefHeight="46.0" prefWidth="52.0" text="Button" visible="false" GridPane.rowIndex="1">
-                     <effect>
-                        <ImageInput>
-                           <source>
+                      <graphic>
+                          <ImageView>
                               <Image url="@/res/images/basket-minus.png" />
-                           </source>
-                        </ImageInput>
-                     </effect>
+                          </ImageView>
+                     </graphic>
                      <GridPane.margin>
                         <Insets left="200.0" top="150.0" />
                      </GridPane.margin>

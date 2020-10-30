@@ -1,5 +1,7 @@
 package graphique.controleur;
 
+import javafx.stage.Stage;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

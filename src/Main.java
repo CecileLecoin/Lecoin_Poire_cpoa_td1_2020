@@ -9,8 +9,11 @@ import java.net.URL;
 
 public class Main extends Application {
 
+	public Stage primaryStage = new Stage();
+
 	@Override
 	public void start(Stage primaryStage) {
+
 		try {
 			URL fxmlURL=getClass().getResource("res/fxml/Home.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);

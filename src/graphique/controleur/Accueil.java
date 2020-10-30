@@ -1,5 +1,6 @@
 package graphique.controleur;
 
+import com.sun.tools.javac.Main;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,50 +16,53 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Accueil implements Initializable {
+public class Accueil extends Stage {
 
-    String url ="res/fxml/Home.fxml";
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    String url ="../../res/fxml/Home.fxml";
 
     public void retourPage() {
 
     }
     public void goToClient() {
-        url ="res/fxml/Client.fxml";
-        start(null);
+        url ="../../res/fxml/Client.fxml";
+        System.out.println(url);
+        fenetreGestion(url);
 
     }
     public void goToProduit() {
-        url ="res/fxml/Produit.fxml";
-        start(null);
+        url ="../../res/fxml/Produit.fxml";
+        fenetreGestion(url);
 
     }
     public void goToCommande() {
-        url ="res/fxml/Commande.fxml";
-        start(null);
+        url ="../../res/fxml/Commande.fxml";
+        fenetreGestion(url);
 
     }
     public void goToCategorie() {
 
     }
 
-    public void start(Stage primaryStage) {
+    public void fenetreGestion(String url) {
+
         try {
-            URL fxmlURL=getClass().getResource(url);
+            close();
+
+            URL fxmlURL = getClass().getResource(url);
             FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
             Node root = fxmlLoader.load();
             Scene scene = new Scene((VBox) root, 600, 400);
 
+
+            Stage primaryStage = new Stage();
             primaryStage.setScene(scene);
             primaryStage.setTitle("Bienvenue dans votre gestionnaire de boutique");
             primaryStage.show();
+            //scene.getFocusOwner();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 }

@@ -8,9 +8,7 @@ public class ControlAccueil {
         controlMain = ControlMain.getInstance();
     }
 
-    public void retourPage() {
 
-    }
     public void goToClient() {
 
         controlMain.push("/res/fxml/page/Client.fxml", "Gestion des clients");

@@ -96,7 +96,7 @@ public class ControlClients implements Initializable {
     }
 
     public void AddCli() {
-
+        controlMain.push("/res/fxml/page/CreateClient.fxml", "Création d'un client");
     }
 
     public void ShowCli() {

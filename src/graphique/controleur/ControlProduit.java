@@ -5,11 +5,11 @@ import javafx.scene.input.MouseEvent;
 public class ControlProduit {
 
 
-    public void retourPage(MouseEvent mouseEvent) {
+    public void AddProd(MouseEvent mouseEvent) {
 
     }
 
-    public void AddProd(MouseEvent mouseEvent) {
+    public void SelectProd(MouseEvent mouseEvent) {
 
     }
 

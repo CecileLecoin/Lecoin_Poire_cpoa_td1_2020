@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -98,8 +97,8 @@ public class ControlClients implements Initializable {
 
     public void AddCli() {
 
-        ControlCreateClient controlCreateClient = controlMain.push("/res/fxml/page/CreateClient.fxml", "Modification d'un client");
-        controlCreateClient.setCallback(client -> {
+        ControlManageClient controlManageClient = controlMain.push("/res/fxml/page/ManageClient.fxml", "Modification d'un client");
+        controlManageClient.setCallback(client -> {
 
             try {
                 dao.create(client);
@@ -114,17 +113,18 @@ public class ControlClients implements Initializable {
     public void ShowCli() {
         Client client = tableView_Clients.getSelectionModel().getSelectedItem();
 
-        ControlDetailsClient controlDetailsClient = controlMain.push("/res/fxml/page/DetailsClient.fxml", "Création d'un client");
-        controlDetailsClient.setClient(client);
+        ControlManageClient controlManageClient = controlMain.push("/res/fxml/page/ManageClient.fxml", "Création d'un client");
+        controlManageClient.setClient(client);
+        controlManageClient.setReadOnly(true);
     }
 
     public void ModifCli() {
 
         Client oldClient = tableView_Clients.getSelectionModel().getSelectedItem();
 
-        ControlCreateClient controlCreateClient = controlMain.push("/res/fxml/page/CreateClient.fxml", "Modification d'un client");
-        controlCreateClient.setClient(oldClient);
-        controlCreateClient.setCallback(client -> {
+        ControlManageClient controlManageClient = controlMain.push("/res/fxml/page/ManageClient.fxml", "Modification d'un client");
+        controlManageClient.setClient(oldClient);
+        controlManageClient.setCallback(client -> {
 
             try {
                 client.setIdClient(oldClient.getIdClient());

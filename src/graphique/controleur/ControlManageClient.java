@@ -2,27 +2,21 @@ package graphique.controleur;
 
 import dao.enumeration.Persistence;
 import daofactory.DAOFactory;
-import exceptions.CommandeApplicationException;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import metier.Categorie;
 import metier.Client;
-import metier.Produit;
+import utils.MessageBox;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
-public class ControlCreateClient implements Initializable {
+public class ControlManageClient implements Initializable {
 
     @FXML
     private GridPane gridPane_CC;
@@ -33,7 +27,7 @@ public class ControlCreateClient implements Initializable {
     @FXML
     private TextField textFieldIdentifiant;
     @FXML
-    private TextField textFieldMdp;
+    private PasswordField passwordFieldMdp;
     @FXML
     private TextField textFieldNum;
     @FXML
@@ -44,13 +38,11 @@ public class ControlCreateClient implements Initializable {
     private TextField textFieldVille;
     @FXML
     private TextField textFieldPays;
-    @FXML
-    private Label label_Affiche ;
 
     private ControlMain controlMain;
     private Consumer<Client> consumer;
 
-    public ControlCreateClient() {
+    public ControlManageClient() {
         controlMain = ControlMain.getInstance();
     }
 
@@ -74,7 +66,7 @@ public class ControlCreateClient implements Initializable {
             erreur=erreur+ "Le client doit avoir un prenom \n";
         if(this.textFieldIdentifiant.getText().trim()=="")
             erreur=erreur+ "Le client doit avoir un identifiant \n";
-        if(this.textFieldMdp.getText().trim()=="")
+        if(this.passwordFieldMdp.getText().trim()=="")
             erreur=erreur+ "Le client doit avoir un mot de passe \n";
         if(this.textFieldNum.getText().trim()=="")
             erreur=erreur+ "Le client doit avoir un numero de rue \n";
@@ -106,7 +98,7 @@ public class ControlCreateClient implements Initializable {
             erreur = e.getMessage();
         }
         try {
-            String mdp = this.textFieldMdp.getText().trim();
+            String mdp = this.passwordFieldMdp.getText().trim();
             client.setMdp(mdp);
         } catch (IllegalArgumentException e){
             erreur = e.getMessage();
@@ -143,15 +135,14 @@ public class ControlCreateClient implements Initializable {
         }
 
         if (erreur.length() == 0) {
-            this.label_Affiche.setText(client.toString());
-            this.label_Affiche.setStyle("-fx-text-fill: black;");
 
             consumer.accept(client);
             controlMain.pop();
         }
         else {
-            this.label_Affiche.setText(erreur);
-            this.label_Affiche.setStyle("-fx-text-fill: red;");
+
+            MessageBox.show(Alert.AlertType.ERROR, "Erreur", "Champs invalides", erreur);
+
         }
     }
 
@@ -174,5 +165,18 @@ public class ControlCreateClient implements Initializable {
         textFieldVille.setText(oldClient.getVille());
         textFieldPays.setText(oldClient.getPays());
         textFieldIdentifiant.setText(oldClient.getIdentifiant());
+        passwordFieldMdp.setText(oldClient.getMdp());
+    }
+
+    public void setReadOnly(boolean readOnly) {
+
+        textFieldNom.setEditable(!readOnly);
+        textFieldPrenom.setEditable(!readOnly);
+        textFieldNum.setEditable(!readOnly);
+        textFieldVoie.setEditable(!readOnly);
+        textFieldCP.setEditable(!readOnly);
+        textFieldVille.setEditable(!readOnly);
+        textFieldPays.setEditable(!readOnly);
+        textFieldIdentifiant.setEditable(!readOnly);
     }
 }

@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="res.fxml.control.PopUpSelectPersistence"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphique.controleur.ControlPopUpSelectPersistence">
+  <columnConstraints>
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="192.0" minHeight="10.0" prefHeight="49.0" valignment="CENTER" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="291.0" minHeight="10.0" prefHeight="107.0" valignment="CENTER" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="35.0" GridPane.rowIndex="1">
+         <children>
+            <RadioButton fx:id="radioButton_Local" mnemonicParsing="false" selected="true" text="Local">
+               <toggleGroup>
+                  <ToggleGroup fx:id="selectPersistence" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="radioButton_Distant" mnemonicParsing="false" text="Distant" toggleGroup="$selectPersistence" />
+         </children>
+      </HBox>
+      <Label contentDisplay="TOP" text="Veuillez selectionner la façon dont vos données son enregistrer " textAlignment="CENTER" />
+   </children>
+</GridPane>

@@ -4,6 +4,7 @@
       <root url="file://C:/Program Files/JavaTools/javafx-sdk-11.0.2/lib" />
       <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-8.0.17.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/junit-4.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jfoenix-9.0.10.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

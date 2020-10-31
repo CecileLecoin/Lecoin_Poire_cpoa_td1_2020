@@ -33,7 +33,7 @@ public class ControlMain {
 
     }
 
-    private void pop() {
+    public void pop() {
 
         Node oldPage = navigationPage.pop();
         FilNavigation oldFilNavigation = filNavigation.pop();
@@ -58,7 +58,7 @@ public class ControlMain {
         gridPane_Main.getChildren().remove(oldPage);
     }
 
-    private void push(Node page, String titrePage) {
+    public void push(Node page, String titrePage) {
 
         if (navigationPage.size() > 0) {
 
@@ -74,16 +74,19 @@ public class ControlMain {
         hBox_StackNavigation.getChildren().add(filNavigation.peek());
     }
 
-    public void push(String url, String titrePage)  {
+    public <T> T push(String url, String titrePage)  {
+
+        Node page = null;
 
         URL fxmlURL=getClass().getResource(url);
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
         try {
-            Node page = fxmlLoader.load();
+            page = fxmlLoader.load();
             push(page, titrePage);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return fxmlLoader.getController();
     }
 
     public void button_Retour_OnClick(ActionEvent actionEvent) {

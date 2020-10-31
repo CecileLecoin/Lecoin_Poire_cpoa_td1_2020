@@ -481,7 +481,6 @@ public class MySQLClientDAO implements ClientDAO {
         return listeClient;
     }
 
-
     @Override
     public ArrayList<Client> findAll() throws CommandeApplicationException {
         ArrayList<Client> listeClient = new ArrayList<>();

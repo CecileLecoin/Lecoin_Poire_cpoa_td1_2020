@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -47,52 +48,35 @@ public class ControlClients implements Initializable {
 
     private ControlMain controlMain;
     private ClientDAO dao;
+    private static ObservableList<Client> clientsList;
 
-    private static Client client;
-
-    public ControlClients() {
+    public ControlClients() throws CommandeApplicationException {
 
         /////////
         dao = DAOFactory.getDaoFactory(Persistence.LISTEMEMOIRE).getClientDAO();
         /////////
 
+        if (clientsList == null) {
+            clientsList = FXCollections.observableList(dao.findAll());
+        }
+
         controlMain = ControlMain.getInstance();
-    }
-
-    public static Client getClient() {
-
-        if (client.getNom()=="") {
-
-            Client clientError = new Client();
-            clientError.setNom("Erreur : client vide");
-            return clientError;
-        }
-        else {
-
-            return client;
-        }
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        try {
-            tColumn_Id.setCellValueFactory(new PropertyValueFactory<>("idClient"));
-            tColumn_Nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-            tColumn_Prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-            tColumn_Num.setCellValueFactory(new PropertyValueFactory<>("num"));
-            tColumn_Voie.setCellValueFactory(new PropertyValueFactory<>("voie"));
-            tColumn_CP.setCellValueFactory(new PropertyValueFactory<>("cp"));
-            tColumn_Ville.setCellValueFactory(new PropertyValueFactory<>("ville"));
-            tColumn_Pays.setCellValueFactory(new PropertyValueFactory<>("pays"));
+        tColumn_Id.setCellValueFactory(new PropertyValueFactory<>("idClient"));
+        tColumn_Nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        tColumn_Prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        tColumn_Num.setCellValueFactory(new PropertyValueFactory<>("num"));
+        tColumn_Voie.setCellValueFactory(new PropertyValueFactory<>("voie"));
+        tColumn_CP.setCellValueFactory(new PropertyValueFactory<>("cp"));
+        tColumn_Ville.setCellValueFactory(new PropertyValueFactory<>("ville"));
+        tColumn_Pays.setCellValueFactory(new PropertyValueFactory<>("pays"));
 
-            ObservableList<Client> clientsList = FXCollections.observableList(dao.findAll());
-            tableView_Clients.setItems(clientsList);
+        tableView_Clients.setItems(clientsList);
 
-        } catch (CommandeApplicationException e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -113,30 +97,55 @@ public class ControlClients implements Initializable {
     }
 
     public void AddCli() {
-        controlMain.push("/res/fxml/page/CreateClient.fxml", "Création d'un client");
+
+        ControlCreateClient controlCreateClient = controlMain.push("/res/fxml/page/CreateClient.fxml", "Modification d'un client");
+        controlCreateClient.setCallback(client -> {
+
+            try {
+                dao.create(client);
+                ControlClients.getClientsList().add(client);
+
+            } catch (CommandeApplicationException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void ShowCli() {
-        client = tableView_Clients.getSelectionModel().getSelectedItem();
+        Client client = tableView_Clients.getSelectionModel().getSelectedItem();
 
-        controlMain.push("/res/fxml/page/DetailsClient.fxml", "Création d'un client");
-
+        ControlDetailsClient controlDetailsClient = controlMain.push("/res/fxml/page/DetailsClient.fxml", "Création d'un client");
+        controlDetailsClient.setClient(client);
     }
 
     public void ModifCli() {
-        client = tableView_Clients.getSelectionModel().getSelectedItem();
 
-        controlMain.push("/res/fxml/page/ModifyClient.fxml", "Création d'un client");
+        Client oldClient = tableView_Clients.getSelectionModel().getSelectedItem();
 
+        ControlCreateClient controlCreateClient = controlMain.push("/res/fxml/page/CreateClient.fxml", "Modification d'un client");
+        controlCreateClient.setClient(oldClient);
+        controlCreateClient.setCallback(client -> {
+
+            try {
+                client.setIdClient(oldClient.getIdClient());
+                dao.update(client);
+
+                ControlClients.getClientsList().remove(oldClient);
+                ControlClients.getClientsList().add(client);
+
+            } catch (CommandeApplicationException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void DeleteCli() {
-        client = tableView_Clients.getSelectionModel().getSelectedItem();
-        try {
-            dao.delete(client);
-        } catch (CommandeApplicationException e) {
-            e.printStackTrace();
-        }
+
+    }
+
+    public static ObservableList<Client> getClientsList() {
+
+        return clientsList;
     }
 
 }

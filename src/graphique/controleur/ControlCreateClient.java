@@ -3,7 +3,10 @@ package graphique.controleur;
 import dao.enumeration.Persistence;
 import daofactory.DAOFactory;
 import exceptions.CommandeApplicationException;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -17,6 +20,7 @@ import metier.Produit;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class ControlCreateClient implements Initializable {
 
@@ -44,6 +48,8 @@ public class ControlCreateClient implements Initializable {
     private Label label_Affiche ;
 
     private ControlMain controlMain;
+    private Consumer<Client> consumer;
+
     public ControlCreateClient() {
         controlMain = ControlMain.getInstance();
     }
@@ -54,11 +60,6 @@ public class ControlCreateClient implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         dao = DAOFactory.getDaoFactory(Persistence.LISTEMEMOIRE);
-        try {
-            ArrayList<Client> vérif = dao.getClientDAO().findAll();
-        } catch (CommandeApplicationException e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -145,31 +146,33 @@ public class ControlCreateClient implements Initializable {
             this.label_Affiche.setText(client.toString());
             this.label_Affiche.setStyle("-fx-text-fill: black;");
 
-            try {
-                dao.getClientDAO().create(client);
-            } catch (CommandeApplicationException e) {
-                e.printStackTrace();
-            }
+            consumer.accept(client);
+            controlMain.pop();
         }
         else {
             this.label_Affiche.setText(erreur);
             this.label_Affiche.setStyle("-fx-text-fill: red;");
         }
-
-
-
-
     }
 
     public void Annuler(MouseEvent mouseEvent) {
-        this.textFieldNom.clear();
-        this.textFieldPrenom.clear();
-        this.textFieldIdentifiant.clear();
-        this.textFieldMdp.clear();
-        this.textFieldNum.clear();
-        this.textFieldVoie.clear();
-        this.textFieldCP.clear();
-        this.textFieldVille.clear();
-        this.textFieldPays.clear();
+        //gridPane_CC.getChildren().clear();
+    }
+
+    public void setCallback(Consumer<Client> consumer) {
+
+        this.consumer = consumer;
+    }
+
+    public void setClient(Client oldClient) {
+
+        textFieldNom.setText(oldClient.getNom());
+        textFieldPrenom.setText(oldClient.getPrenom());
+        textFieldNum.setText(oldClient.getNum());
+        textFieldVoie.setText(oldClient.getVoie());
+        textFieldCP.setText(oldClient.getCp());
+        textFieldVille.setText(oldClient.getVille());
+        textFieldPays.setText(oldClient.getPays());
+        textFieldIdentifiant.setText(oldClient.getIdentifiant());
     }
 }

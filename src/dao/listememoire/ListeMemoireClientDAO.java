@@ -34,7 +34,7 @@ public class ListeMemoireClientDAO implements ClientDAO {
 	@Override
 	public boolean create(Client client) {
 
-		client.setIdClient(3);
+		client.setIdClient(1);
 		// Ne fonctionne que si l'objet métier est bien fait...
 		while (this.clients.contains(client)) {
 
@@ -47,15 +47,12 @@ public class ListeMemoireClientDAO implements ClientDAO {
 	public boolean update(Client client) {
 
 		// Ne fonctionne que si l'objet métier est bien fait...
-		int idx = this.clients.indexOf(client);
-		if (idx == -1) {
-			throw new IllegalArgumentException("Tentative de modification d'une Client inexistante");
-		} else {
-
-			this.clients.set(idx, client);
+		try {
+			this.clients.set(client.getIdClient(), client);
+			return true;
+		} catch(Exception e) {
+			return false;
 		}
-
-		return true;
 	}
 
 	@Override
@@ -87,7 +84,9 @@ public class ListeMemoireClientDAO implements ClientDAO {
 
 	@Override
 	public ArrayList<Client> findAll() {
-		return (ArrayList<Client>) this.clients;
+
+		ArrayList<Client> clients = new ArrayList<>(this.clients);
+		return clients;
 	}
 
 	@Override

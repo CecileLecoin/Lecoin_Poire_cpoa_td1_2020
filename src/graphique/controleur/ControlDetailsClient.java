@@ -9,7 +9,7 @@ import metier.Client;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControlDetailsClient implements Initializable {
+public class ControlDetailsClient {
 
     private Client client;
 
@@ -40,17 +40,16 @@ public class ControlDetailsClient implements Initializable {
         this.label_Affiche.setStyle("-fx-text-fill: red;");
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.label_Nom.setText(ControlClients.getClient().getNom());
-        this.label_Prenom.setText(ControlClients.getClient().getPrenom());
-        this.label_Identifiant.setText(ControlClients.getClient().getIdentifiant());
-        this.label_Mdp.setText(ControlClients.getClient().getMdp());
-        this.label_Num.setText(ControlClients.getClient().getNum());
-        this.label_Voie.setText(ControlClients.getClient().getVoie());
-        this.label_CP.setText(ControlClients.getClient().getCp());
-        this.label_Ville.setText(ControlClients.getClient().getVille());
-        this.label_Pays.setText(ControlClients.getClient().getPays());
+    public void setClient(Client client) {
 
+        this.label_Nom.setText(client.getNom());
+        this.label_Prenom.setText(client.getPrenom());
+        this.label_Identifiant.setText(client.getIdentifiant());
+        this.label_Mdp.setText(client.getMdp());
+        this.label_Num.setText(client.getNum());
+        this.label_Voie.setText(client.getVoie());
+        this.label_CP.setText(client.getCp());
+        this.label_Ville.setText(client.getVille());
+        this.label_Pays.setText(client.getPays());
     }
 }

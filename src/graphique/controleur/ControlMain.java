@@ -33,7 +33,7 @@ public class ControlMain {
 
     }
 
-    public void pop() {
+    private void pop() {
 
         Node oldPage = navigationPage.pop();
         FilNavigation oldFilNavigation = filNavigation.pop();
@@ -58,7 +58,7 @@ public class ControlMain {
         gridPane_Main.getChildren().remove(oldPage);
     }
 
-    public void push(Node page, String titrePage) {
+    private void push(Node page, String titrePage) {
 
         if (navigationPage.size() > 0) {
 

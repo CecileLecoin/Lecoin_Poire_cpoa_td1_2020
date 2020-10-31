@@ -100,6 +100,9 @@ public class ControlClients implements Initializable {
     }
 
     public void ShowCli() {
+        tableView_Clients.getItems();
+
+        controlMain.push("/res/fxml/page/CreateClient.fxml", "Création d'un client");
 
     }
 

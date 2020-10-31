@@ -158,10 +158,18 @@ public class ControlCreateClient implements Initializable {
 
 
 
-        //controlMain.push("/res/fxml/page/Client.fxml", "Gestion des clients");
+
     }
 
     public void Annuler(MouseEvent mouseEvent) {
-        //gridPane_CC.getChildren().clear();
+        this.textFieldNom.clear();
+        this.textFieldPrenom.clear();
+        this.textFieldIdentifiant.clear();
+        this.textFieldMdp.clear();
+        this.textFieldNum.clear();
+        this.textFieldVoie.clear();
+        this.textFieldCP.clear();
+        this.textFieldVille.clear();
+        this.textFieldPays.clear();
     }
 }

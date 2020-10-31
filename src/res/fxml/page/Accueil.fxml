@@ -17,7 +17,7 @@
       <RowConstraints maxHeight="335.0" minHeight="10.0" prefHeight="335.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Button fx:id="btnRetour" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#retourPage" prefHeight="25.0" prefWidth="30.0" visible="false" GridPane.halignment="LEFT">
+      <Button fx:id="btnRetour" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" visible="false" GridPane.halignment="LEFT">
          <graphic>
             <ImageView id="logo" pickOnBounds="true">
                <image>

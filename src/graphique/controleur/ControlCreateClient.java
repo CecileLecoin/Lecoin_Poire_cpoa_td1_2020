@@ -68,23 +68,23 @@ public class ControlCreateClient implements Initializable {
         String erreur = "";
 
         if(this.textFieldNom.getText().trim()=="")
-            erreur=+ "Le client doit avoir un nom \n";
-        if(this.this.textFieldPrenom.getText().trim()=="")
-            erreur=+ "Le client doit avoir un nom \n";
+            erreur=erreur+ "Le client doit avoir un nom \n";
+        if(this.textFieldPrenom.getText().trim()=="")
+            erreur=erreur+ "Le client doit avoir un prenom \n";
         if(this.textFieldIdentifiant.getText().trim()=="")
-            erreur=+ "Le client doit avoir un nom \n";
-        if(this.textFieldNom.getText().trim()=="")
-            erreur=+ "Le client doit avoir un nom \n";
-        if(this.textFieldNom.getText().trim()=="")
-            erreur=+ "Le client doit avoir un nom \n";
-        if(this.textFieldNom.getText().trim()=="")
-            erreur=+ "Le client doit avoir un nom \n";
-        if(this.textFieldNom.getText().trim()=="")
-            erreur=+ "Le client doit avoir un nom \n";
-        if(this.textFieldNom.getText().trim()=="")
-            erreur=+ "Le client doit avoir un nom \n";
-        if(this.textFieldNom.getText().trim()=="")
-            erreur=+ "Le client doit avoir un nom \n";
+            erreur=erreur+ "Le client doit avoir un identifiant \n";
+        if(this.textFieldMdp.getText().trim()=="")
+            erreur=erreur+ "Le client doit avoir un mot de passe \n";
+        if(this.textFieldNum.getText().trim()=="")
+            erreur=erreur+ "Le client doit avoir un numero de rue \n";
+        if(this.textFieldVoie.getText().trim()=="")
+            erreur=erreur+ "Le client doit avoir une voie \n";
+        if(this.textFieldCP.getText().trim()=="")
+            erreur=erreur+ "Le client doit avoir un code postal \n";
+        if(this.textFieldVille.getText().trim()=="")
+            erreur=erreur+ "Le client doit avoir une ville \n";
+        if(this.textFieldPays.getText().trim()=="")
+            erreur=erreur+ "Le client doit avoir un pays \n";
 
         try {
             String nom = this.textFieldNom.getText().trim();
@@ -158,10 +158,10 @@ public class ControlCreateClient implements Initializable {
 
 
 
-        controlMain.push("/res/fxml/page/Client.fxml", "Gestion des clients");
+        //controlMain.push("/res/fxml/page/Client.fxml", "Gestion des clients");
     }
 
     public void Annuler(MouseEvent mouseEvent) {
-        gridPane_CC.getChildren().clear();
+        //gridPane_CC.getChildren().clear();
     }
 }

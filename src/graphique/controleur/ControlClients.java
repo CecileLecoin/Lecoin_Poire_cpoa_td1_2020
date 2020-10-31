@@ -48,6 +48,8 @@ public class ControlClients implements Initializable {
     private ControlMain controlMain;
     private ClientDAO dao;
 
+    private static Client client;
+
     public ControlClients() {
 
         /////////
@@ -55,6 +57,21 @@ public class ControlClients implements Initializable {
         /////////
 
         controlMain = ControlMain.getInstance();
+    }
+
+    public static Client getClient() {
+
+        if (client.getNom()=="") {
+
+            Client clientError = new Client();
+            clientError.setNom("Erreur : client vide");
+            return clientError;
+        }
+        else {
+
+            return client;
+        }
+
     }
 
     @Override
@@ -100,18 +117,26 @@ public class ControlClients implements Initializable {
     }
 
     public void ShowCli() {
-        tableView_Clients.getItems();
+        client = tableView_Clients.getSelectionModel().getSelectedItem();
 
-        controlMain.push("/res/fxml/page/CreateClient.fxml", "Création d'un client");
+        controlMain.push("/res/fxml/page/DetailsClient.fxml", "Création d'un client");
 
     }
 
     public void ModifCli() {
+        client = tableView_Clients.getSelectionModel().getSelectedItem();
+
+        controlMain.push("/res/fxml/page/ModifyClient.fxml", "Création d'un client");
 
     }
 
     public void DeleteCli() {
-
+        client = tableView_Clients.getSelectionModel().getSelectedItem();
+        try {
+            dao.delete(client);
+        } catch (CommandeApplicationException e) {
+            e.printStackTrace();
+        }
     }
 
 }

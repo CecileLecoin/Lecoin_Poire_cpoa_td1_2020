@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import metier.Categorie;
 import metier.Client;
+import metier.Produit;
 import utils.MessageBox;
 
 import java.net.URL;
@@ -36,8 +37,8 @@ public class ControlManageCategorie implements Initializable {
         textField_Titre.textProperty().addListener((observable, oldValue, newValue) -> {
             textField_LimitSize(observable, oldValue, newValue, textField_Titre);
         });
-        textField_Titre.textProperty().addListener((observable, oldValue, newValue) -> {
-            textField_LimitSize(observable, oldValue, newValue, textField_Titre);
+        textField_Visuel.textProperty().addListener((observable, oldValue, newValue) -> {
+            textField_LimitSize(observable, oldValue, newValue, textField_Visuel);
         });
     }
 
@@ -80,6 +81,18 @@ public class ControlManageCategorie implements Initializable {
 
     public void Annuler(MouseEvent mouseEvent) {
         controlMain.pop();
+    }
+
+    public void setCategorie(Categorie oldCategorie) {
+
+        textField_Visuel.setText(oldCategorie.getVisuel());
+        textField_Titre.setText(oldCategorie.getTitre());
+    }
+
+    public void setReadOnly(boolean readOnly) {
+
+        textField_Visuel.setEditable(!readOnly);
+        textField_Titre.setEditable(!readOnly);
     }
 
     public void setCallback(Consumer<Categorie> consumer) {

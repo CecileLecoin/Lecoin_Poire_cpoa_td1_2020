@@ -36,7 +36,7 @@
             <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="labelTitre" text="Ajout d'un client" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="4">
+            <Label fx:id="labelTitre" text="Ajout d'une categorie" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="4">
                <font>
                   <Font size="22.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldIdentifiant" userData="45" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+            <TextField fx:id="textField_Titre" userData="45" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="5.0" right="35.0" />
                </GridPane.margin>

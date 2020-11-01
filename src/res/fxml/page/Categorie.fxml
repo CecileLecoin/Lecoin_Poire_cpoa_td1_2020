@@ -41,7 +41,7 @@
             <Insets right="30.0" />
          </GridPane.margin>
       </HBox>
-      <TableView id="listeCmd" fx:id="tableView_Clients" onMouseClicked="#SelectCategorie" prefHeight="333.0" prefWidth="330.0" GridPane.rowIndex="1">
+      <TableView id="listeCmd" fx:id="tableView_Categories" onMouseClicked="#SelectCategorie" prefHeight="333.0" prefWidth="330.0" GridPane.rowIndex="1">
         <columns>
           <TableColumn fx:id="tColumn_Id" editable="false" minWidth="-Infinity" prefWidth="70.40002381801605" text="N°" />
           <TableColumn fx:id="tColumn_Titre" minWidth="100.0" prefWidth="161.33334350585938" text="Titre" />

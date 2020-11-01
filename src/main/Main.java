@@ -82,9 +82,11 @@ public class Main extends Application {
 			System.out.println("produitdao : " +produitdao.findAll().toString());
 			CategorieDAO categoriedao = daos.getCategorieDAO();
 			Categorie categorie = new Categorie(1, "titreCateCommande", "visuel");
+			Categorie categorie2 = new Categorie(2, "titre2", "visuel2.png");
 			Produit p1 = new Produit(1, "nom", "description", "visuel", 4, categorie);
 
 			daos.getCategorieDAO().create(categorie);
+			daos.getCategorieDAO().create(categorie2);
 			daos.getProduitDAO().create(p1);
 
 			HashMap<Produit, Integer> produits = new HashMap<>();

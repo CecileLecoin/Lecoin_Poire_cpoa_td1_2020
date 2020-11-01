@@ -76,7 +76,7 @@ public class ControlProduit implements Initializable {
         tableView_Produits.setItems(produitsList);
     }
 
-    public void AddProd(MouseEvent mouseEvent) {
+    public void AddProd() {
         ControlManageProduit controlManageProduit = controlMain.push("/res/fxml/page/ManageProduit.fxml", "Modification d'un produit");
         controlManageProduit.setCallback(produit -> {
 
@@ -90,7 +90,7 @@ public class ControlProduit implements Initializable {
         });
     }
 
-    public void SelectProd(MouseEvent mouseEvent) {
+    public void SelectProd() {
         if (tableView_Produits.getSelectionModel().getSelectedIndex() == -1) {
 
             button_Delete.setDisable(true);
@@ -105,7 +105,7 @@ public class ControlProduit implements Initializable {
         }
     }
 
-    public void ShowProd(MouseEvent mouseEvent) {
+    public void ShowProd() {
         Produit produit = tableView_Produits.getSelectionModel().getSelectedItem();
 
         ControlManageProduit controlManageProduit = controlMain.push("/res/fxml/page/ManageProduit.fxml", "Visualisation d'un produit");
@@ -113,7 +113,7 @@ public class ControlProduit implements Initializable {
         controlManageProduit.setReadOnly(true);
     }
 
-    public void ModifProd(MouseEvent mouseEvent) {
+    public void ModifProd() {
         Produit oldProduit = tableView_Produits.getSelectionModel().getSelectedItem();
 
         ControlManageProduit controlManageProduit = controlMain.push("/res/fxml/page/ManageProduit.fxml", "Modification d'un client");
@@ -133,7 +133,7 @@ public class ControlProduit implements Initializable {
         });
     }
 
-    public void DeleteProd(MouseEvent mouseEvent) {
+    public void DeleteProd() {
         Produit oldProduit = tableView_Produits.getSelectionModel().getSelectedItem();
 
         Optional<ButtonType> result = MessageBox.show(Alert.AlertType.CONFIRMATION, "Suppression", "Confirmation de suppression", String.format("Voulez-vous vraiment supprimer ce client ? \n %s", oldProduit));

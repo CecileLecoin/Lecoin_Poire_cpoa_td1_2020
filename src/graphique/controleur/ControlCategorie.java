@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import main.Main;
 import metier.Categorie;
+import metier.Client;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,7 +22,7 @@ import java.util.ResourceBundle;
 public class ControlCategorie implements Initializable {
 
     @FXML
-    private TableView<Categorie> tableView_Clients;
+    private TableView<Categorie> tableView_Categories;
     @FXML
     private TableColumn<Categorie, String> tColumn_Id;
     @FXML
@@ -58,13 +59,36 @@ public class ControlCategorie implements Initializable {
         tColumn_Titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         tColumn_Visuel.setCellValueFactory(new PropertyValueFactory<>("visuel"));
 
-        tableView_Clients.setItems(categoriesList);
+        tableView_Categories.setItems(categoriesList);
     }
 
     public void SelectCategorie(MouseEvent mouseEvent) {
+        if (tableView_Categories.getSelectionModel().getSelectedIndex() == -1) {
+
+            button_Delete.setDisable(true);
+            button_Modify.setDisable(true);
+            button_Show.setDisable(true);
+        }
+        else {
+
+            button_Delete.setDisable(false);
+            button_Modify.setDisable(false);
+            button_Show.setDisable(false);
+        }
     }
 
     public void AddCategorie(MouseEvent mouseEvent) {
+        ControlManageCategorie controlManageCategorie = controlMain.push("/res/fxml/page/ManageCategorie.fxml", "Modification d'un client");
+        controlManageCategorie.setCallback(categorie -> {
+
+            try {
+                dao.create(categorie);
+                ControlCategorie.getCategoriesList().add(categorie);
+
+            } catch (CommandeApplicationException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void ShowCategorie(MouseEvent mouseEvent) {
@@ -74,5 +98,10 @@ public class ControlCategorie implements Initializable {
     }
 
     public void DeleteCategorie(MouseEvent mouseEvent) {
+    }
+
+    public static ObservableList<Categorie> getCategoriesList() {
+
+        return categoriesList;
     }
 }

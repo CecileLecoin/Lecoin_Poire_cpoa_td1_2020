@@ -56,7 +56,7 @@
       <HBox alignment="CENTER_RIGHT" prefHeight="208.0" prefWidth="1100.0" spacing="40.0" GridPane.rowIndex="2">
          <children>
             <Label text="Trier par :" visible="false" />
-            <Button id="btnAddCli" fx:id="button_Add" mnemonicParsing="false" onMouseClicked="#AddProd" prefHeight="46.0" prefWidth="56.0">
+            <Button id="button_Add" fx:id="button_Add" mnemonicParsing="false" onMouseClicked="#AddProd" prefHeight="46.0" prefWidth="56.0">
                 <graphic>
                     <ImageView>
                         <Image url="@../../images/basket-plus.png" />

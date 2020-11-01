@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import metier.Categorie;
 import metier.Client;
 import metier.Produit;
@@ -38,9 +39,7 @@ public class ControlManageProduit implements Initializable {
 	private ControlMain controlMain;
 	private Consumer<Produit> consumer;
 
-	public ControlManageProduit() {
-		controlMain = ControlMain.getInstance();
-	}
+
 
 	private DAOFactory dao;
     
@@ -53,6 +52,7 @@ public class ControlManageProduit implements Initializable {
 		} catch (CommandeApplicationException e) {
 			e.printStackTrace();
 		}
+
 		choiceBoxCategorie.setItems(categoriesList);
 		textFieldNom.textProperty().addListener((observable, oldValue, newValue) -> {
 			textField_LimitSize(observable, oldValue, newValue, textFieldNom);
@@ -61,12 +61,15 @@ public class ControlManageProduit implements Initializable {
 			textField_LimitSize(observable, oldValue, newValue, textFieldTarif);
 
 
+
 		});
 	}
 
+	public ControlManageProduit() {
+		controlMain = ControlMain.getInstance();
+	}
 
-
-	public void creerProduit() throws CommandeApplicationException {
+	public void creerProduit(MouseEvent mouseEvent) {
 
     	Produit produit = new Produit();
     	Categorie categorie = this.choiceBoxCategorie.getValue();

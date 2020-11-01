@@ -5,9 +5,6 @@ import javafx.scene.input.MouseEvent;
 public class ControlCommandes {
 
 
-    public void retourPage(MouseEvent mouseEvent) {
-
-    }
 
     public void AddProd(MouseEvent mouseEvent) {
 

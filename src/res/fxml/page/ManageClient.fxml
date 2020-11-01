@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -49,29 +50,45 @@
                </font>
             </Label>
             <Label text="Nom : " GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <TextField fx:id="textFieldNom" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <TextField fx:id="textFieldNom" userData="25" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="5.0" right="35.0" />
-               </GridPane.margin></TextField>
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
             <Label text="Prenom : " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <TextField fx:id="textFieldPrenom" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <TextField fx:id="textFieldPrenom" userData="30" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="5.0" right="35.0" />
-               </GridPane.margin></TextField>
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
             <Label text="Compte : " GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldIdentifiant" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="textFieldIdentifiant" userData="45" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="5.0" right="35.0" />
-               </GridPane.margin></TextField>
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
             <Label text="Identifiant : " GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-            <PasswordField fx:id="passwordFieldMdp" prefHeight="25.0" prefWidth="217.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <PasswordField fx:id="passwordFieldMdp" userData="16" prefHeight="25.0" prefWidth="217.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="5.0" right="35.0" />
-               </GridPane.margin></PasswordField>
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </PasswordField>
             <Label text="Mot de passe : " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
             <Label prefHeight="19.0" prefWidth="302.0" text="Adresse : " GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
                <font>
@@ -81,27 +98,47 @@
             <Label text="Numéro : " GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
             <Label text="Code postal :" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
             <Label text="Pays : " GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
-            <TextField fx:id="textFieldNum" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <TextField fx:id="textFieldNum" userData="5" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="5.0" right="35.0" />
-               </GridPane.margin></TextField>
-            <TextField fx:id="textFieldCP" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="textFieldCP" userData="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets left="5.0" right="35.0" />
-               </GridPane.margin></TextField>
-            <TextField fx:id="textFieldPays" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="textFieldPays" userData="20" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets left="5.0" right="35.0" />
-               </GridPane.margin></TextField>
-            <TextField fx:id="textFieldVoie" GridPane.columnIndex="3" GridPane.rowIndex="6">
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="textFieldVoie" userData="30" GridPane.columnIndex="3" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="5.0" right="35.0" />
-               </GridPane.margin></TextField>
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
             <Label text="Voie : " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-            <TextField fx:id="textFieldVille" GridPane.columnIndex="3" GridPane.rowIndex="7">
+            <TextField fx:id="textFieldVille" userData="20" GridPane.columnIndex="3" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets left="5.0" right="35.0" />
-               </GridPane.margin></TextField>
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
             <Label text="Ville : " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
          </children>
          <VBox.margin>

@@ -128,7 +128,6 @@ public class ControlClients implements Initializable {
             try {
                 client.setIdClient(oldClient.getIdClient());
                 dao.update(client);
-                ControlClients.getClientsList().get(1);
 
                 ControlClients.getClientsList().remove(oldClient);
                 ControlClients.getClientsList().add(client);
@@ -147,8 +146,8 @@ public class ControlClients implements Initializable {
         if (result != null && result.isPresent() && result.get() == ButtonType.OK) {
 
             try {
-                dao.delete(oldClient);
                 ControlClients.getClientsList().remove(oldClient);
+                dao.delete(oldClient);
             } catch (CommandeApplicationException e) {
                 e.printStackTrace();
             }

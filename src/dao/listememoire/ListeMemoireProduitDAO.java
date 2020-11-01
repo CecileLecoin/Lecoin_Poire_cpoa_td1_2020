@@ -29,7 +29,7 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 
 		this.produits = new ArrayList<Produit>();
 
-		Categorie categorie = new Categorie(1, "titre", "visuel");
+		Categorie categorie = new Categorie(1, "titreCategorie", "visuel");
 		this.produits.add(new Produit(1, "nom", "description", "visuel", 4, categorie));
 		this.produits.add(new Produit(2, "nom2", "description2", "visuel2", 5, categorie));
 	}
@@ -37,7 +37,7 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 	@Override
 	public boolean create(Produit produit) {
 
-		produit.setIdProduit(3);
+		produit.setIdProduit(1);
 		// Ne fonctionne que si l'objet métier est bien fait...
 		while (this.produits.contains(produit)) {
 

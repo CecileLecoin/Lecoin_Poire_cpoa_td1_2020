@@ -1,13 +1,13 @@
 package graphique.controleur;
 
-import dao.enumeration.Persistence;
-import daofactory.DAOFactory;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import metier.Client;
+import utils.IntegerUtils;
 import utils.MessageBox;
 
 import java.net.URL;
@@ -44,18 +44,44 @@ public class ControlManageClient implements Initializable {
     private ControlMain controlMain;
     private Consumer<Client> consumer;
 
-    public ControlManageClient() {
-        controlMain = ControlMain.getInstance();
-    }
-
-    private DAOFactory dao;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        dao = DAOFactory.getDaoFactory(Persistence.LISTEMEMOIRE);
+        textFieldNom.textProperty().addListener((observable, oldValue, newValue) -> {
+            textField_LimitSize(observable, oldValue, newValue, textFieldNom);
+        });
+        textFieldPrenom.textProperty().addListener((observable, oldValue, newValue) -> {
+            textField_LimitSize(observable, oldValue, newValue, textFieldPrenom);
+        });
+        textFieldIdentifiant.textProperty().addListener((observable, oldValue, newValue) -> {
+            textField_LimitSize(observable, oldValue, newValue, textFieldIdentifiant);
+        });
+        passwordFieldMdp.textProperty().addListener((observable, oldValue, newValue) -> {
+            textField_LimitSize(observable, oldValue, newValue, passwordFieldMdp);
+        });
+        textFieldNum.textProperty().addListener((observable, oldValue, newValue) -> {
+            textField_LimitSize(observable, oldValue, newValue, textFieldNum);
+            textField_LimitNum(observable, oldValue, newValue, textFieldNum);
+        });
+        textFieldVoie.textProperty().addListener((observable, oldValue, newValue) -> {
+            textField_LimitSize(observable, oldValue, newValue, textFieldVoie);
+        });
+        textFieldCP.textProperty().addListener((observable, oldValue, newValue) -> {
+            textField_LimitSize(observable, oldValue, newValue, textFieldCP);
+            textField_LimitNum(observable, oldValue, newValue, textFieldCP);
+        });
+        textFieldVille.textProperty().addListener((observable, oldValue, newValue) -> {
+            textField_LimitSize(observable, oldValue, newValue, textFieldVille);
+        });
+        textFieldPays.textProperty().addListener((observable, oldValue, newValue) -> {
+            textField_LimitSize(observable, oldValue, newValue, textFieldPays);
+        });
     }
 
+    public ControlManageClient() {
+
+        controlMain = ControlMain.getInstance();
+    }
 
     public void AddCli(MouseEvent mouseEvent) {
 
@@ -168,4 +194,24 @@ public class ControlManageClient implements Initializable {
 
         labelTitre.setText("Détails d'un client");
     }
+
+    public void textField_LimitSize(ObservableValue<? extends String> observable, String oldValue, String newValue, TextField textField) {
+
+        if (newValue.length() > Integer.parseInt((String)textField.getUserData())) {
+
+            textField.setText(oldValue);
+        }
+    }
+
+    private void textField_LimitNum(ObservableValue<? extends String> observable, String oldValue, String newValue, TextField textField) {
+
+        if (newValue.length() == 0) {
+            return;
+        }
+
+        if (!IntegerUtils.isNumeric(newValue)) {
+            textField.setText(oldValue);
+        }
+    }
+
 }

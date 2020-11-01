@@ -19,6 +19,7 @@ import metier.Client;
 import metier.Produit;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ControlProduit implements Initializable {
@@ -50,6 +51,8 @@ public class ControlProduit implements Initializable {
     Categorie categorie = new Categorie();
     private ObservableList<Categorie> categoriesList;
 
+    private HashMap<Produit, Integer> quantityProduits;
+
     public ControlProduit() throws CommandeApplicationException {
 
         this.dao = Main.getInstance().getDAO();
@@ -72,6 +75,7 @@ public class ControlProduit implements Initializable {
         tColumn_Description.setCellValueFactory(new PropertyValueFactory<>("description"));
         tColumn_Visuel.setCellValueFactory(new PropertyValueFactory<>("visuel"));
 /////////////////////////////////////////////////////////////////////////////////
+
         tColumn_Categorie.setCellValueFactory(new PropertyValueFactory<>("categorie"));
 
         tableView_Produits.setItems(produitsList);

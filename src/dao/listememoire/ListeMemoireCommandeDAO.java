@@ -88,15 +88,12 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 	public boolean update(Commande commande) {
 
 		// Ne fonctionne que si l'objet métier est bien fait...
-		int idx = this.commandes.indexOf(commande);
-		if (idx == -1) {
-			throw new IllegalArgumentException("Tentative de modification d'une commande inexistante");
-		} else {
-
-			this.commandes.set(idx, commande);
+		try {
+			this.commandes.set(commande.getIdCommande(), commande);
+			return true;
+		} catch(Exception e) {
+			return false;
 		}
-
-		return true;
 	}
 
 	@Override

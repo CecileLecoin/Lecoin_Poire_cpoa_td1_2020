@@ -14,86 +14,99 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphique.controleur.ControlManageClient">
+<VBox prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphique.controleur.ControlManageClient">
    <children>
-      <GridPane>
+      <GridPane prefHeight="476.0" prefWidth="1031.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="0.0" prefWidth="71.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="238.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="10.0" prefWidth="88.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="10.0" prefWidth="225.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="350.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="350.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Identité :" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.valignment="CENTER">
+            <Label fx:id="labelTitre" text="Ajout d'un client" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="4">
                <font>
-                  <Font size="13.0" />
+                  <Font size="22.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Identité :" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label text="Nom : " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <TextField fx:id="textFieldNom" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Label text="Prenom : " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <TextField fx:id="textFieldPrenom" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-         </children>
-      </GridPane>
-      <GridPane>
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="71.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="10.0" prefWidth="237.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="87.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="227.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Compte : " GridPane.columnIndex="1">
+            <Label text="Nom : " GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <TextField fx:id="textFieldNom" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" right="35.0" />
+               </GridPane.margin></TextField>
+            <Label text="Prenom : " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <TextField fx:id="textFieldPrenom" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" right="35.0" />
+               </GridPane.margin></TextField>
+            <Label text="Compte : " GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label text="Identifiant : " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Label text="Mot de passe : " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <TextField fx:id="textFieldIdentifiant" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <PasswordField fx:id="passwordFieldMdp" prefHeight="25.0" prefWidth="217.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-         </children>
-      </GridPane>
-      <GridPane prefWidth="640.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="71.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="237.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="87.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="229.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label prefHeight="19.0" prefWidth="302.0" text="Adresse : " GridPane.columnIndex="1">
+            <TextField fx:id="textFieldIdentifiant" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="5.0" right="35.0" />
+               </GridPane.margin></TextField>
+            <Label text="Identifiant : " GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+            <PasswordField fx:id="passwordFieldMdp" prefHeight="25.0" prefWidth="217.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="5.0" right="35.0" />
+               </GridPane.margin></PasswordField>
+            <Label text="Mot de passe : " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+            <Label prefHeight="19.0" prefWidth="302.0" text="Adresse : " GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label text="Numéro : " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Label text="Voie : " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Label text="Code postal :" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <Label text="Ville : " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <Label text="Pays : " GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-            <TextField fx:id="textFieldNum" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="textFieldVoie" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField fx:id="textFieldCP" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="textFieldVille" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField fx:id="textFieldPays" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Numéro : " GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+            <Label text="Code postal :" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+            <Label text="Pays : " GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+            <TextField fx:id="textFieldNum" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="5.0" right="35.0" />
+               </GridPane.margin></TextField>
+            <TextField fx:id="textFieldCP" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets left="5.0" right="35.0" />
+               </GridPane.margin></TextField>
+            <TextField fx:id="textFieldPays" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets left="5.0" right="35.0" />
+               </GridPane.margin></TextField>
+            <TextField fx:id="textFieldVoie" GridPane.columnIndex="3" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="5.0" right="35.0" />
+               </GridPane.margin></TextField>
+            <Label text="Voie : " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+            <TextField fx:id="textFieldVille" GridPane.columnIndex="3" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets left="5.0" right="35.0" />
+               </GridPane.margin></TextField>
+            <Label text="Ville : " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
          </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
       </GridPane>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="100.0" prefHeight="200.0" prefWidth="200.0">
          <children>

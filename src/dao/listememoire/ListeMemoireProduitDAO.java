@@ -52,15 +52,12 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 	public boolean update(Produit produit) {
 
 		// Ne fonctionne que si l'objet métier est bien fait...
-		int idx = this.produits.indexOf(produit);
-		if (idx == -1) {
-			throw new IllegalArgumentException("Tentative de modification d'une Produit inexistante");
-		} else {
-
-			this.produits.set(idx, produit);
+		try {
+			this.produits.set(produit.getIdProduit(), produit);
+			return true;
+		} catch(Exception e) {
+			return false;
 		}
-
-		return true;
 	}
 
 	@Override

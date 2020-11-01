@@ -47,15 +47,12 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 	public boolean update(Categorie categorie) {
 
 		// Ne fonctionne que si l'objet métier est bien fait...
-		int idx = this.categories.indexOf(categorie);
-		if (idx == -1) {
-			throw new IllegalArgumentException("Tentative de modification d'une categorie inexistante");
-		} else {
-
-			this.categories.set(idx, categorie);
+		try {
+			this.categories.set(categorie.getIdCategorie(), categorie);
+			return true;
+		} catch(Exception e) {
+			return false;
 		}
-
-		return true;
 	}
 
 	@Override

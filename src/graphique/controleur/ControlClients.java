@@ -4,17 +4,19 @@ import dao.ClientDAO;
 import dao.enumeration.Persistence;
 import daofactory.DAOFactory;
 import exceptions.CommandeApplicationException;
+import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import main.Main;
 import metier.Client;
+import utils.MessageBox;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ControlClients implements Initializable {
@@ -51,9 +53,7 @@ public class ControlClients implements Initializable {
 
     public ControlClients() throws CommandeApplicationException {
 
-        /////////
-        dao = DAOFactory.getDaoFactory(Persistence.LISTEMEMOIRE).getClientDAO();
-        /////////
+        this.dao = Main.getInstance().getDAO().getClientDAO();
 
         if (clientsList == null) {
             clientsList = FXCollections.observableList(dao.findAll());
@@ -75,7 +75,6 @@ public class ControlClients implements Initializable {
         tColumn_Pays.setCellValueFactory(new PropertyValueFactory<>("pays"));
 
         tableView_Clients.setItems(clientsList);
-
     }
 
 
@@ -129,6 +128,7 @@ public class ControlClients implements Initializable {
             try {
                 client.setIdClient(oldClient.getIdClient());
                 dao.update(client);
+                ControlClients.getClientsList().get(1);
 
                 ControlClients.getClientsList().remove(oldClient);
                 ControlClients.getClientsList().add(client);
@@ -141,6 +141,18 @@ public class ControlClients implements Initializable {
 
     public void DeleteCli() {
 
+        Client oldClient = tableView_Clients.getSelectionModel().getSelectedItem();
+
+        Optional<ButtonType> result = MessageBox.show(Alert.AlertType.CONFIRMATION, "Suppression", "Confirmation de suppression", String.format("Voulez-vous vraiment supprimer ce client ? \n %s", oldClient));
+        if (result != null && result.isPresent() && result.get() == ButtonType.OK) {
+
+            try {
+                dao.delete(oldClient);
+                ControlClients.getClientsList().remove(oldClient);
+            } catch (CommandeApplicationException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static ObservableList<Client> getClientsList() {

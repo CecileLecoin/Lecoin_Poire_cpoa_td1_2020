@@ -4,9 +4,7 @@ import dao.enumeration.Persistence;
 import daofactory.DAOFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import metier.Client;
@@ -38,6 +36,10 @@ public class ControlManageClient implements Initializable {
     private TextField textFieldVille;
     @FXML
     private TextField textFieldPays;
+    @FXML
+    private Button button_AddCli;
+    @FXML
+    private Label labelTitre;
 
     private ControlMain controlMain;
     private Consumer<Client> consumer;
@@ -59,25 +61,6 @@ public class ControlManageClient implements Initializable {
 
         Client client = new Client();
         String erreur = "";
-
-        if(this.textFieldNom.getText().trim()=="")
-            erreur=erreur+ "Le client doit avoir un nom \n";
-        if(this.textFieldPrenom.getText().trim()=="")
-            erreur=erreur+ "Le client doit avoir un prenom \n";
-        if(this.textFieldIdentifiant.getText().trim()=="")
-            erreur=erreur+ "Le client doit avoir un identifiant \n";
-        if(this.passwordFieldMdp.getText().trim()=="")
-            erreur=erreur+ "Le client doit avoir un mot de passe \n";
-        if(this.textFieldNum.getText().trim()=="")
-            erreur=erreur+ "Le client doit avoir un numero de rue \n";
-        if(this.textFieldVoie.getText().trim()=="")
-            erreur=erreur+ "Le client doit avoir une voie \n";
-        if(this.textFieldCP.getText().trim()=="")
-            erreur=erreur+ "Le client doit avoir un code postal \n";
-        if(this.textFieldVille.getText().trim()=="")
-            erreur=erreur+ "Le client doit avoir une ville \n";
-        if(this.textFieldPays.getText().trim()=="")
-            erreur=erreur+ "Le client doit avoir un pays \n";
 
         try {
             String nom = this.textFieldNom.getText().trim();
@@ -142,12 +125,12 @@ public class ControlManageClient implements Initializable {
         else {
 
             MessageBox.show(Alert.AlertType.ERROR, "Erreur", "Champs invalides", erreur);
-
         }
     }
 
     public void Annuler(MouseEvent mouseEvent) {
-        //gridPane_CC.getChildren().clear();
+
+        controlMain.pop();
     }
 
     public void setCallback(Consumer<Client> consumer) {
@@ -166,6 +149,8 @@ public class ControlManageClient implements Initializable {
         textFieldPays.setText(oldClient.getPays());
         textFieldIdentifiant.setText(oldClient.getIdentifiant());
         passwordFieldMdp.setText(oldClient.getMdp());
+
+        labelTitre.setText("Modification d'un client");
     }
 
     public void setReadOnly(boolean readOnly) {
@@ -178,5 +163,9 @@ public class ControlManageClient implements Initializable {
         textFieldVille.setEditable(!readOnly);
         textFieldPays.setEditable(!readOnly);
         textFieldIdentifiant.setEditable(!readOnly);
+
+        button_AddCli.setVisible(!readOnly);
+
+        labelTitre.setText("Détails d'un client");
     }
 }

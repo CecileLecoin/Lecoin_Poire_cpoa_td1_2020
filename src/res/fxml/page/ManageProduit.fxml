@@ -49,17 +49,17 @@
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <TextField fx:id="textFieldNom" GridPane.columnIndex="1" GridPane.columnSpan="2">
+            <TextField fx:id="textFieldNom" userData="50" GridPane.columnIndex="1" GridPane.columnSpan="2">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextArea fx:id="textAreaDescription" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
+            <TextArea fx:id="textAreaDescription" userData="500" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextArea>
-            <TextField fx:id="textFieldTarif" prefHeight="25.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="textFieldTarif" userData="15" prefHeight="25.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>

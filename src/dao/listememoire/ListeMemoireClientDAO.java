@@ -26,8 +26,6 @@ public class ListeMemoireClientDAO implements ClientDAO {
 
 		this.clients = new ArrayList<Client>();
 
-		this.clients.add(new Client(1, "nom", "prenom", "identifiant", "mdp", "num", "voie", "cp", "ville", "pays"));
-		this.clients.add(new Client(2, "nom2", "prenom2", "identifiant2", "mdp2", "num2", "voie2", "cp2", "ville2", "pays2"));
 	}
 
 

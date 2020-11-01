@@ -28,10 +28,6 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 	private ListeMemoireProduitDAO() {
 
 		this.produits = new ArrayList<Produit>();
-
-		Categorie categorie = new Categorie(1, "titreCategorie", "visuel");
-		this.produits.add(new Produit(1, "nom", "description", "visuel", 4, categorie));
-		this.produits.add(new Produit(2, "nom2", "description2", "visuel2", 5, categorie));
 	}
 
 	@Override

@@ -25,9 +25,6 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 	private ListeMemoireCategorieDAO() {
 
 		this.categories = new ArrayList<Categorie>();
-
-		this.categories.add(new Categorie(1, "Pulls", "pulls.png"));
-		this.categories.add(new Categorie(2, "Bonnets", "bonnets.png"));
 	}
 
 

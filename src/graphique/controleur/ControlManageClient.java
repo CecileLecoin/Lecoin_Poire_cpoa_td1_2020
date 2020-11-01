@@ -17,8 +17,6 @@ import java.util.function.Consumer;
 public class ControlManageClient implements Initializable {
 
     @FXML
-    private GridPane gridPane_CC;
-    @FXML
     private TextField textFieldNom;
     @FXML
     private TextField textFieldPrenom;

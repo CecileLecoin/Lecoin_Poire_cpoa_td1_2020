@@ -10,8 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import main.Main;
 import metier.Categorie;
-import metier.Client;
 import metier.Produit;
 import utils.MessageBox;
 
@@ -36,19 +36,21 @@ public class ControlManageProduit implements Initializable {
 
 	private ObservableList<Categorie> categoriesList;
 
-	private ControlMain controlMain;
+	private final ControlMain controlMain;
 	private Consumer<Produit> consumer;
 
-
+	public ControlManageProduit() {
+		controlMain = ControlMain.getInstance();
+	}
 
 	private DAOFactory dao;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        dao = DAOFactory.getDaoFactory(Persistence.LISTEMEMOIRE);
+        dao = Main.getInstance().getDAO();
 		try {
-			categoriesList= FXCollections.observableList(dao.getCategorieDAO().findAll());
+			categoriesList = FXCollections.observableList(dao.getCategorieDAO().findAll());
 		} catch (CommandeApplicationException e) {
 			e.printStackTrace();
 		}
@@ -59,22 +61,15 @@ public class ControlManageProduit implements Initializable {
 		});
 		textFieldTarif.textProperty().addListener((observable, oldValue, newValue) -> {
 			textField_LimitSize(observable, oldValue, newValue, textFieldTarif);
-
-
-
 		});
 	}
 
-	public ControlManageProduit() {
-		controlMain = ControlMain.getInstance();
-	}
 
-	public void creerProduit(MouseEvent mouseEvent) {
+	public void creerProduit() {
 
     	Produit produit = new Produit();
     	Categorie categorie = this.choiceBoxCategorie.getValue();
     	String erreur = "";
-
 
     	try {
     		String nom = this.textFieldNom.getText().trim();
@@ -90,18 +85,17 @@ public class ControlManageProduit implements Initializable {
     	}
     	try {
     		if (this.textFieldTarif.getText().trim().length() == 0){
-    			erreur += "tarif non renseigné";
+    			erreur += "tarif non renseigné\n";
 			}
     		else {
-    		float tarif = Float.parseFloat(this.textFieldTarif.getText().trim());
-			System.out.println(tarif);
-    		produit.setTarif(tarif);
+				float tarif = Float.parseFloat(this.textFieldTarif.getText().trim());
+				produit.setTarif(tarif);
 			}
     	} catch (IllegalArgumentException e){
     		erreur += e.getMessage();
     	}
     	if (categorie == null) {
-    		erreur += "Aucune catégorie séléctionnée";
+    		erreur += "Aucune catégorie séléctionnée\n";
     	}
     	else {
     		produit.setCategorie(categorie);

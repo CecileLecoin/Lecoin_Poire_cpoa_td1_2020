@@ -1,12 +1,10 @@
 package graphique.controleur;
 
 import dao.ClientDAO;
-import dao.enumeration.Persistence;
-import daofactory.DAOFactory;
 import exceptions.CommandeApplicationException;
-import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -16,10 +14,23 @@ import metier.Client;
 import utils.MessageBox;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class ControlClients implements Initializable {
+
+    public enum TypesRecherche {
+        idClient,
+        nom,
+        prenom,
+        num,
+        voie,
+        cp,
+        ville,
+        pays
+    }
 
     @FXML
     private TableView<Client> tableView_Clients;
@@ -41,15 +52,21 @@ public class ControlClients implements Initializable {
     private TableColumn<Client, String> tColumn_Pays;
 
     @FXML
+    private Button button_Search;
+    @FXML
+    private TextField textField_Search;
+    @FXML
+    private ChoiceBox<String> choiceBox_Search;
+    @FXML
     private Button button_Show;
     @FXML
     private Button button_Modify;
     @FXML
     private Button button_Delete;
 
+    private static ObservableList<Client> clientsList;
     private ControlMain controlMain;
     private ClientDAO dao;
-    private static ObservableList<Client> clientsList;
 
     public ControlClients() throws CommandeApplicationException {
 
@@ -75,8 +92,9 @@ public class ControlClients implements Initializable {
         tColumn_Pays.setCellValueFactory(new PropertyValueFactory<>("pays"));
 
         tableView_Clients.setItems(clientsList);
-    }
 
+//        choiceBox_Search.setItems(FXCollections.observableList(Arrays.stream(TypesRecherche).collect(Collectors.toList())));
+    }
 
     public void SelectCli() {
 
@@ -92,6 +110,14 @@ public class ControlClients implements Initializable {
             button_Modify.setDisable(false);
             button_Show.setDisable(false);
         }
+    }
+
+    public void button_Search_OnClick(ActionEvent actionEvent) {
+
+//        choiceBox_Search.setItems(clientsList.filtered(c -> {
+//            String choice = choiceBox_Search.getValue();
+//
+//        }));
     }
 
     public void AddCli() {

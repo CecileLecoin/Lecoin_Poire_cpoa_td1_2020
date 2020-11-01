@@ -35,26 +35,6 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 	private ListeMemoireCommandeDAO() throws CommandeApplicationException {
 
 		this.commandes = new ArrayList<Commande>();
-
-		ClientDAO clientdao = ListeMemoireClientDAO.getInstance();
-		Client client = new Client(1, "nom", "prenom", "identifiant", "mdp", "num", "voie", "cp", "ville", "pays");
-		DateTimeFormatter formatage = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		LocalDate dateDebut = LocalDate.parse("2020-09-02 13:12:00", formatage);
-		
-		ProduitDAO produitdao = ListeMemoireProduitDAO.getInstance();
-		System.out.println("produitdao : " +produitdao.findAll().toString());
-		CategorieDAO categoriedao = ListeMemoireCategorieDAO.getInstance();
-		Categorie categorie = new Categorie(1, "titre", "visuel");
-		Produit p1 = new Produit(1, "nom", "description", "visuel", 4, categorie);
-		HashMap<Produit, Integer> produits = new HashMap<>();
-		produits.put(p1, 2);
-		
-
-		this.commandes.add(new Commande(1, dateDebut, client, produits));
-		System.out.println("commandes : " );
-		dateDebut = LocalDate.parse("2020-08-30 11:22:00", formatage);
-		produits.put(p1, 4);
-		this.commandes.add(new Commande(2, dateDebut, client, produits));
 	}
 
 	@Override

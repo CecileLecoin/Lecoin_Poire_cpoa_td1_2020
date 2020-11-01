@@ -76,7 +76,7 @@ public class Produit {
 
     public void setTarif(float tarif) {
         if (0 > tarif) {
-            throw new IllegalArgumentException("Le prix ne peut être nul ou négatif!");
+            throw new IllegalArgumentException("Le prix ne peut être nul ou négatif!\n");
         }
         this.tarif = tarif;
     }
@@ -87,7 +87,7 @@ public class Produit {
 
     public void setNom(String nom) {
         if (nom == null || nom.trim().length() == 0) {
-            throw new IllegalArgumentException("nom non renseigné !");
+            throw new IllegalArgumentException("nom non renseigné !\n");
         }
         this.nom = nom;
     }
@@ -98,7 +98,7 @@ public class Produit {
 
     public void setDescription(String description) {
         if (description == null || description.trim().length() == 0) {
-            throw new IllegalArgumentException("description non renseignée !");
+            throw new IllegalArgumentException("description non renseignée !\n");
         }
         this.description = description;
     }
@@ -109,7 +109,7 @@ public class Produit {
 
     public void setVisuel(String visuel) {
         if (visuel == null || visuel.trim().length() == 0) {
-            throw new IllegalArgumentException("visuel non renseigné !");
+            throw new IllegalArgumentException("visuel non renseigné !\n");
         }
         this.visuel = visuel;
     }

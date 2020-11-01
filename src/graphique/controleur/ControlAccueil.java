@@ -25,7 +25,7 @@ public class ControlAccueil {
     }
 
     public void goToCategorie() {
-
+        controlMain.push("/res/fxml/page/Categorie.fxml", "Gestion des categories");
     }
 
     private void load() {

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="HomePane" layoutX="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphique.controleur.ControlProduit">
+<GridPane fx:id="HomePane" layoutX="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphique.controleur.ControlCategorie">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" />
   </columnConstraints>
@@ -41,7 +41,7 @@
             <Insets right="30.0" />
          </GridPane.margin>
       </HBox>
-      <TableView id="listeCmd" fx:id="tableView_Clients" onMouseClicked="#SelectProd" prefHeight="333.0" prefWidth="330.0" GridPane.rowIndex="1">
+      <TableView id="listeCmd" fx:id="tableView_Clients" onMouseClicked="#SelectCategorie" prefHeight="333.0" prefWidth="330.0" GridPane.rowIndex="1">
         <columns>
           <TableColumn fx:id="tColumn_Id" editable="false" minWidth="-Infinity" prefWidth="70.40002381801605" text="N°" />
           <TableColumn fx:id="tColumn_Titre" minWidth="100.0" prefWidth="161.33334350585938" text="Titre" />
@@ -54,7 +54,7 @@
       <HBox alignment="CENTER_RIGHT" prefHeight="208.0" prefWidth="1100.0" spacing="40.0" GridPane.rowIndex="2">
          <children>
             <Label text="Trier par :" visible="false" />
-            <Button id="btnAddCli" fx:id="button_Add" mnemonicParsing="false" onMouseClicked="#AddProd" prefHeight="46.0" prefWidth="56.0">
+            <Button id="btnAddCli" fx:id="button_Add" mnemonicParsing="false" onMouseClicked="#AddCategorie" prefHeight="46.0" prefWidth="56.0">
                 <graphic>
                     <ImageView>
                         <Image url="@../../images/tag-plus.png" />
@@ -63,21 +63,21 @@
             </Button>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button id="btnShowCli" fx:id="button_Show" disable="true" mnemonicParsing="false" onMouseClicked="#ShowProd" prefHeight="46.0" prefWidth="56.0">
+                  <Button id="btnShowCli" fx:id="button_Show" disable="true" mnemonicParsing="false" onMouseClicked="#ShowCategorie" prefHeight="46.0" prefWidth="56.0">
                       <graphic>
                           <ImageView>
                               <Image url="@../../images/format-align-justify.png" />
                           </ImageView>
                       </graphic>
                   </Button>
-                  <Button id="btnModifCli" fx:id="button_Modify" disable="true" mnemonicParsing="false" onMouseClicked="#ModifProd" prefHeight="45.0" prefWidth="46.0">
+                  <Button id="btnModifCli" fx:id="button_Modify" disable="true" mnemonicParsing="false" onMouseClicked="#ModifCategorie" prefHeight="45.0" prefWidth="46.0">
                       <graphic>
                           <ImageView>
                               <Image url="@../../images/pencil-outline.png" />
                           </ImageView>
                       </graphic>
                   </Button>
-                  <Button id="btnDelCli" fx:id="button_Delete" disable="true" mnemonicParsing="false" onMouseClicked="#DeleteProd" prefHeight="46.0" prefWidth="52.0">
+                  <Button id="btnDelCli" fx:id="button_Delete" disable="true" mnemonicParsing="false" onMouseClicked="#DeleteCategorie" prefHeight="46.0" prefWidth="52.0">
                       <graphic>
                           <ImageView>
                               <Image url="@../../images/tag-minus.png" />

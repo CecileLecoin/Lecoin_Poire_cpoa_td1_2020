@@ -1,7 +1,9 @@
 package graphique.controleur;
 
+import dao.ProduitDAO;
 import daofactory.DAOFactory;
 import exceptions.CommandeApplicationException;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -66,7 +68,7 @@ public class ControlProduit implements Initializable {
     private DAOFactory dao;
 
     private static ObservableList<ProduitRow> produitsList;
-    private static ObservableList<Categorie> categoriesList;
+//    private static ObservableList<Categorie> categoriesList;
     private Produit produit = new Produit();
     private Categorie categorie = new Categorie();
 
@@ -75,14 +77,13 @@ public class ControlProduit implements Initializable {
 
     private List<TypeRecherche> typesRecherche;
 
-
     public ControlProduit() throws CommandeApplicationException {
 
         this.dao = Main.getInstance().getDAO();
 
-        if (categoriesList == null) {
-            categoriesList = FXCollections.observableList(dao.getCategorieDAO().findAll());
-        }
+//        if (categoriesList == null) {
+//            categoriesList = FXCollections.observableList(dao.getCategorieDAO().findAll());
+//        }
         if (commandes == null) {
             commandes = dao.getCommandeDAO().findAll();
             quantiteProduits = commandes.stream()
@@ -96,12 +97,6 @@ public class ControlProduit implements Initializable {
         }
         if (produitsList == null) {
 
-            Stream<ProduitRow> b = dao.getProduitDAO().findAll().stream().map(p -> new ProduitRow(p, quantiteProduits.get(p)));
-            Iterator<ProduitRow> i = b.iterator();
-            for (; i.hasNext(); i.next()) {
-                System.out.println(i);
-            }
-            List<ProduitRow> jhfghfgd = dao.getProduitDAO().findAll().stream().map(p -> new ProduitRow(p, quantiteProduits.get(p))).collect(Collectors.toList());
             this.produitsList = FXCollections.observableList(dao.getProduitDAO().findAll().stream().map(p -> new ProduitRow(p, quantiteProduits.get(p))).collect(Collectors.toList()));
         }
 
@@ -230,5 +225,12 @@ public class ControlProduit implements Initializable {
     public static ObservableList<ProduitRow> getProduitsList(){
         return produitsList;
     }
+    public static void setProduitsList(ObservableList<ProduitRow> produitsList) { ControlProduit.produitsList = produitsList;}
+
+//    public static void setCategoriesList(ObservableList<Categorie> categoriesList) { ControlProduit.categoriesList = categoriesList; }
+
+    public static void setQuantiteProduits(Map<Produit, Integer> quantiteProduits) { ControlProduit.quantiteProduits = quantiteProduits; }
+
+    public static void setCommandes(List<Commande> commandes) { ControlProduit.commandes = commandes; }
 
 }

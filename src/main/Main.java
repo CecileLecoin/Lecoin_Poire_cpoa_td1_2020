@@ -66,24 +66,27 @@ public class Main extends Application {
 		Optional<Persistence> result = popUpSelectPersistence.showAndWait();
 
 		if (result.isPresent() && result.get() != null) {
-			this.daos = DAOFactory.getDaoFactory(result.get());
+			this.persistence = result.get();
+			this.daos = DAOFactory.getDaoFactory(persistence);
 		}
 		else {
 			System.exit(1);
 		}
 
 		try {
-			if (result.get() == Persistence.LISTEMEMOIRE) {
+			if (persistence == Persistence.LISTEMEMOIRE) {
+
+				ControlAccueil.getInstance().setTogglePersistence(Persistence.LISTEMEMOIRE);
 
 				ClientDAO clientdao = daos.getClientDAO();
-				Client client = new Client(1, "nom", "prenom", "identifiant", "mdp", "num", "voie", "cp", "ville", "pays");
+				Client client = new Client(1, "nomLocal", "prenom", "identifiant", "mdp", "num", "voie", "cp", "ville", "pays");
 				DateTimeFormatter formatage = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 				LocalDate dateDebut = LocalDate.parse("2020-09-02 13:12:00", formatage);
 
 				clientdao.create(client);
 
 				ProduitDAO produitdao = daos.getProduitDAO();
-				System.out.println("produitdao : " +produitdao.findAll().toString());
+				System.out.println("produitdao : " + produitdao.findAll().toString());
 				CategorieDAO categoriedao = daos.getCategorieDAO();
 				Categorie categorie = new Categorie(1, "titreCateCommande", "visuel");
 				Produit p1 = new Produit(1, "nom", "description", "visuel", 4, categorie);
@@ -101,6 +104,9 @@ public class Main extends Application {
 				daos.getCommandeDAO().create(c1);
 				daos.getCommandeDAO().create(c2);
 			}
+			else {
+				ControlAccueil.getInstance().setTogglePersistence(Persistence.MYSQL);
+			}
 
 		} catch (CommandeApplicationException e) {
 			e.printStackTrace();
@@ -116,8 +122,6 @@ public class Main extends Application {
 
 	public DAOFactory getDAO() { return daos; }
 
-	public void setDAO(Persistence persistence) {
-
-		this.daos = DAOFactory.getDaoFactory(persistence);
-	}
+	public void setDAO(Persistence persistence) { this.daos = DAOFactory.getDaoFactory(persistence); this.persistence = persistence;}
+	public Persistence getPersistence() { return this.persistence;}
 }

@@ -12,18 +12,17 @@ public class CommandeRow {
     private double montant;
     private String client;
     private int idCommande, quantite;
-    private Commande commande;
-    private ProduitRow produit;
     private HashMap<ProduitRow, Integer> produits;
+    private Commande commande;
 
 
-    public CommandeRow(Commande commande, Integer integer) {
+    public CommandeRow(Commande commande) {
 
         this.idCommande= commande.getIdCommande();
         this.date = commande.getDate();
-        this.client = commande.getClient().getNom();
+        this.client = String.format("%s : %s %s (%s)", commande.getClient().getIdentifiant(), commande.getClient().getNom(), commande.getClient().getPrenom(), commande.getClient().getVille());
         this.montant = commande.calculPrix();
-        this.produits.put(produit, quantite);
+        this.commande = commande;
     }
 
     public void setClient(String client) {
@@ -34,9 +33,7 @@ public class CommandeRow {
         this.montant = montant;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
+    public void setDate(LocalDate date) { this.date = date; }
 
     public void setProduit(HashMap<ProduitRow, Integer> produits) { this.produits=produits; }
 
@@ -58,11 +55,11 @@ public class CommandeRow {
         return montant;
     }
 
-    public HashMap<ProduitRow, Integer> getProduits() {
-        return produits;
-    }
+    public HashMap<ProduitRow, Integer> getProduits() { return produits; }
 
     public Commande getCommande() {
         return commande;
     }
+
+    public LocalDate getDate() { return date; }
 }

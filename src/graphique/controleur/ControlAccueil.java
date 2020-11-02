@@ -3,6 +3,7 @@ package graphique.controleur;
 import dao.enumeration.Persistence;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Control;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -57,14 +58,46 @@ public class ControlAccueil {
         controlMain.push("/res/fxml/page/Categorie.fxml", "Gestion des categories");
     }
 
-    public void toggleButton_SelectPersistence_OnClick(ActionEvent actionEvent) {
+    public void toggleButton_SelectListeMemoire_OnClick(ActionEvent actionEvent) {
 
         Main main = Main.getInstance();
-        if (selectPersistence.getSelectedToggle() == toggleButton_Distant) {
-            main.setDAO(Persistence.MYSQL);
-        }
-        else {
+
+        if (main.getPersistence() == Persistence.MYSQL || main.getPersistence() == null) {
+
+            ControlClients.setClientsList(null);
+            ControlProduit.setProduitsList(null);
+//            ControlProduit.setCategoriesList(null);
+            ControlProduit.setCommandes(null);
+//            ControlProduit.setQuantiteProduits(null);
+            ControlCategorie.setCategoriesList(null);
+
+            ////// TODO
+            // ControlCommandes.setCommandesList(null);
+            // ControlManageCommandes.setLignesCommandesList(null);
+
             main.setDAO(Persistence.LISTEMEMOIRE);
+        }
+            System.out.println("bruh");
+    }
+
+    public void toggleButton_SelectMYSQL_OnClick(ActionEvent actionEvent) {
+
+        Main main = Main.getInstance();
+
+        if (main.getPersistence() == Persistence.LISTEMEMOIRE || main.getPersistence() == null) {
+
+            ControlClients.setClientsList(null);
+            ControlProduit.setProduitsList(null);
+//            ControlProduit.setCategoriesList(null);
+            ControlProduit.setCommandes(null);
+//            ControlProduit.setQuantiteProduits(null);
+            ControlCategorie.setCategoriesList(null);
+
+            ////// TODO
+            // ControlCommandes.setCommandesList(null);
+            // ControlManageCommandes.setLignesCommandesList(null);
+
+            main.setDAO(Persistence.MYSQL);
         }
     }
 
@@ -77,8 +110,6 @@ public class ControlAccueil {
         }
     }
 
-    public static ControlAccueil getInstance() { return instance;}
-
     public void hyperlink_Github_OnClick(ActionEvent actionEvent) {
 
         try {
@@ -87,4 +118,6 @@ public class ControlAccueil {
             e.printStackTrace();
         }
     }
+
+    public static ControlAccueil getInstance() { return instance;}
 }

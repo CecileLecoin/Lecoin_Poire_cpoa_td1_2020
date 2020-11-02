@@ -61,6 +61,10 @@ public class ControlManageCategorie implements Initializable {
         } catch (IllegalArgumentException e){
             erreur = e.getMessage();
         }
+
+        ///////TODO
+        categorie.setVisuel("Default");
+
         if (erreur.length() == 0) {
 
             consumer.accept(categorie);

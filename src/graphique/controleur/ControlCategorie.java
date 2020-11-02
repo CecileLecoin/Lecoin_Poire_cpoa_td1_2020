@@ -178,8 +178,6 @@ public class ControlCategorie implements Initializable {
         }
     }
 
-    public static ObservableList<Categorie> getCategoriesList() {
-
-        return categoriesList;
-    }
+    public static ObservableList<Categorie> getCategoriesList() { return categoriesList; }
+    public static void setCategoriesList(ObservableList<Categorie> categoriesList) { ControlCategorie.categoriesList = categoriesList;}
 }

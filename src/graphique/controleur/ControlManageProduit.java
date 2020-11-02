@@ -101,6 +101,9 @@ public class ControlManageProduit implements Initializable {
     		produit.setCategorie(categorie);
     	}
 
+    	////////TODO
+		produit.setVisuel("Default");
+
 		if (erreur.length() == 0) {
 
 			consumer.accept(produit);

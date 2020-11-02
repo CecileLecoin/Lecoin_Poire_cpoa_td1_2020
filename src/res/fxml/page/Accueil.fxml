@@ -72,11 +72,11 @@
             <FlowPane alignment="CENTER" hgap="10.0" minWidth="-Infinity" prefHeight="80.0" prefWidth="300.0">
                <children>
                   <Label text="Enregistrement des données :" />
-                  <ToggleButton fx:id="toggleButton_Local" mnemonicParsing="false" onAction="#toggleButton_SelectPersistence_OnClick" text=" Local ">
+                  <ToggleButton fx:id="toggleButton_Local" mnemonicParsing="false" onAction="#toggleButton_SelectListeMemoire_OnClick" text=" Local ">
                      <toggleGroup>
                         <ToggleGroup fx:id="selectPersistence" />
                      </toggleGroup></ToggleButton>
-                  <ToggleButton fx:id="toggleButton_Distant" mnemonicParsing="false" onAction="#toggleButton_SelectPersistence_OnClick" text="Distant" toggleGroup="$selectPersistence" />
+                  <ToggleButton fx:id="toggleButton_Distant" mnemonicParsing="false" onAction="#toggleButton_SelectMYSQL_OnClick" text="Distant" toggleGroup="$selectPersistence" />
                </children>
             </FlowPane>
             <Hyperlink fx:id="hyperlink_Github" onAction="#hyperlink_Github_OnClick" text="Github" />

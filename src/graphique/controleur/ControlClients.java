@@ -18,6 +18,7 @@ import java.util.*;
 
 public class ControlClients implements Initializable {
 
+
     public enum TypeRecherche {
         idClient,
         nom,
@@ -64,6 +65,7 @@ public class ControlClients implements Initializable {
     private static ObservableList<Client> clientsList;
     private final ControlMain controlMain;
     private final ClientDAO dao;
+    private static ControlClients instance;
     private List<TypeRecherche> typesRecherche;
 
     public ControlClients() throws CommandeApplicationException {
@@ -204,6 +206,11 @@ public class ControlClients implements Initializable {
     public static ObservableList<Client> getClientsList() {
 
         return clientsList;
+    }
+
+    public static void setClientsList(ObservableList<Client> clientsList) {
+
+        ControlClients.clientsList = clientsList;
     }
 
 }

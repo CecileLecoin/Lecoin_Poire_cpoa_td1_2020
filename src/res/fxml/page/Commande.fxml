@@ -26,9 +26,9 @@
    <children>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
          <children>
-            <ChoiceBox fx:id="choiceBox_search" prefWidth="150.0" />
+            <ChoiceBox fx:id="choiceBox_Search" prefWidth="150.0" />
             <TextField id="recherche" fx:id="textField_Search" maxWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" promptText="Rechercher" />
-            <Button id="btnRecherche" fx:id="button_Search" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="30.0">
+            <Button id="btnRecherche" fx:id="button_Search" maxWidth="-Infinity" mnemonicParsing="false" onAction="#button_Search_OnClick" prefWidth="30.0">
                 <graphic>
                     <ImageView>
                         <Image url="@../../images/magnify.png" />
@@ -45,10 +45,10 @@
       </HBox>
       <TableView id="listeCmd" fx:id="tableView_Commandes" onMouseClicked="#SelectCmd" prefHeight="333.0" prefWidth="330.0" GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="tColumn_Id" editable="false" minWidth="-Infinity" prefWidth="70.40002381801605" text="N°" />
-          <TableColumn fx:id="tColumn_Date" minWidth="100.0" prefWidth="161.33334350585938" text="Date" />
-            <TableColumn fx:id="tColumn_Client" editable="false" minWidth="100.0" prefWidth="562.9333190917969" text="Client" />
-            <TableColumn fx:id="tColumn_Montant" editable="false" minWidth="-Infinity" prefWidth="222.6666259765625" text="Montant" />
+          <TableColumn fx:id="tColumn_Id" editable="false" minWidth="-Infinity" prefWidth="100.0" text="N°" />
+          <TableColumn fx:id="tColumn_Date" minWidth="-Infinity" prefWidth="210.0" text="Date" />
+            <TableColumn fx:id="tColumn_Client" editable="false" minWidth="-Infinity" prefWidth="540.0" text="Client" />
+            <TableColumn fx:id="tColumn_Montant" editable="false" minWidth="-Infinity" prefWidth="230.0" text="Montant" />
         </columns>
          <GridPane.margin>
             <Insets left="10.0" right="10.0" />

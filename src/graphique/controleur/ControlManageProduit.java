@@ -1,6 +1,5 @@
 package graphique.controleur;
 
-import dao.enumeration.Persistence;
 import daofactory.DAOFactory;
 import exceptions.CommandeApplicationException;
 import javafx.beans.value.ObservableValue;

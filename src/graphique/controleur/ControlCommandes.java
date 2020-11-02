@@ -3,7 +3,6 @@ package graphique.controleur;
 import daofactory.DAOFactory;
 import exceptions.CommandeApplicationException;
 import graphique.control.CommandeRow;
-import graphique.control.ProduitRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,17 +12,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import main.Main;
-import metier.Categorie;
-import metier.Client;
 import metier.Commande;
-import metier.Produit;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ControlCommandes implements Initializable {
 
@@ -46,8 +40,6 @@ public class ControlCommandes implements Initializable {
     private TableColumn<Commande, String> tColumn_Montant;
 
     @FXML
-    private Button button_Search;
-    @FXML
     private TextField textField_Search;
     @FXML
     private ChoiceBox<TypeRecherche> choiceBox_Search;
@@ -58,17 +50,12 @@ public class ControlCommandes implements Initializable {
     @FXML
     private Button button_Delete;
 
-    private ControlMain controlMain;
-    private DAOFactory dao;
+    private final ControlMain controlMain;
+    private final DAOFactory dao;
 
     private static ObservableList<CommandeRow> commandesList;
-    private static ObservableList<Produit> produitsList;
-    private static ObservableList<Client> clientsList;
-    private static Map<Produit, Integer> quantiteProduits;
 
     private static Commande commandeSelect;
-
-    private static List<Commande> commandes;
 
     private List<TypeRecherche> typesRecherche;
 
@@ -78,47 +65,6 @@ public class ControlCommandes implements Initializable {
     public ControlCommandes() throws CommandeApplicationException {
 
         this.dao = Main.getInstance().getDAO();
-
-//        if (commandes == null) {
-//            commandes = dao.getCommandeDAO().findAll();
-//            quantiteProduits = commandes.stream()
-//                    .map(c -> c.getProduits())
-//                    .flatMap(p -> p.entrySet().stream())
-//                    .collect(Collectors.groupingBy(e -> e.getKey()))
-//                    .entrySet().stream()
-//                    .map(e -> new AbstractMap.SimpleEntry(e.getKey(), e.getValue().stream().mapToInt(e2 -> e2.getValue())
-//                            .sum()))
-//                    .collect(Collectors.toMap(e -> (Produit)e.getKey(), e -> (Integer)e.getValue()));
-//        }
-//
-//        if (commandesList == null) {
-//
-//            Stream<CommandeRow> b = null;
-//            try {
-//                b = dao.getCommandeDAO().findAll().stream().map(p -> new CommandeRow(p, quantiteProduits.get(p)));
-//            } catch (CommandeApplicationException e) {
-//                e.printStackTrace();
-//            }
-//            Iterator<CommandeRow> i = b.iterator();
-//            for (; i.hasNext(); i.next()) {
-//                System.out.println(i);
-//            }
-//        }
-//
-//        if (produitsList == null) {
-//            try {
-//                produitsList = FXCollections.observableList(dao.getProduitDAO().findAll());
-//            } catch (CommandeApplicationException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        if (clientsList == null) {
-//            try {
-//                clientsList = FXCollections.observableList(dao.getClientDAO().findAll());
-//            } catch (CommandeApplicationException e) {
-//                e.printStackTrace();
-//            }
-//        }
 
         commandesList = FXCollections.observableList(dao.getCommandeDAO().findAll().stream().map(c -> new CommandeRow(c)).collect(Collectors.toList()));
 

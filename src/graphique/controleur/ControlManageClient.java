@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import metier.Client;
 import utils.IntegerUtils;
 import utils.MessageBox;
@@ -39,7 +38,7 @@ public class ControlManageClient implements Initializable {
     @FXML
     private Label labelTitre;
 
-    private ControlMain controlMain;
+    private final ControlMain controlMain;
     private Consumer<Client> consumer;
 
     @Override

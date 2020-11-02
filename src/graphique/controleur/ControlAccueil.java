@@ -88,14 +88,11 @@ public class ControlAccueil {
 
             ControlClients.setClientsList(null);
             ControlProduit.setProduitsList(null);
-//            ControlProduit.setCategoriesList(null);
             ControlProduit.setCommandes(null);
-//            ControlProduit.setQuantiteProduits(null);
             ControlCategorie.setCategoriesList(null);
 
-            ////// TODO
-            // ControlCommandes.setCommandesList(null);
-            // ControlManageCommandes.setLignesCommandesList(null);
+             ControlCommandes.setCommandesList(null);
+             ControlLigneCommande.setLignesCommandesList(null);
 
             main.setDAO(Persistence.MYSQL);
         }

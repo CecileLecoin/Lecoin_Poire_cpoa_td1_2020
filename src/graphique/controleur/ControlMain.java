@@ -21,8 +21,8 @@ public class ControlMain {
 
     private static ControlMain instance;
 
-    private Stack<Node> navigationPage;
-    private Stack<FilNavigation> filNavigation;
+    private final Stack<Node> navigationPage;
+    private final Stack<FilNavigation> filNavigation;
 
 
     public ControlMain() {

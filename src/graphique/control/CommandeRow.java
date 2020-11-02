@@ -1,7 +1,5 @@
 package graphique.control;
 
-import metier.Categorie;
-import metier.Client;
 import metier.Commande;
 
 import java.time.LocalDate;
@@ -11,7 +9,7 @@ public class CommandeRow {
     private LocalDate date;
     private double montant;
     private String client;
-    private int idCommande, quantite;
+    private int idCommande;
     private HashMap<ProduitRow, Integer> produits;
     private Commande commande;
 

@@ -26,7 +26,7 @@ public class ControlManageCategorie implements Initializable {
     @FXML
     private Label labelTitre;
 
-    private ControlMain controlMain;
+    private final ControlMain controlMain;
     private Consumer<Categorie> consumer;
 
     @Override

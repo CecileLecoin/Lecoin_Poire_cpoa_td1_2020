@@ -1,9 +1,7 @@
 package graphique.controleur;
 
-import dao.ProduitDAO;
 import daofactory.DAOFactory;
 import exceptions.CommandeApplicationException;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.Main;
-import metier.Categorie;
 import metier.Commande;
 import metier.Produit;
 import graphique.control.ProduitRow;
@@ -21,7 +18,6 @@ import utils.MessageBox;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ControlProduit implements Initializable {
 
@@ -52,8 +48,6 @@ public class ControlProduit implements Initializable {
     private TableColumn<Produit, String> tColumn_Tarif;
 
     @FXML
-    private Button button_Search;
-    @FXML
     private TextField textField_Search;
     @FXML
     private ChoiceBox<TypeRecherche> choiceBox_Search;
@@ -64,13 +58,10 @@ public class ControlProduit implements Initializable {
     @FXML
     private Button button_Delete;
 
-    private ControlMain controlMain;
-    private DAOFactory dao;
+    private final ControlMain controlMain;
+    private final DAOFactory dao;
 
     private static ObservableList<ProduitRow> produitsList;
-//    private static ObservableList<Categorie> categoriesList;
-    private Produit produit = new Produit();
-    private Categorie categorie = new Categorie();
 
     private static Map<Produit, Integer> quantiteProduits;
     private static List<Commande> commandes;
@@ -81,9 +72,6 @@ public class ControlProduit implements Initializable {
 
         this.dao = Main.getInstance().getDAO();
 
-//        if (categoriesList == null) {
-//            categoriesList = FXCollections.observableList(dao.getCategorieDAO().findAll());
-//        }
         if (commandes == null) {
             commandes = dao.getCommandeDAO().findAll();
             quantiteProduits = commandes.stream()
@@ -97,7 +85,7 @@ public class ControlProduit implements Initializable {
         }
         if (produitsList == null) {
 
-            this.produitsList = FXCollections.observableList(dao.getProduitDAO().findAll().stream().map(p -> new ProduitRow(p, quantiteProduits.get(p))).collect(Collectors.toList()));
+            produitsList = FXCollections.observableList(dao.getProduitDAO().findAll().stream().map(p -> new ProduitRow(p, quantiteProduits.get(p))).collect(Collectors.toList()));
         }
 
         controlMain = ControlMain.getInstance();
@@ -226,8 +214,6 @@ public class ControlProduit implements Initializable {
         return produitsList;
     }
     public static void setProduitsList(ObservableList<ProduitRow> produitsList) { ControlProduit.produitsList = produitsList;}
-
-//    public static void setCategoriesList(ObservableList<Categorie> categoriesList) { ControlProduit.categoriesList = categoriesList; }
 
     public static void setQuantiteProduits(Map<Produit, Integer> quantiteProduits) { ControlProduit.quantiteProduits = quantiteProduits; }
 

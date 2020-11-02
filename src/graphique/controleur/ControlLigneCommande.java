@@ -1,9 +1,9 @@
 package graphique.controleur;
 
+import dao.ProduitDAO;
 import daofactory.DAOFactory;
 import exceptions.CommandeApplicationException;
 import graphique.control.LigneCommandeRow;
-import graphique.control.ProduitRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,11 +16,9 @@ import main.Main;
 import metier.Commande;
 import metier.Produit;
 
-import javax.swing.text.TabableView;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ControlLigneCommande implements Initializable {
 
@@ -64,30 +62,10 @@ public class ControlLigneCommande implements Initializable {
     private DAOFactory dao;
 
     private static ObservableList<LigneCommandeRow> lignesCommandesList;
-    private static Map<Produit, Integer> quantiteProduits;
-//    private static List<Commande> commandes;
 
     private List<TypeRecherche> typesRecherche;
 
     public ControlLigneCommande() {
-
-
-
-//        if (commandes == null) {
-//            try {
-//                commandes = dao.getCommandeDAO().findAll();
-//                quantiteProduits = commandes.stream()
-//                    .map(c -> c.getProduits())
-//                    .flatMap(p -> p.entrySet().stream())
-//                    .collect(Collectors.groupingBy(e -> e.getKey()))
-//                    .entrySet().stream()
-//                    .map(e -> new AbstractMap.SimpleEntry(e.getKey(), e.getValue().stream().mapToInt(e2 -> e2.getValue())
-//                            .sum()))
-//                    .collect(Collectors.toMap(e -> (Produit)e.getKey(), e -> (Integer)e.getValue()));
-//            } catch (CommandeApplicationException e) {
-//                e.printStackTrace();
-//            }
-//        }
 
     }
 
@@ -101,8 +79,23 @@ public class ControlLigneCommande implements Initializable {
         if (lignesCommandesList == null) {
 
             try {
+                ArrayList<Produit> eza = dao.getProduitDAO().findAll();
 
-                this.lignesCommandesList = FXCollections.observableList(dao.getProduitDAO().findAll().stream().map(p -> new LigneCommandeRow(commande, commande.getProduits().get(p), p)).collect(Collectors.toList()));
+
+                lignesCommandesList = FXCollections.observableList(dao.getProduitDAO().findAll().stream().map(p -> {
+//
+//                    Iterator iterator = commande.getProduits().entrySet().iterator();
+//
+//                    Map.Entry mapentry = (Map.Entry) iterator.next();
+//                    Produit produit = (Produit) mapentry.getKey();
+//                    Integer quantite = (Integer) mapentry.getValue();
+//
+//                    Commande r = commande;
+//                    HashMap<Produit, Integer> q = commande.getProduits();
+//                    int qte = commande.getProduits().get(p);
+//                    Produit pr = p;
+                    return new LigneCommandeRow(commande, commande.getProduits().get(p), p);
+                }).collect(Collectors.toList()));
             } catch (CommandeApplicationException e) {
                 e.printStackTrace();
             }
@@ -172,4 +165,6 @@ public class ControlLigneCommande implements Initializable {
     public void setCommande(Commande commande) {
         this.commande = commande;
     }
+
+    public static void setLignesCommandesList(ObservableList<LigneCommandeRow> lignesCommandesList) {ControlLigneCommande.lignesCommandesList = lignesCommandesList; }
 }

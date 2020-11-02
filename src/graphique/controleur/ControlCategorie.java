@@ -1,7 +1,6 @@
 package graphique.controleur;
 
 import dao.CategorieDAO;
-import dao.ClientDAO;
 import exceptions.CommandeApplicationException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,9 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import main.Main;
 import metier.Categorie;
-import metier.Client;
-import utils.MessageBox;
-import metier.Produit;
 import utils.MessageBox;
 
 import java.net.URL;
@@ -54,8 +50,8 @@ public class ControlCategorie implements Initializable {
     @FXML
     private Button button_Delete;
 
-    private ControlMain controlMain;
-    private CategorieDAO dao;
+    private final ControlMain controlMain;
+    private final CategorieDAO dao;
     private static ObservableList<Categorie> categoriesList;
     private List<TypeRecherche> typesRecherche;
 

@@ -38,8 +38,7 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 		while (this.produits.contains(produit)) {
 
 			produit.setIdProduit(produit.getIdProduit() + 1);
-		}		
-		System.out.println("produit doit avoir été créé. Son id : " + produit.getIdProduit());
+		}
 		return this.produits.add(produit);
 
 	}
@@ -87,7 +86,9 @@ public class ListeMemoireProduitDAO implements ProduitDAO {
 
 	@Override
 	public ArrayList<Produit> findAll() {
-		return (ArrayList<Produit>) this.produits;
+
+		ArrayList<Produit> produits = new ArrayList<>(this.produits);
+		return produits;
 	}
 
 	@Override

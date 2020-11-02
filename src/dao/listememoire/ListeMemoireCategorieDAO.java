@@ -81,7 +81,9 @@ public class ListeMemoireCategorieDAO implements CategorieDAO {
 
 	@Override
 	public ArrayList<Categorie> findAll() {
-		return (ArrayList<Categorie>) this.categories;
+
+		ArrayList<Categorie> categories = new ArrayList<>(this.categories);
+		return categories;
 	}
 
 	@Override

@@ -14,14 +14,11 @@ import metier.Client;
 import utils.MessageBox;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class ControlClients implements Initializable {
 
-    public enum TypesRecherche {
+    public enum TypeRecherche {
         idClient,
         nom,
         prenom,
@@ -56,7 +53,7 @@ public class ControlClients implements Initializable {
     @FXML
     private TextField textField_Search;
     @FXML
-    private ChoiceBox<String> choiceBox_Search;
+    private ChoiceBox<TypeRecherche> choiceBox_Search;
     @FXML
     private Button button_Show;
     @FXML
@@ -65,8 +62,9 @@ public class ControlClients implements Initializable {
     private Button button_Delete;
 
     private static ObservableList<Client> clientsList;
-    private ControlMain controlMain;
-    private ClientDAO dao;
+    private final ControlMain controlMain;
+    private final ClientDAO dao;
+    private List<TypeRecherche> typesRecherche;
 
     public ControlClients() throws CommandeApplicationException {
 
@@ -92,8 +90,12 @@ public class ControlClients implements Initializable {
         tColumn_Pays.setCellValueFactory(new PropertyValueFactory<>("pays"));
 
         tableView_Clients.setItems(clientsList);
+        tColumn_Nom.setSortType(TableColumn.SortType.ASCENDING);
+        tableView_Clients.getSortOrder().add(tColumn_Nom);
 
-//        choiceBox_Search.setItems(FXCollections.observableList(Arrays.stream(TypesRecherche).collect(Collectors.toList())));
+        typesRecherche = Arrays.asList(TypeRecherche.class.getEnumConstants());
+        choiceBox_Search.setItems(FXCollections.observableList(typesRecherche));
+        choiceBox_Search.getSelectionModel().select(1);
     }
 
     public void SelectCli() {
@@ -114,15 +116,34 @@ public class ControlClients implements Initializable {
 
     public void button_Search_OnClick(ActionEvent actionEvent) {
 
-//        choiceBox_Search.setItems(clientsList.filtered(c -> {
-//            String choice = choiceBox_Search.getValue();
-//
-//        }));
+        tableView_Clients.setItems(clientsList.filtered(c -> {
+            TypeRecherche choice = choiceBox_Search.getValue();
+            switch (choice) {
+                case idClient:
+                    return String.valueOf(c.getIdClient()).startsWith(textField_Search.getText());
+                case nom:
+                    return c.getNom().startsWith(textField_Search.getText());
+                case prenom:
+                    return c.getPrenom().startsWith(textField_Search.getText());
+                case num:
+                    return c.getNum().startsWith(textField_Search.getText());
+                case voie:
+                    return c.getVoie().startsWith(textField_Search.getText());
+                case cp:
+                    return c.getCp().startsWith(textField_Search.getText());
+                case ville:
+                    return c.getVille().startsWith(textField_Search.getText());
+                case pays:
+                    return c.getPays().startsWith(textField_Search.getText());
+                default:
+                    return true;
+            }
+        }));
     }
 
     public void AddCli() {
 
-        ControlManageClient controlManageClient = controlMain.push("/res/fxml/page/ManageClient.fxml", "Modification d'un client");
+        ControlManageClient controlManageClient = controlMain.push("/res/fxml/page/ManageClient.fxml", "Création d'un client");
         controlManageClient.setCallback(client -> {
 
             try {
@@ -138,7 +159,7 @@ public class ControlClients implements Initializable {
     public void ShowCli() {
         Client client = tableView_Clients.getSelectionModel().getSelectedItem();
 
-        ControlManageClient controlManageClient = controlMain.push("/res/fxml/page/ManageClient.fxml", "Création d'un client");
+        ControlManageClient controlManageClient = controlMain.push("/res/fxml/page/ManageClient.fxml", "Détails d'un client");
         controlManageClient.setClient(client);
         controlManageClient.setReadOnly(true);
     }

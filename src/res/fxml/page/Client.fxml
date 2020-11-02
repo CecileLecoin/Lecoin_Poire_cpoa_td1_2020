@@ -43,16 +43,16 @@
             <Insets right="30.0" />
          </GridPane.margin>
       </HBox>
-      <TableView id="listeCmd" fx:id="tableView_Clients" onMouseClicked="#SelectCli" prefHeight="333.0" prefWidth="330.0" GridPane.rowIndex="1">
+      <TableView id="listeCmd" fx:id="tableView_Clients" onMouseClicked="#SelectCli" GridPane.rowIndex="1">
         <columns>
           <TableColumn fx:id="tColumn_Id" editable="false" minWidth="-Infinity" prefWidth="25.0" text="N°" />
-          <TableColumn fx:id="tColumn_Nom" minWidth="100.0" prefWidth="175.0" text="Nom" />
-            <TableColumn fx:id="tColumn_Prenom" editable="false" minWidth="100.0" prefWidth="175.0" text="Prenom" />
-            <TableColumn fx:id="tColumn_Num" editable="false" minWidth="-Infinity" prefWidth="40.0" text="Num" />
-            <TableColumn fx:id="tColumn_Voie" editable="false" minWidth="150.0" prefWidth="200.0" text="Voie" />
-            <TableColumn fx:id="tColumn_CP" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" text="Code postale" />
-            <TableColumn fx:id="tColumn_Ville" editable="false" minWidth="100.0" prefWidth="160.0" text="Ville" />
-            <TableColumn fx:id="tColumn_Pays" editable="false" minWidth="100.0" prefWidth="150.0" text="Pays" />
+          <TableColumn fx:id="tColumn_Nom" minWidth="-Infinity" prefWidth="175.0" text="Nom" />
+            <TableColumn fx:id="tColumn_Prenom" editable="false" minWidth="-Infinity" prefWidth="175.0" text="Prenom" />
+            <TableColumn fx:id="tColumn_Num" editable="false" minWidth="-Infinity" prefWidth="75.0" text="Num" />
+            <TableColumn fx:id="tColumn_Voie" editable="false" minWidth="-Infinity" prefWidth="200.0" text="Voie" />
+            <TableColumn fx:id="tColumn_CP" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Code postale" />
+            <TableColumn fx:id="tColumn_Ville" editable="false" minWidth="-Infinity" prefWidth="180.0" text="Ville" />
+            <TableColumn fx:id="tColumn_Pays" editable="false" minWidth="-Infinity" prefWidth="150.0" text="Pays" />
         </columns>
          <GridPane.margin>
             <Insets left="10.0" right="10.0" />

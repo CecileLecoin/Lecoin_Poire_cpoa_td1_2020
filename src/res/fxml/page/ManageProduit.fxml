@@ -1,89 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphique.controleur.ControlManageProduit">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphique.controleur.ControlManageProduit">
    <children>
-      <GridPane prefHeight="380.0" prefWidth="379.0">
+      <GridPane minHeight="-Infinity" prefHeight="430.0" prefWidth="379.0">
         <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="191.0" minWidth="95.0" prefWidth="95.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="55.0" prefWidth="55.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="461.0" minWidth="80.0" prefWidth="444.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="-Infinity" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="-Infinity" prefWidth="226.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="588.0" minWidth="-Infinity" prefWidth="588.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints maxHeight="101.0" minHeight="10.0" prefHeight="101.0" valignment="CENTER" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="101.0" minHeight="10.0" prefHeight="101.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="140.0" minHeight="10.0" prefHeight="140.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Nom :">
+            <Label fx:id="labelTitre" text="Ajout d'un produit" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="4">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label text="Nom :" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <padding>
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <Label text="Description : " GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <Label text="Description : " GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <padding>
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Tarif : " GridPane.rowIndex="2">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Tarif : " GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <padding>
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <Label text="Catégorie : " GridPane.rowIndex="3">
+            <Label text="Catégorie : " GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <padding>
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <TextField fx:id="textFieldNom" userData="50" GridPane.columnIndex="1" GridPane.columnSpan="2">
+            <TextField fx:id="textFieldNom" userData="50" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextArea fx:id="textAreaDescription" userData="500" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
+            <TextArea fx:id="textAreaDescription" prefHeight="200.0" prefWidth="200.0" userData="500" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextArea>
-            <TextField fx:id="textFieldTarif" userData="15" prefHeight="25.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="textFieldTarif" prefHeight="25.0" prefWidth="209.0" userData="15" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
             </TextField>
-            <Label text=" euros à l'unité" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <ChoiceBox fx:id="choiceBoxCategorie" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+            <Label text=" euros à l'unité" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="choiceBoxCategorie" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </ChoiceBox>
          </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
       </GridPane>
-      <FlowPane alignment="CENTER" prefHeight="37.0" prefWidth="738.0">
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="100.0" minHeight="-Infinity" prefHeight="250.0" prefWidth="1100.0">
          <children>
-            <Button fx:id="btnCreer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#creerProduit" text="Créer" textAlignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
+            <Button fx:id="button_Add" alignment="BOTTOM_RIGHT" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#button_Add_OnClick" text="Valider">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/account-plus.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="button_Annuler" alignment="BOTTOM_RIGHT" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#button_Annuler_Onclick" text="Annuler">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/cancel.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </FlowPane>
-      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="59.0" prefWidth="738.0">
-         <children>
-            <Label fx:id="labelAffiche" />
-         </children></FlowPane>
    </children>
 </VBox>

@@ -94,9 +94,9 @@ public class ListeMemoireCommandeDAO implements CommandeDAO {
 
 	@Override
 	public ArrayList<Commande> findAll() {
-		System.out.println("findall");
 
-		return (ArrayList<Commande>) this.commandes;
+		ArrayList<Commande> commandes = new ArrayList<>(this.commandes);
+		return commandes;
 	}
 
 	@Override

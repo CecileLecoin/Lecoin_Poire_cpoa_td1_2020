@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import metier.Categorie;
-import metier.Client;
 import utils.MessageBox;
 
 import java.net.URL;
@@ -23,7 +22,7 @@ public class ControlManageCategorie implements Initializable {
     @FXML
     private TextField textField_Visuel;
     @FXML
-    private Button button_AddCli;
+    private Button button_Add;
     @FXML
     private Label labelTitre;
 
@@ -45,11 +44,6 @@ public class ControlManageCategorie implements Initializable {
 
         controlMain = ControlMain.getInstance();
     }
-
-
-
-
-
 
     public void Add(MouseEvent mouseEvent) {
         Categorie categorie = new Categorie();
@@ -87,6 +81,25 @@ public class ControlManageCategorie implements Initializable {
         this.consumer = consumer;
     }
 
+    public void setCategorie(Categorie oldCategorie) {
+
+        textField_Titre.setText(oldCategorie.getTitre());
+        textField_Visuel.setText(oldCategorie.getVisuel());
+
+        labelTitre.setText("Modification d'une catégorie");
+    }
+
+    public void setReadOnly(boolean readOnly) {
+
+        textField_Titre.setEditable(!readOnly);
+        textField_Visuel.setEditable(!readOnly);
+
+        button_Add.setVisible(!readOnly);
+
+        labelTitre.setText("Détails d'une catégorie");
+    }
+
+
     public void textField_LimitSize(ObservableValue<? extends String> observable, String oldValue, String newValue, TextField textField) {
 
         if (newValue.length() > Integer.parseInt((String)textField.getUserData())) {
@@ -94,4 +107,5 @@ public class ControlManageCategorie implements Initializable {
             textField.setText(oldValue);
         }
     }
+
 }

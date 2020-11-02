@@ -25,18 +25,12 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.59995117187509" minWidth="10.0" prefWidth="40.00003662109384" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="-Infinity" prefHeight="65.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="222.0" minHeight="-Infinity" prefHeight="68.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="245.0" minHeight="-Infinity" prefHeight="95.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="264.0" minHeight="-Infinity" prefHeight="264.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="labelTitre" text="Ajout d'un client" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="4">
+            <Label fx:id="labelTitre" text="Ajout d'une categorie" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="4">
                <font>
                   <Font size="22.0" />
                </font>
@@ -44,12 +38,12 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Catégorie :" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Label text="Catégorie :" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldIdentifiant" userData="45" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+            <TextField fx:id="textField_Titre" userData="45" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="5.0" right="35.0" />
                </GridPane.margin>
@@ -57,9 +51,9 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <Label text="Titre :" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-            <Label text="Visuel :" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-            <Button fx:id="btn_RechercheVisuel" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+            <Label text="Titre :" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <Label text="Visuel :" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <Button fx:id="btn_RechercheVisuel" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -68,7 +62,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <TextField fx:id="textField_Visuel" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+            <TextField fx:id="textField_Visuel" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
          </children>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

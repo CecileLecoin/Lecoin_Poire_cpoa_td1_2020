@@ -10,6 +10,7 @@ import dao.listememoire.ListeMemoireProduitDAO;
 import daofactory.DAOFactory;
 import exceptions.CommandeApplicationException;
 import graphique.control.PopUpSelectPersistence;
+import graphique.controleur.ControlAccueil;
 import graphique.controleur.ControlMain;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -65,37 +66,41 @@ public class Main extends Application {
 
 		if (result.isPresent() && result.get() != null) {
 			this.daos = DAOFactory.getDaoFactory(result.get());
+			ControlAccueil.getInstance().setTogglePersistence(result.get());
 		}
 		else {
 			System.exit(1);
 		}
 
 		try {
-			ClientDAO clientdao = daos.getClientDAO();
-			Client client = new Client(1, "nom", "prenom", "identifiant", "mdp", "num", "voie", "cp", "ville", "pays");
-			DateTimeFormatter formatage = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-			LocalDate dateDebut = LocalDate.parse("2020-09-02 13:12:00", formatage);
+			if (result.get() == Persistence.LISTEMEMOIRE) {
 
-			clientdao.create(client);
+				ClientDAO clientdao = daos.getClientDAO();
+				Client client = new Client(1, "nom", "prenom", "identifiant", "mdp", "num", "voie", "cp", "ville", "pays");
+				DateTimeFormatter formatage = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+				LocalDate dateDebut = LocalDate.parse("2020-09-02 13:12:00", formatage);
 
-			ProduitDAO produitdao = daos.getProduitDAO();
-			System.out.println("produitdao : " +produitdao.findAll().toString());
-			CategorieDAO categoriedao = daos.getCategorieDAO();
-			Categorie categorie = new Categorie(1, "titreCateCommande", "visuel");
-			Produit p1 = new Produit(1, "nom", "description", "visuel", 4, categorie);
+				clientdao.create(client);
 
-			daos.getCategorieDAO().create(categorie);
-			daos.getProduitDAO().create(p1);
+				ProduitDAO produitdao = daos.getProduitDAO();
+				System.out.println("produitdao : " +produitdao.findAll().toString());
+				CategorieDAO categoriedao = daos.getCategorieDAO();
+				Categorie categorie = new Categorie(1, "titreCateCommande", "visuel");
+				Produit p1 = new Produit(1, "nom", "description", "visuel", 4, categorie);
 
-			HashMap<Produit, Integer> produits = new HashMap<>();
-			produits.put(p1, 2);
-			Commande c1 = new Commande(1, dateDebut, client, produits);
-			System.out.println("commandes : " );
-			dateDebut = LocalDate.parse("2020-08-30 11:22:00", formatage);
-			produits.put(p1, 4);
-			Commande c2 = new Commande(2, dateDebut, client, produits);
-			daos.getCommandeDAO().create(c1);
-			daos.getCommandeDAO().create(c2);
+				daos.getCategorieDAO().create(categorie);
+				daos.getProduitDAO().create(p1);
+
+				HashMap<Produit, Integer> produits = new HashMap<>();
+				produits.put(p1, 2);
+				Commande c1 = new Commande(1, dateDebut, client, produits);
+				System.out.println("commandes : " );
+				dateDebut = LocalDate.parse("2020-08-30 11:22:00", formatage);
+				produits.put(p1, 4);
+				Commande c2 = new Commande(2, dateDebut, client, produits);
+				daos.getCommandeDAO().create(c1);
+				daos.getCommandeDAO().create(c2);
+			}
 
 		} catch (CommandeApplicationException e) {
 			e.printStackTrace();
@@ -107,13 +112,13 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	public static Main getInstance() {
+	public static Main getInstance() { return instance; }
 
-		return instance;
+	public DAOFactory getDAO() { return daos; }
+
+	public void setDAO(Persistence persistence) {
+
+		this.daos = DAOFactory.getDaoFactory(persistence);
 	}
 
-	public DAOFactory getDAO() {
-
-		return daos;
-	}
 }

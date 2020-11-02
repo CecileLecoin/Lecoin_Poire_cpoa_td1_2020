@@ -1,20 +1,16 @@
 package graphique.controleur;
 
-import dao.ClientDAO;
-import dao.ProduitDAO;
 import daofactory.DAOFactory;
 import exceptions.CommandeApplicationException;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import main.Main;
 import metier.Categorie;
-import metier.Client;
 import metier.Commande;
 import metier.Produit;
 import graphique.control.ProduitRow;
@@ -26,6 +22,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ControlProduit implements Initializable {
+
+    public enum TypeRecherche {
+        idProduit,
+        nom,
+        description,
+        visuel,
+        tarif,
+        categorie
+    }
 
     @FXML
     private TableView<ProduitRow> tableView_Produits;
@@ -41,7 +46,15 @@ public class ControlProduit implements Initializable {
     private TableColumn<Produit, String> tColumn_Categorie;
     @FXML
     private TableColumn<Produit, String> tColumn_Quantite;
+    @FXML
+    private TableColumn<Produit, String> tColumn_Tarif;
 
+    @FXML
+    private Button button_Search;
+    @FXML
+    private TextField textField_Search;
+    @FXML
+    private ChoiceBox<TypeRecherche> choiceBox_Search;
     @FXML
     private Button button_Show;
     @FXML
@@ -54,11 +67,13 @@ public class ControlProduit implements Initializable {
 
     private static ObservableList<ProduitRow> produitsList;
     private static ObservableList<Categorie> categoriesList;
-    Produit produit = new Produit();
-    Categorie categorie = new Categorie();
+    private Produit produit = new Produit();
+    private Categorie categorie = new Categorie();
 
     private static Map<Produit, Integer> quantiteProduits;
     private static List<Commande> commandes;
+
+    private List<TypeRecherche> typesRecherche;
 
 
     public ControlProduit() throws CommandeApplicationException {
@@ -81,6 +96,12 @@ public class ControlProduit implements Initializable {
         }
         if (produitsList == null) {
 
+            Stream<ProduitRow> b = dao.getProduitDAO().findAll().stream().map(p -> new ProduitRow(p, quantiteProduits.get(p)));
+            Iterator<ProduitRow> i = b.iterator();
+            for (; i.hasNext(); i.next()) {
+                System.out.println(i);
+            }
+            List<ProduitRow> jhfghfgd = dao.getProduitDAO().findAll().stream().map(p -> new ProduitRow(p, quantiteProduits.get(p))).collect(Collectors.toList());
             this.produitsList = FXCollections.observableList(dao.getProduitDAO().findAll().stream().map(p -> new ProduitRow(p, quantiteProduits.get(p))).collect(Collectors.toList()));
         }
 
@@ -94,10 +115,44 @@ public class ControlProduit implements Initializable {
         tColumn_Nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         tColumn_Description.setCellValueFactory(new PropertyValueFactory<>("description"));
         tColumn_Visuel.setCellValueFactory(new PropertyValueFactory<>("visuel"));
+        tColumn_Tarif.setCellValueFactory(new PropertyValueFactory<>("tarif"));
         tColumn_Categorie.setCellValueFactory(new PropertyValueFactory<>("titreCategorie"));
         tColumn_Quantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
 
         tableView_Produits.setItems(produitsList);
+
+
+        typesRecherche = Arrays.asList(ControlProduit.TypeRecherche.class.getEnumConstants());
+        choiceBox_Search.setItems(FXCollections.observableList(typesRecherche));
+        choiceBox_Search.getSelectionModel().select(1);
+    }
+
+    public void button_Search_OnClick(ActionEvent actionEvent) {
+
+        tableView_Produits.setItems(produitsList.filtered(p -> {
+            ControlProduit.TypeRecherche choice = choiceBox_Search.getValue();
+            switch (choice) {
+                case idProduit:
+                    return String.valueOf(p.getIdProduit()).startsWith(textField_Search.getText());
+                case nom:
+                    return p.getNom().startsWith(textField_Search.getText());
+                case description:
+                    return p.getDescription().startsWith(textField_Search.getText());
+                case visuel:
+                    return p.getVisuel().startsWith(textField_Search.getText());
+                case tarif:
+                    if (textField_Search.getText().length() > 0) {
+                        return p.getTarif() < Float.parseFloat(textField_Search.getText());
+                    }
+                    else {
+                        return false;
+                    }
+                case categorie:
+                    return p.getTitreCategorie().startsWith(textField_Search.getText());
+                default:
+                    return true;
+            }
+        }));
     }
 
     public void AddProd() {
@@ -160,7 +215,7 @@ public class ControlProduit implements Initializable {
     public void DeleteProd() {
         ProduitRow oldProduit = tableView_Produits.getSelectionModel().getSelectedItem();
 
-        Optional<ButtonType> result = MessageBox.show(Alert.AlertType.CONFIRMATION, "Suppression", "Confirmation de suppression", String.format("Voulez-vous vraiment supprimer ce client ? \n %s", oldProduit.getProduit()));
+        Optional<ButtonType> result = MessageBox.show(Alert.AlertType.CONFIRMATION, "Suppression", "Confirmation de suppression", String.format("Voulez-vous vraiment supprimer ce produit ? \n %s", oldProduit.getProduit()));
         if (result != null && result.isPresent() && result.get() == ButtonType.OK) {
 
             try {

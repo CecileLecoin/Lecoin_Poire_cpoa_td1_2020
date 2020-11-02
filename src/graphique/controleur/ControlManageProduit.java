@@ -22,7 +22,7 @@ import java.util.function.Consumer;
 public class ControlManageProduit implements Initializable {
 
     @FXML
-    private Label labelAffiche;
+    private Label labelTitre;
     @FXML
     private TextArea textAreaDescription;
     @FXML
@@ -32,7 +32,7 @@ public class ControlManageProduit implements Initializable {
     @FXML
     private TextField textFieldNom;
 	@FXML
-	private Button btnCreer;
+	private Button button_Add;
 
 	private ObservableList<Categorie> categoriesList;
 
@@ -65,7 +65,7 @@ public class ControlManageProduit implements Initializable {
 	}
 
 
-	public void creerProduit() {
+	public void button_Add_OnClick() {
 
     	Produit produit = new Produit();
     	Categorie categorie = this.choiceBoxCategorie.getValue();
@@ -125,6 +125,7 @@ public class ControlManageProduit implements Initializable {
 		textFieldTarif.setText(String.valueOf(oldProduit.getTarif()));
 		textFieldNom.setText(oldProduit.getNom());
 
+		labelTitre.setText("Modification d'un produit");
 	}
 
 	public void setReadOnly(boolean readOnly) {
@@ -134,9 +135,9 @@ public class ControlManageProduit implements Initializable {
 		textFieldTarif.setEditable(!readOnly);
 		textAreaDescription.setEditable(!readOnly);
 
-		btnCreer.setVisible(!readOnly);
+		button_Add.setVisible(!readOnly);
 
-		//labelTitre.setText("Détails d'un client");
+		labelTitre.setText("Détails d'un produit");
 	}
 
 	public void textField_LimitSize(ObservableValue<? extends String> observable, String oldValue, String newValue, TextField textField) {
@@ -145,5 +146,10 @@ public class ControlManageProduit implements Initializable {
 
 			textField.setText(oldValue);
 		}
+	}
+
+	public void button_Annuler_Onclick(MouseEvent mouseEvent) {
+
+    	controlMain.pop();
 	}
 }

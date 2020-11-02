@@ -66,7 +66,6 @@ public class Main extends Application {
 
 		if (result.isPresent() && result.get() != null) {
 			this.daos = DAOFactory.getDaoFactory(result.get());
-			ControlAccueil.getInstance().setTogglePersistence(result.get());
 		}
 		else {
 			System.exit(1);
@@ -120,5 +119,4 @@ public class Main extends Application {
 
 		this.daos = DAOFactory.getDaoFactory(persistence);
 	}
-
 }

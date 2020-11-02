@@ -35,8 +35,8 @@ public class ControlManageCategorie implements Initializable {
         textField_Titre.textProperty().addListener((observable, oldValue, newValue) -> {
             textField_LimitSize(observable, oldValue, newValue, textField_Titre);
         });
-        textField_Titre.textProperty().addListener((observable, oldValue, newValue) -> {
-            textField_LimitSize(observable, oldValue, newValue, textField_Titre);
+        textField_Visuel.textProperty().addListener((observable, oldValue, newValue) -> {
+            textField_LimitSize(observable, oldValue, newValue, textField_Visuel);
         });
     }
 
@@ -107,5 +107,4 @@ public class ControlManageCategorie implements Initializable {
             textField.setText(oldValue);
         }
     }
-
 }

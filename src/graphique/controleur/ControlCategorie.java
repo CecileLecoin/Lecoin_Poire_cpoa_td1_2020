@@ -15,6 +15,8 @@ import main.Main;
 import metier.Categorie;
 import metier.Client;
 import utils.MessageBox;
+import metier.Produit;
+import utils.MessageBox;
 
 import java.net.URL;
 import java.util.Arrays;

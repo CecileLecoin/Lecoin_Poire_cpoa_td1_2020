@@ -71,3 +71,22 @@
     -fx-background-radius: 1;
 }
 
+// Background color of the whole context menu
+.choice-box .context-menu {
+    -fx-background-color: #bfbfbf;
+    -fx-text-fill: black;
+}
+.choice-box {
+    -fx-background-color: linear-gradient(#333333 0%, #bfbfbf 100%);
+    -fx-text-fill: black;
+}
+// Focused item background color in the list
+.choice-box .menu-item:focused {
+    -fx-background-color: #ffad99;
+}
+// Text color of item in the list
+.choice-box.label {
+    -fx-background-color : #bfbfbf;
+    -fx-text-fill : black;
+}
+

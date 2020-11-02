@@ -25,9 +25,9 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.59995117187509" minWidth="10.0" prefWidth="40.00003662109384" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="222.0" minHeight="-Infinity" prefHeight="68.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="245.0" minHeight="-Infinity" prefHeight="95.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="264.0" minHeight="-Infinity" prefHeight="264.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="141.0" minHeight="-Infinity" prefHeight="130.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="159.0" minHeight="-Infinity" prefHeight="120.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="286.0" minHeight="-Infinity" prefHeight="250.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label fx:id="labelTitre" text="Ajout d'une categorie" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="4">
@@ -43,7 +43,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="textField_Titre" userData="45" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <TextField fx:id="textField_Titre" userData="30" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="5.0" right="35.0" />
                </GridPane.margin>
@@ -62,7 +62,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <TextField fx:id="textField_Visuel" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <TextField fx:id="textField_Visuel" userData="30" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
          </children>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

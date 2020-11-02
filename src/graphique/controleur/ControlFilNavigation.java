@@ -19,6 +19,7 @@ public class ControlFilNavigation {
         if (filNavigation == null) {
             throw new IllegalArgumentException("fil navigation null");
         }
+        filNavigation.getStylesheets().add("/res/css/design1.css");
         ControlMain.getInstance().pop(filNavigation);
     }
 

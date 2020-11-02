@@ -51,6 +51,7 @@ public class Main extends Application {
 			Scene scene = new Scene((Parent) root);
 
 			primaryStage.setScene(scene);
+			scene.getStylesheets().add("/res/css/design1.css");
 			primaryStage.setTitle("Bienvenue dans votre gestionnaire de boutique");
 			primaryStage.setMinHeight(750);
 			primaryStage.setMinWidth(1100);

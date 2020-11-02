@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.GridPane;
 import main.Main;
 
 import javax.accessibility.AccessibleHypertext;
@@ -15,6 +16,8 @@ import java.net.URI;
 
 public class ControlAccueil {
 
+    @FXML
+    private GridPane HomePane;
     @FXML
     private ToggleButton toggleButton_Local;
     @FXML

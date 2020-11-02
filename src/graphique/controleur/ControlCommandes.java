@@ -58,16 +58,17 @@ public class ControlCommandes implements Initializable {
     private DAOFactory dao;
 
     private static ObservableList<CommandeRow> commandesList;
-    private static ObservableList<Categorie> categoriesList;
+    private ObservableList<Categorie> categoriesList;
     private static ObservableList<Produit> produitsList;
     private static ObservableList<Client> clientsList;
+    private static Map<Produit, Integer> quantiteProduits;
 
     private Produit produit = new Produit();
     private Categorie categorie = new Categorie();
     private Client client = new Client();
 
-    private static Map<Produit, Integer> quantiteProduits;
     private static List<Commande> commandes;
+
 
     private List<ControlProduit.TypeRecherche> typesRecherche;
 
@@ -76,13 +77,28 @@ public class ControlCommandes implements Initializable {
 
         this.dao = Main.getInstance().getDAO();
 
+
         if (categoriesList == null) {
             try {
+
                 categoriesList = FXCollections.observableList(dao.getCategorieDAO().findAll());
             } catch (CommandeApplicationException e) {
                 e.printStackTrace();
             }
         }
+
+        if (commandes == null) {
+            commandes = dao.getCommandeDAO().findAll();
+            quantiteProduits = commandes.stream()
+                    .map(c -> c.getProduits())
+                    .flatMap(p -> p.entrySet().stream())
+                    .collect(Collectors.groupingBy(e -> e.getKey()))
+                    .entrySet().stream()
+                    .map(e -> new AbstractMap.SimpleEntry(e.getKey(), e.getValue().stream().mapToInt(e2 -> e2.getValue())
+                            .sum()))
+                    .collect(Collectors.toMap(e -> (Produit)e.getKey(), e -> (Integer)e.getValue()));
+        }
+
         if (commandesList == null) {
 
             Stream<CommandeRow> b = null;
